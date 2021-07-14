@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // palette
-import { primary, secondary, white } from '../../globalStyleComponents/palette';
+import { primary, secondary, white } from '../../styleComponents/palette';
 
 
 

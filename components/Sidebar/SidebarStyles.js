@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 
 // Palette
-import { hover, primary, secondary, white } from '../../globalStyleComponents/palette';
+import { hover, primary, secondary, white } from '../../styleComponents/palette';
 
 
 export const SidebarContainer = styled.aside`

@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // palette
-import { hover, primary, white } from "../../globalStyleComponents/palette";
+import { hover, primary, white } from "../../styleComponents/palette";
 
 
 export const Nav = styled.nav`

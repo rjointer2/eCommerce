@@ -27,7 +27,7 @@ export default function Sidebar ({ isOpen, toggle }) {
                                 What's New
                         </SidebarLink>
                     </Link>
-                   <Link href ="#">
+                   <Link href="createProduct">
                     <SidebarLink onClick={toggle} >
                             Become a Vendor!
                         </SidebarLink>
