@@ -19,7 +19,6 @@ export default function Home() {
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       Hello World
-      
     </div>
   )
 }
