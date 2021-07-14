@@ -1,4 +1,9 @@
 
+// export Imgs
+import { exportImg } from '../assets/exportImgs';
+
+console.log(exportImg)
+
 // global styles to clear default padding and margins
 import '../styles/globals.css'
 
@@ -25,7 +30,7 @@ function MyApp({ Component, pageProps }) {
     <>
       { loggedOut && <Navbar toggle={toggle} /> }
       <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Component {...pageProps} />
+      <Component {...pageProps} {...exportImg}/>
       <Footer/> 
     </>
   )
