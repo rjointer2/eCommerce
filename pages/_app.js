@@ -1,4 +1,18 @@
 
+// Modules
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+// where playground will be used
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const client = new ApolloClient({
+  // later in development this will combine the auth link
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
 
 
 // global styles to clear default padding and margins
@@ -24,12 +38,12 @@ function MyApp({ Component, pageProps }) {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <>
+    <ApolloProvider client={client}>
       { loggedOut && <Navbar toggle={toggle} /> }
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Component {...pageProps} />
       <Footer/> 
-    </>
+    </ApolloProvider>
   )
 }
 

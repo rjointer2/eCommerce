@@ -15,11 +15,11 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 // TypeDefs
-const typeDefs = require('./backend/_schemas/typeDefs');
+const typeDefs = require('./backend/schemas/typeDefs');
 // Resolvers 
-const resolvers = require('./backend/_schemas/rootResolver');
+const resolvers = require('./backend/schemas/rootResolver');
 // Authentication Middleware
-const authenticationMiddleware = require('./backend/_middleware/authMiddlleware');
+const authenticationMiddleware = require('./backend/middleware/authMiddlleware');
 
 
 // apollo server that will typeDefs, resolvers, and schema, and any other middleware
