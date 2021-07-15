@@ -2,12 +2,12 @@
 
 
 // global styles to clear default padding and margins
-import '../styles/globals.css'
+import '../client/styles/globals.css'
 
 // components
-import Footer from '../components/Footer/Footer'
-import Navbar from "../components/Navbar/Navbar";
-import Sidebar from "../components/Sidebar/Sidebar";
+import Footer from '../client/components/Footer/Footer';
+import Navbar from "../client/components/Navbar/Navbar";
+import Sidebar from "../client/components/Sidebar/Sidebar";
 
 // hooks
 import { useState } from 'react';

@@ -2,9 +2,9 @@
 
 // styles
 import { useState } from "react";
-import { Column1, Column2, Container, Row, Wrapper } from "../styleComponents/aligment";
-import { Img, ImgWrapper } from "../styleComponents/img";
-import { Heading, Subtitle, Text } from "../styleComponents/text";
+import { Column1, Column2, Container, Row, Wrapper } from "../client/styleComponents/aligment";
+import { Img, ImgWrapper } from "../client/styleComponents/img";
+import { Heading, Subtitle, Text } from "../client/styleComponents/text";
 
 
 
@@ -44,6 +44,8 @@ export default function createProduct() {
             }
         })()
     }
+
+    
 
     return (
         <>
