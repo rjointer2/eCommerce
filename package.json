@@ -2,6 +2,7 @@
   "name": "ecommercefrontend",
   "version": "0.1.0",
   "private": true,
+  "proxy" : "",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,9 +13,9 @@
     "@apollo/client": "^3.3.21",
     "graphql": "^15.5.1",
     "jwt-decode": "^3.1.2",
-    "next": "^11.0.1",
+    "next": "^10.2.3",
     "next-compose-plugins": "^2.2.1",
-    "next-images": "^1.8.1",
+    "next-images": "^1.7.0",
     "next-videos": "^1.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -24,7 +25,9 @@
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.13.2",
     "eslint": "^7.30.0",
-    "eslint-config-next": "^11.0.1"
+    "eslint-config-next": "^11.0.1",
+    "http-proxy-middleware": "^2.0.1"
   }
 }
