@@ -1,7 +1,7 @@
-# eCommerce Front End
+# eCommerce
 
 ## Table Of Contents
-<!-- click each bullet to move to the associated section -->
+
 * [Description](#description)
 * [Install](#install)
 * [Usage](#usage)
@@ -10,10 +10,7 @@
 
 ## Description
 
-This is a front end application that will be supported by a backend server 
-and MongoDB Database. This application is a simple eCommerce Store will 
-ability to create products with a admin page, and a client to adjust,
-remove, and add prodcts in a cart. 
+This application is a simple eCommerce Store will have ability to create products with a admin page, and a client to adjust, remove, and add prodcts in a cart. 
 
 ## Install
 
@@ -26,10 +23,8 @@ this software usages
 
 ## Usage
 
-To run this front end application in development use ``` npm run dev ```
-
-Reminder -> This is only the front end of the application, to get the full 
-experience in your local machine, you MUST go the [Backend](https://github.com/rjointer2/eCommerceBackEnd) of this application and use a seperate terminal. 
+To run this application use ``` npm run dev ```
+Click here to use [local host](http://localhost:3001)
 
 ## Contributors
 
