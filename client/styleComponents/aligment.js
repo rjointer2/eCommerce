@@ -37,7 +37,7 @@ export const Row = styled.div`
         grid-template-areas: ${({swapImagePlacement}) => swapImagePlacement ? `'col1  col2'` : `'col2  col1'` };
     }
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 700px) {
         display: flex;
         flex-direction: column;
     }
@@ -49,6 +49,7 @@ export const Column1 = styled.div`
     margin-bottom: 15px;
     grid-area: col1;
     padding: 10px;
+    max-width: 555px;
 `;
 
 export const Column2 = styled.div`
@@ -64,4 +65,3 @@ export const FlexWrapper = styled.div`
         flex-direction: column;
     }
 `;
-

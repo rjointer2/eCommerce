@@ -1,4 +1,7 @@
 
+// images from server
+import upload from '../assets/upload.png'
+
 // hooks
 import { useMutation } from "@apollo/client";
 
@@ -10,6 +13,7 @@ import { useState } from "react";
 import { Column1, Column2, Container, Row, Wrapper } from "../client/styleComponents/aligment";
 import { Img, ImgWrapper } from "../client/styleComponents/img";
 import { Heading, Subtitle, Text } from "../client/styleComponents/text";
+import { Input, InputContainer, TextArea } from '../client/styleComponents/form';
 
 
 export default function createProduct() {
@@ -60,6 +64,14 @@ export default function createProduct() {
                 <Wrapper>
                     <Row>
                         <Column1>
+                            <ImgWrapper>
+                                <Img src={upload} alt="uplaod some pictures" />
+                            </ImgWrapper>
+                            <Heading>
+                            Upload your Product Today!
+                        </Heading>
+                        </Column1>
+                        <Column2>
                             <Heading lightText={false} >
                                 It Starts Here!
                             </Heading>
@@ -70,6 +82,17 @@ export default function createProduct() {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Text>
                             <form onSubmit={handleSubmitFile}>
+
+                                <InputContainer>
+                                    Name
+                                    <Input />
+                                    Price
+                                    <Input />
+                                    Department
+                                    <Input />
+                                    Summary
+                                    <TextArea />
+                                </InputContainer>
                                 <input 
                                     type="file" 
                                     name="image" 
@@ -83,9 +106,6 @@ export default function createProduct() {
                             { previewFileInput && (
                                 <Img src={previewFileInput} alt="selected file" />
                             ) }
-                        </Column1>
-                        <Column2>
-
                         </Column2>
                     </Row>
                 </Wrapper>
