@@ -2,26 +2,27 @@
 // modules
 const { cloudinary } = require('../../configs/cloudinary');
 
-const uploadImageResponse = async (parent, { file }) => {
+const addImage = async (parent, args) => {
 
     try {
+        console.log(args)
         // the string base64 image
-        const fileString = file;
+        const fileString = args.image;
         const uploadedResponse = await cloudinary.uploader.upload(fileString, {
-            upload_preset: 'dev_setup'
+            upload_preset: 'eCommerceImages',
+            public_id: args.fileName
         })
-        console.log(uploadImageResponse)
+        console.log(uploadedResponse)
         return {
-            message: 'upload completed'
+            file: "test"
         }
-
     } catch (err) {
-        throw new Error(' Something went wrong with the response, check the following... ');
         console.log(err)
+        throw err
     }
 
 }
 
 module.exports = {
-
+    addImage
 }

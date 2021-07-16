@@ -11,6 +11,16 @@ const typeDefs = gql`
         _id: ID!
     }
 
+    type Image {
+        image: String!
+        fileName: String!
+
+    }
+
+    type Mutation {
+        addImage(image: String!, fileName: String!): Image
+    }
+
 `;
 
 module.exports = typeDefs;

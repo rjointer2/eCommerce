@@ -1,4 +1,9 @@
 
+// hooks
+import { useMutation } from "@apollo/client";
+
+// mutations
+import { UPLOAD_IMAGE } from "../client/ulits/imageMutations";
 
 // styles
 import { useState } from "react";
@@ -7,9 +12,9 @@ import { Img, ImgWrapper } from "../client/styleComponents/img";
 import { Heading, Subtitle, Text } from "../client/styleComponents/text";
 
 
-
 export default function createProduct() {
 
+    const [ uploadImage, { error } ] = useMutation(UPLOAD_IMAGE)
 
     // Uploading Images to Cloundinary
 
@@ -29,18 +34,20 @@ export default function createProduct() {
         }
     }
 
-    const handleSubmitFile = async (e) => {
+    const handleSubmitFile = (e) => {
         console.log('submitting')
         e.preventDefault();
         if(!previewFileInput) return console.log('no file');
-        (() => {
-            try {
-                // use mutation here from apollo client
-                // set up backend to perform this
-                // we have to set a proxy and then 
-                // have the backend use either use localhost or heroku
-            } catch (err) {
 
+        ( async () => {
+            try {
+                await uploadImage({
+                    variables: { "image": previewFileInput, "fileName": "test" }
+                });
+                console.log('success')
+                
+            } catch (err) {
+                console.log(err);
             }
         })()
     }
