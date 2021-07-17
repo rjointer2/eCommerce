@@ -10,6 +10,16 @@ const typeDefs = gql`
     type User {
         _id: ID!
     }
+    
+    type Product {
+        _id: ID!
+        name: String!
+        price: String!
+        department: String!
+        createdBy: String!
+        image: String!
+        summary: String!
+    }
 
     type Image {
         image: String!
@@ -18,7 +28,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addImage(image: String!, fileName: String!): Image
+        addProduct( name: String!, price: Int!, department: String!, summary: String!, createdBy: String!, image: String! ): Product
+        addImage( image: String!, fileName: String! ): Image
     }
 
 `;

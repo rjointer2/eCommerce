@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 
 // mutations
 import { UPLOAD_IMAGE } from "../client/ulits/imageMutations";
+import { ADD_PRODUCT } from '../client/ulits/productMutations';
 
 // styles
 import { useState } from "react";
@@ -18,7 +19,9 @@ import { Input, InputContainer, Option, Select, TextArea } from '../client/style
 
 export default function createProduct() {
 
-    const [ uploadImage, { error } ] = useMutation(UPLOAD_IMAGE)
+    // mutations
+    const [ uploadImage, { error } ] = useMutation(UPLOAD_IMAGE);
+    const [ addProduct, { productError } ] = useMutation(ADD_PRODUCT);
 
     // Uploading Images to Cloundinary
 
@@ -38,31 +41,44 @@ export default function createProduct() {
         }
     }
 
+    // Form State
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [department, setDepartment] = useState('');
+    const [summary, setSummary] = useState('');
+    // options array to map on the selection options
+    const options = ['Market', 'Toys', 'Plants', 'Home']
+
     const handleSubmitFile = (e) => {
         console.log('submitting')
         e.preventDefault();
         if(!previewFileInput) return console.log('no file');
 
+        // form data to send
+
+
+        // uploads picture to cloudinary
         (async () => {
             try {
-                await uploadImage({
+                /* await uploadImage({
                     variables: { "image": previewFileInput, "fileName": "test" }
                 });
-                console.log('success')
+                console.log('success: Image Added to Cloud API') */
+                // createdBy prop will be hard coded as Test for now until redux is added
+                await addProduct({
+                    variables: { 
+                        "name": name, "price": price, "department": department, 
+                        "summary": summary, "createdBy": "Test", "image": previewFileInput
+                    }
+                });
+                console.log('success: Product Details Added')
             } catch (err) {
                 console.log(err);
             }
-        })()
+        })();
+
     }
 
-    // Form State
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [department, setDepartment] = useState('');
-    const [Summary, setSummary] = useState('');
-
-    // options array to map on the selection options
-    const options = ['Market', 'Toys', 'Plants', 'Home']
 
 
     return (
@@ -92,17 +108,17 @@ export default function createProduct() {
 
                                 <InputContainer>
                                     Name
-                                    <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                                    <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} required />
                                     Price
-                                    <Input placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} />
+                                    <Input placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} required />
                                     Department
-                                    <Select name="Department" onChange={(e) => setDepartment(e.target.value)}>
+                                    <Select name="Department" onChange={(e) => setDepartment(e.target.value)} required >
                                         { options.map((option, index) => <Option value={option} key={index}>
                                             {option}
                                         </Option>) }
                                     </Select>
                                     Summary
-                                    <TextArea placeholder="Product Summary" value={Summary} onChange={(e) => setSummary(e.target.value)} />
+                                    <TextArea placeholder="Product Summary" value={summary} onChange={(e) => setSummary(e.target.value)} required />
                                 </InputContainer>
                                 <input 
                                     type="file" 

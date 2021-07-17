@@ -7,6 +7,7 @@ const _PORT = process.env.PORT || 3001
 // modules
 const next = require('next');
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { ApolloServer } = require('apollo-server-express');
 
@@ -38,17 +39,22 @@ const apolloServer = new ApolloServer({
 
 app.prepare().then(() => {
 
-    const server = express();
-    // we have to pass server as a property to the app key
-    apolloServer.applyMiddleware({ app: server });
+    // Database Connection and Configs
+    mongoose.connect(`mongodb+srv://${process.env.UN}:${process.env.PW}@ecommercedb.bpvyj.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(() => {
+        console.log(`Database connected...`)
+        const server = express();
+        // we have to pass server as a property to the app key
+        apolloServer.applyMiddleware({ app: server });
 
-    server.get('*', (req, res) => {
-        return handle(req, res)
-    });
+        server.get('*', (req, res) => { return handle(req, res) });
 
-    server.listen(3001, err => {
-        if(err) throw err
-        console.log('listening for request')
+        server.listen(3001, err => {
+            if(err) throw err
+            console.log('listening for request')
+        })
     })
 
 }).catch(err => {
