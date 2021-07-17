@@ -21,9 +21,14 @@ export const TextArea = styled.textarea`
     margin-bottom: 5px;
 `;
 
-export const d = styled.div``;
+export const Select = styled.select`
+    outline: none;
+    border: none;
+    border-bottom: 1px black solid;
+    margin-bottom: 5px;
+`;
 
-export const e = styled.div``;
+export const Option = styled.option``;
 
 export const f = styled.div``;
 

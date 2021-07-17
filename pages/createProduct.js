@@ -13,7 +13,7 @@ import { useState } from "react";
 import { Column1, Column2, Container, Row, Wrapper } from "../client/styleComponents/aligment";
 import { Img, ImgWrapper } from "../client/styleComponents/img";
 import { Heading, Subtitle, Text } from "../client/styleComponents/text";
-import { Input, InputContainer, TextArea } from '../client/styleComponents/form';
+import { Input, InputContainer, Option, Select, TextArea } from '../client/styleComponents/form';
 
 
 export default function createProduct() {
@@ -43,20 +43,27 @@ export default function createProduct() {
         e.preventDefault();
         if(!previewFileInput) return console.log('no file');
 
-        ( async () => {
+        (async () => {
             try {
                 await uploadImage({
                     variables: { "image": previewFileInput, "fileName": "test" }
                 });
                 console.log('success')
-                
             } catch (err) {
                 console.log(err);
             }
         })()
     }
 
-    
+    // Form State
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [department, setDepartment] = useState('');
+    const [Summary, setSummary] = useState('');
+
+    // options array to map on the selection options
+    const options = ['Market', 'Toys', 'Plants', 'Home']
+
 
     return (
         <>
@@ -85,13 +92,17 @@ export default function createProduct() {
 
                                 <InputContainer>
                                     Name
-                                    <Input />
+                                    <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)}/>
                                     Price
-                                    <Input />
+                                    <Input placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} />
                                     Department
-                                    <Input />
+                                    <Select name="Department" onChange={(e) => setDepartment(e.target.value)}>
+                                        { options.map((option, index) => <Option value={option} key={index}>
+                                            {option}
+                                        </Option>) }
+                                    </Select>
                                     Summary
-                                    <TextArea />
+                                    <TextArea placeholder="Product Summary" value={Summary} onChange={(e) => setSummary(e.target.value)} />
                                 </InputContainer>
                                 <input 
                                     type="file" 

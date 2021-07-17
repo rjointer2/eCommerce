@@ -23,7 +23,6 @@ const typeDefs = require('./backend/schemas/typeDefs');
 const resolvers = require('./backend/schemas/rootResolver');
 // Authentication Middleware
 const authenticationMiddleware = require('./backend/middleware/authMiddlleware');
-const { urlencoded } = require('body-parser');
 
 
 // apollo server that will typeDefs, resolvers, and schema, and any other middleware
@@ -42,9 +41,6 @@ app.prepare().then(() => {
     const server = express();
     // we have to pass server as a property to the app key
     apolloServer.applyMiddleware({ app: server });
-
-    server.use(bodyParser(urlencoded({ extended: true })));
-    server.use(bodyParser.json())
 
     server.get('*', (req, res) => {
         return handle(req, res)
