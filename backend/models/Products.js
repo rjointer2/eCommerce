@@ -7,12 +7,12 @@ const productSchema = new Schema(
             type: String,
             required: true,
         },
-        price: {
-            type: Number,
-            required: true,
-        },
         department: {
             type: String,
+            required: true,
+        },
+        price: {
+            type: Number,
             required: true,
         },
         summary: {
@@ -26,6 +26,6 @@ const productSchema = new Schema(
     }
 )
 
-const Product = model('Product', productSchema);
+const Products = model('Products', productSchema);
 
-module.exports = Product;
+module.exports = Products;

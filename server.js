@@ -58,11 +58,8 @@ app.prepare().then(() => {
             if(err) throw err
             console.log('listening for request')
         })
-
     })
 
-
-    
 }).catch(err => {
     console.log(err);
     process.exit(1);

@@ -1,7 +1,7 @@
 
 // modules
 const { cloudinary } = require('../../configs/cloudinary');
-const Product = require('../../models/Proudct')
+const Product = require('../../models/Products')
 
 const addProduct = async (parent, args) => {
 

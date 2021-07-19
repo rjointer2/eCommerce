@@ -18,7 +18,7 @@ import { Input, InputContainer, Option, Select, TextArea } from '../client/style
 
 export default function createProduct() {
 
-    const [ uploadImage, { error } ] = useMutation(ADD_PRODUCT);
+    const [ addProduct, { error } ] = useMutation(ADD_PRODUCT);
 
     // Form State
     const [name, setName] = useState('');
@@ -52,25 +52,26 @@ export default function createProduct() {
         e.preventDefault();
         //if(!previewFileInput) return console.log('no file');
 
+        // form data to send
+
+
+        // uploads picture to cloudinary
         (async () => {
             try {
-                await uploadImage({
-                    variables: {    
-                        "name": name,
-                        "price": price,
-                        "summary": summary,
-                        "department": department,
-                        "image": previewFileInput,
-                        "createdBy": "Test"
+
+                // createdBy prop will be hard coded as Test for now until redux is added
+                await addProduct({
+                    variables: { 
+                        "name": name, "price": price, "department": department, 
+                        "summary": summary, "createdBy": "Test", "image": previewFileInput
                     }
                 });
-                console.log('success')
+                console.log('success: Product Details Added')
             } catch (err) {
                 console.log(err);
             }
-        })()
+        })();
     }
-
 
     return (
         <>
@@ -99,11 +100,11 @@ export default function createProduct() {
 
                                 <InputContainer>
                                     Name
-                                    <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                                    <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} required />
                                     Price
-                                    <Input placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} />
+                                    <Input placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} required />
                                     Department
-                                    <Select name="Department" onChange={(e) => setDepartment(e.target.value)}>
+                                    <Select name="Department" onChange={(e) => setDepartment(e.target.value)} required >
                                         { options.map((option, index) => <Option value={option} key={index}>
                                             {option}
                                         </Option>) }
