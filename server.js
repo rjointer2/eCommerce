@@ -1,5 +1,5 @@
 
-require('dotenv').config()
+require('dotenv').config();
 
 // port 
 const _PORT = process.env.PORT || 3001
@@ -7,6 +7,7 @@ const _PORT = process.env.PORT || 3001
 // modules
 const next = require('next');
 const express = require('express');
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const { ApolloServer } = require('apollo-server-express');
 
@@ -38,19 +39,30 @@ const apolloServer = new ApolloServer({
 
 app.prepare().then(() => {
 
-    const server = express();
-    // we have to pass server as a property to the app key
-    apolloServer.applyMiddleware({ app: server });
+    mongoose.connect(`mongodb+srv://${process.env.UN}:${process.env.PW}@ecommercedb.bpvyj.mongodb.net/${process.env.DB}?retryWrites=true&w=majority` || 'http://localhost:3001', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    }, () => {
 
-    server.get('*', (req, res) => {
-        return handle(req, res)
-    });
+        const server = express();
+        // we have to pass server as a property to the app key
+        apolloServer.applyMiddleware({ app: server });
 
-    server.listen(3001, err => {
-        if(err) throw err
-        console.log('listening for request')
+        server.get('*', (req, res) => {
+            return handle(req, res)
+        });
+
+        server.listen(3001, err => {
+            if(err) throw err
+            console.log('listening for request')
+        })
+
     })
 
+
+    
 }).catch(err => {
     console.log(err);
     process.exit(1);

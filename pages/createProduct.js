@@ -6,7 +6,7 @@ import upload from '../assets/upload.png'
 import { useMutation } from "@apollo/client";
 
 // mutations
-import { UPLOAD_IMAGE } from "../client/ulits/imageMutations";
+import { ADD_PRODUCT } from "../client/ulits/productMutations";
 
 // styles
 import { useState } from "react";
@@ -18,7 +18,16 @@ import { Input, InputContainer, Option, Select, TextArea } from '../client/style
 
 export default function createProduct() {
 
-    const [ uploadImage, { error } ] = useMutation(UPLOAD_IMAGE)
+    const [ uploadImage, { error } ] = useMutation(ADD_PRODUCT);
+
+    // Form State
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [department, setDepartment] = useState('');
+    const [summary, setSummary] = useState('');
+
+    // options array to map on the selection options
+    const options = ['Market', 'Toys', 'Plants', 'Home']
 
     // Uploading Images to Cloundinary
 
@@ -41,12 +50,19 @@ export default function createProduct() {
     const handleSubmitFile = (e) => {
         console.log('submitting')
         e.preventDefault();
-        if(!previewFileInput) return console.log('no file');
+        //if(!previewFileInput) return console.log('no file');
 
         (async () => {
             try {
                 await uploadImage({
-                    variables: { "image": previewFileInput, "fileName": "test" }
+                    variables: {    
+                        "name": name,
+                        "price": price,
+                        "summary": summary,
+                        "department": department,
+                        "image": previewFileInput,
+                        "createdBy": "Test"
+                    }
                 });
                 console.log('success')
             } catch (err) {
@@ -54,15 +70,6 @@ export default function createProduct() {
             }
         })()
     }
-
-    // Form State
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [department, setDepartment] = useState('');
-    const [Summary, setSummary] = useState('');
-
-    // options array to map on the selection options
-    const options = ['Market', 'Toys', 'Plants', 'Home']
 
 
     return (
@@ -102,7 +109,7 @@ export default function createProduct() {
                                         </Option>) }
                                     </Select>
                                     Summary
-                                    <TextArea placeholder="Product Summary" value={Summary} onChange={(e) => setSummary(e.target.value)} />
+                                    <TextArea placeholder="Product Summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
                                 </InputContainer>
                                 <input 
                                     type="file" 

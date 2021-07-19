@@ -11,14 +11,18 @@ const typeDefs = gql`
         _id: ID!
     }
 
-    type Image {
+    type Product {
+        name: String!
+        price: String!
+        department: String!
+        summary: String!
         image: String!
-        fileName: String!
+        createdBy: String!
 
     }
 
     type Mutation {
-        addImage(image: String!, fileName: String!): Image
+        addProduct(name: String!, price: String!, department: String!, summary: String!, createdBy: String!, image: String!): Product
     }
 
 `;
