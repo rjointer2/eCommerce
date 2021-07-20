@@ -4,15 +4,17 @@
 // Middleware
 
 // resolvers
-const { users } = require('./resolvers/userResolvers');
+const { addGuestUser, addVenderUser } = require('./resolvers/userResolvers');
 const { addProduct } = require('./resolvers/productResolvers');
 
 let resolvers = {
     Query: {
-        users
+        addGuestUser
     },
     Mutation: {
-        addProduct
+        addProduct,
+        addGuestUser,
+        addVenderUser
     }
 }
 

@@ -1,43 +1,8 @@
 
 import styled from "styled-components";
 
-import Link from 'next/link'
-
 // palette
 import { hover, primary, secondary, white } from "./palette";
-
-/* export const InputContainer = styled.div`
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-`;
-
-export const Input = styled.input`
-    outline: none;
-    border: none;
-    border-bottom: 1px black solid;
-    margin-bottom: 5px;
-
-    &:focus {
-        color: ${hover}
-    }
-
-    &::placeholder {
-        color: ${secondary}
-    }
-`;
-*/
-
-/* 
-
-
-export const FormWrapper = styled.div`
-    
-
-    @media screen and (max-width: 400px) {
-        height: 80%;
-    }
-`; */
 
 export const FormContainer = styled.div`
     height: 100%;
