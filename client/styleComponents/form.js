@@ -87,7 +87,6 @@ export const FormLabel = styled.label`
 export const FormInput = styled.input`
     margin-bottom: 8px;
     font-size: 14px;
-    color: ${white};
 
     &:focus {
         color: ${hover}

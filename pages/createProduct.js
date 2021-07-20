@@ -32,36 +32,52 @@ export default function createProduct() {
     const [department, setDepartment] = useState('Market');
     const [summary, setSummary] = useState('');
 
+    // form error to help set messages on form conditionally
+    const [ formError, setFormError ] = useState(false);
+    const [ formErrorMessage, setFormErrorMessage ] = useState('');
+
     // options array to map on the selection options
     const options = ['Market', 'Toys', 'Plants', 'Home']
 
-    // Uploading Images to Cloundinary
+    // Uploading Images to Cloundinary and DB
 
     // the state used to send base64Strings to the Cloudinary
     const [ fileInput, setFileInput ] = useState('');
     const [ previewFileInput, setPreviewFileInput ] = useState('');
 
     // get the first file selected
-    const handleInputChange = (e) => previewFile(e.target.files[0]);
+    const handleInputChange = (e) => {
+        if(!name || !price || !summary ) {
+            setFormError(true)
+            setFormErrorMessage('Please Complete The Form Correctly')
+            return false
+        }
+        // check price is valid
+        if(parseFloat(price)) {
+            setFormError(true)
+            setFormErrorMessage('Please Enter Valid Price')
+            return false
+        }
+        previewFile(e.target.files[0]);
+    }
     // using the API read the image as base64 image
     const previewFile = file => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            // update the state as the new base64 image
-            setPreviewFileInput(reader.result)
-        }
+        // update the state as the new base64 image
+        reader.onloadend = () => setPreviewFileInput(reader.result);
     }
 
     const handleSubmitFile = (e) => {
         console.log('submitting')
         e.preventDefault();
-        if(!previewFileInput) return console.log('no file');
 
+        setFormError(true)
+        setFormErrorMessage('No File Presented')
+        if(!previewFileInput) return console.log('no file');
         // uploads picture to cloudinary and data to db
         (async () => {
             try {
-
                 // createdBy prop will be hard coded as Test for now until redux is added
                 await addProduct({
                     variables: { 
@@ -80,7 +96,7 @@ export default function createProduct() {
     const renderCount = useRef(1);
     // count rerenders
     useEffect(() => {
-        renderCount.current = renderCount.current + 1
+        renderCount.current = renderCount.current + 1;
     }, []);
 
     console.log(renderCount)
@@ -110,10 +126,13 @@ export default function createProduct() {
                                     Create Your Product quick and simple! Follow the form and fill all input fields.
                                 </Text>
                                 <br/>
+                                {
+                                    formError && <BoldCappedText style={{ textAlign: "center" }} >  {formErrorMessage}  </BoldCappedText>
+                                }
                                 <FormLabel>Name</FormLabel>
-                                <FormInput placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} required />
+                                <FormInput placeholder="Product Name" value={name} onChange={(e) => { setName(e.target.value), setFormError(false) }} required />
                                 <FormLabel>Price</FormLabel>
-                                <FormInput placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} required />
+                                <FormInput placeholder="Product Price" value={price}  onChange={(e) => { setPrice(e.target.value), setFormError(false) }} required />
                                 <FormLabel>Department</FormLabel>
                                 <FormSelect name="Department" onChange={(e) => setDepartment(e.target.value)} required >
                                     { options.map((option, index) => <option value={option} key={index}>
@@ -121,7 +140,7 @@ export default function createProduct() {
                                     </option>) }
                                 </FormSelect>
                                 <FormLabel>Summary</FormLabel>
-                                <TextArea placeholder="Product Summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
+                                <TextArea placeholder="Product Summary" value={summary} onChange={(e) => {setSummary(e.target.value), setFormError(false)}} required/>
                                 <br/>
                                 <Text lightText={true}>
                                     Down Below Please Select a Image to Upload, then press submit!
