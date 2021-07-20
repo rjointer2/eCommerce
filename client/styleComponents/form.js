@@ -1,6 +1,9 @@
 
 import styled from "styled-components";
 
+// palette
+import { hover } from "./palette";
+
 export const InputContainer = styled.div`
     padding: 10px;
     display: flex;
@@ -12,6 +15,10 @@ export const Input = styled.input`
     border: none;
     border-bottom: 1px black solid;
     margin-bottom: 5px;
+
+    &:focus {
+        color: ${hover}
+    }
 `;
 
 export const TextArea = styled.textarea`
@@ -28,8 +35,12 @@ export const Select = styled.select`
     margin-bottom: 5px;
 `;
 
-export const Option = styled.option``;
+export const SignInContainer = styled.div`
+    height: 500px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`;
 
-export const f = styled.div``;
-
-export const g = styled.div``;

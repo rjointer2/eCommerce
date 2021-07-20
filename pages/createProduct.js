@@ -3,27 +3,29 @@
 import upload from '../assets/upload.png'
 
 // hooks
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 // mutations
 import { ADD_PRODUCT } from "../client/ulits/productMutations";
 
 // styles
-import { useState } from "react";
 import { Column1, Column2, Container, Row, Wrapper } from "../client/styleComponents/aligment";
 import { Img, ImgWrapper } from "../client/styleComponents/img";
 import { Heading, Subtitle, Text } from "../client/styleComponents/text";
 import { Input, InputContainer, Option, Select, TextArea } from '../client/styleComponents/form';
+import { Button, ImageButton } from '../client/styleComponents/button';
 
 
 export default function createProduct() {
 
+    // mutation hook to add product to db
     const [ addProduct, { error } ] = useMutation(ADD_PRODUCT);
 
     // Form State
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [department, setDepartment] = useState('');
+    const [department, setDepartment] = useState('Market');
     const [summary, setSummary] = useState('');
 
     // options array to map on the selection options
@@ -50,12 +52,9 @@ export default function createProduct() {
     const handleSubmitFile = (e) => {
         console.log('submitting')
         e.preventDefault();
-        //if(!previewFileInput) return console.log('no file');
+        if(!previewFileInput) return console.log('no file');
 
-        // form data to send
-
-
-        // uploads picture to cloudinary
+        // uploads picture to cloudinary and data to db
         (async () => {
             try {
 
@@ -94,7 +93,7 @@ export default function createProduct() {
                                 Upload Your Product Today!
                             </Subtitle>
                             <Text lightText={false} >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Create Your Product quick and simple! Follow the form and fill all input fields.
                             </Text>
                             <form onSubmit={handleSubmitFile}>
 
@@ -111,16 +110,25 @@ export default function createProduct() {
                                     </Select>
                                     Summary
                                     <TextArea placeholder="Product Summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
+                                    <Text lightText={false}>
+                                        Down Below Please Select a Image to Upload, then press sumbit!<br/>
+                                        Simple and Quick!
+                                    </Text>
                                 </InputContainer>
-                                <input 
+                                <ImageButton>
+                                    Upload File
+                                    <input 
+                                    style={{ display: 'none' }}
                                     type="file" 
                                     name="image" 
                                     onChange={handleInputChange} 
                                     value={fileInput}
+                                    onClick={() => console.log('test')}
                                 />
-                            <button type="submit">
+                                </ImageButton>
+                            <Button type="submit">
                                 Submit Image
-                            </button>
+                            </Button>
                             </form>
                             { previewFileInput && (
                                 <Img src={previewFileInput} alt="selected file" />

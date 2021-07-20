@@ -15,7 +15,6 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
     display: grid;
     z-index: 1;
-/*     height: 800px; */
     width: 100%;
     max-width: 1100px;
     margin-right: auto;
@@ -58,10 +57,3 @@ export const Column2 = styled.div`
     padding: 10px;
 `;
 
-export const FlexWrapper = styled.div`
-    display: flex;
-
-    @media screen and (max-width: 720px) {
-        flex-direction: column;
-    }
-`;
