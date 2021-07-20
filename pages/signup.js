@@ -13,6 +13,7 @@ import { ADD_USER } from '../client/ulits/userMutation';
 import { Container, Wrapper } from "../client/styleComponents/aligment";
 import { Form, FormButton, FormContainer, FormFooter, FormHeader, FormInput, FormLabel, FormLink } from '../client/styleComponents/form';
 import { BoldCappedText } from '../client/styleComponents/text';
+import ToggleSwitch from '../client/components/ToggleSwitch/ToggleSwitch';
 
 
 
@@ -31,6 +32,9 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  // for toggle to pass props to component
+  const [stateValue, setStateValue] = useState(false)
 
   // make sure the input are filled out
   const submitForm = (e) => {
@@ -61,7 +65,7 @@ export default function SignIn() {
             "password": password,
             "cart": '',
             "products": '',
-            "isVendor": false,
+            "isVendor": stateValue,
           }
         })
         console.log('success')
@@ -96,9 +100,14 @@ export default function SignIn() {
               <FormLabel>Email</FormLabel>
               <FormInput placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required/>
               <FormLabel>Password</FormLabel>
-              <FormInput placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+              <FormInput placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required type='password' />
               <FormLabel>Confirm Password</FormLabel>
-              <FormInput placeholder="Confirm Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
+              <FormInput placeholder="Confirm Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required type='password' />
+              <br/>
+              <FormFooter>
+                <FormLabel>Are You a Company Vendor?</FormLabel>
+                <ToggleSwitch stateValue={stateValue} setStateValue={setStateValue} />
+              </FormFooter>
               <FormButton type="submit">Submit</FormButton>
               <FormFooter>
                 <FormLink href="#" >Have An Account?</FormLink>
