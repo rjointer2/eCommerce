@@ -24,7 +24,7 @@ export default function createProduct() {
     const handleFileUploadClick = e => hiddenInput.current.click();
 
     // mutation hook to add product to db
-    const [ addProduct, { error } ] = useMutation(ADD_PRODUCT);
+    const [ addProduct ] = useMutation(ADD_PRODUCT);
 
     // Form State
     const [name, setName] = useState('');
@@ -53,7 +53,7 @@ export default function createProduct() {
             return false
         }
         // check price is valid
-        if(parseFloat(price)) {
+        if(!parseFloat(price)) {
             setFormError(true)
             setFormErrorMessage('Please Enter Valid Price')
             return false
@@ -82,7 +82,8 @@ export default function createProduct() {
                 await addProduct({
                     variables: { 
                         "name": name, "price": price, "department": department, 
-                        "summary": summary, "createdBy": "Test", "image": previewFileInput
+                        "summary": summary, "createdBy": "Test", "image": previewFileInput,
+                        "viewCount": "0", "inTheirCart": ''
                     }
                 });
                 console.log('success: Product Details Added')
@@ -97,9 +98,8 @@ export default function createProduct() {
     // count rerenders
     useEffect(() => {
         renderCount.current = renderCount.current + 1;
+        console.log(renderCount)
     }, []);
-
-    console.log(renderCount)
 
     return (
         <>

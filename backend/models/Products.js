@@ -26,6 +26,9 @@ const productSchema = new Schema(
         inTheirCart: {
             type: String,
             ref: 'User'
+        },
+        viewCount: {
+            type: Number, 
         }
     }
 )

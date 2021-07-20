@@ -22,7 +22,8 @@ const typeDefs = gql`
         summary: String!
         image: String!
         createdBy: String!
-
+        viewCount: String!
+        inTheirCart: String!
     }
 
     type Query {
@@ -30,7 +31,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addProduct( name: String!, price: String!, department: String!, summary: String!, createdBy: String!, image: String! ): Product
+        addProduct( name: String!, price: String!, department: String!, summary: String!, createdBy: String!, image: String!, viewCount: String!, inTheirCart: String! ): Product
         addUser( email: String!, password: String!, username: String!, cart: String!, products: String!, isVendor: Boolean! ): User 
     }
 
