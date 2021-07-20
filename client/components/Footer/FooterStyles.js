@@ -18,6 +18,7 @@ export const FooterWrapper = styled.div`
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
+    margin-top: 30px;
 `;
 
 export const FooterLinkContainer = styled.div`

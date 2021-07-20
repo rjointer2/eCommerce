@@ -3,7 +3,7 @@
 import upload from '../assets/upload.png'
 
 // hooks
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 
 // mutations
@@ -12,12 +12,16 @@ import { ADD_PRODUCT } from "../client/ulits/productMutations";
 // styles
 import { Column1, Column2, Container, Row, Wrapper } from "../client/styleComponents/aligment";
 import { Img, ImgWrapper } from "../client/styleComponents/img";
-import { Heading, Subtitle, Text } from "../client/styleComponents/text";
-import { Input, InputContainer, Option, Select, TextArea } from '../client/styleComponents/form';
-import { Button, ImageButton } from '../client/styleComponents/button';
+import { BoldCappedText, Heading, Text } from "../client/styleComponents/text";
+import { Form, FormButton, FormContainer, FormInput, FormLabel, FormSelect, TextArea } from '../client/styleComponents/form';
 
 
 export default function createProduct() {
+
+    // refernce to hidden input for file upload 
+    const hiddenInput = useRef(null);
+    // target hidden input click's and invoke on event
+    const handleFileUploadClick = e => hiddenInput.current.click();
 
     // mutation hook to add product to db
     const [ addProduct, { error } ] = useMutation(ADD_PRODUCT);
@@ -72,6 +76,15 @@ export default function createProduct() {
         })();
     }
 
+    /* Specifically for checking rerenders */
+    const renderCount = useRef(1);
+    // count rerenders
+    useEffect(() => {
+        renderCount.current = renderCount.current + 1
+    }, []);
+
+    console.log(renderCount)
+
     return (
         <>
             <Container>
@@ -86,38 +99,38 @@ export default function createProduct() {
                         </Heading>
                         </Column1>
                         <Column2>
-                            <Heading lightText={false} >
-                                It Starts Here!
-                            </Heading>
-                            <Subtitle lightText={false} >
-                                Upload Your Product Today!
-                            </Subtitle>
-                            <Text lightText={false} >
-                                Create Your Product quick and simple! Follow the form and fill all input fields.
-                            </Text>
-                            <form onSubmit={handleSubmitFile}>
-
-                                <InputContainer>
-                                    Name
-                                    <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} required />
-                                    Price
-                                    <Input placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} required />
-                                    Department
-                                    <Select name="Department" onChange={(e) => setDepartment(e.target.value)} required >
-                                        { options.map((option, index) => <Option value={option} key={index}>
-                                            {option}
-                                        </Option>) }
-                                    </Select>
-                                    Summary
-                                    <TextArea placeholder="Product Summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
-                                    <Text lightText={false}>
-                                        Down Below Please Select a Image to Upload, then press sumbit!<br/>
-                                        Simple and Quick!
-                                    </Text>
-                                </InputContainer>
-                                <ImageButton>
+                            <Form onSubmit={handleSubmitFile} >
+                                <BoldCappedText>
+                                    Start Today
+                                </BoldCappedText>
+                                <Heading lightText={true} >
+                                    Upload Your Product To Our Store!
+                                </Heading>
+                                <Text lightText={true} >
+                                    Create Your Product quick and simple! Follow the form and fill all input fields.
+                                </Text>
+                                <br/>
+                                <FormLabel>Name</FormLabel>
+                                <FormInput placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} required />
+                                <FormLabel>Price</FormLabel>
+                                <FormInput placeholder="Product Price" value={price}  onChange={(e) => setPrice(e.target.value)} required />
+                                <FormLabel>Department</FormLabel>
+                                <FormSelect name="Department" onChange={(e) => setDepartment(e.target.value)} required >
+                                    { options.map((option, index) => <option value={option} key={index}>
+                                        {option}
+                                    </option>) }
+                                </FormSelect>
+                                <FormLabel>Summary</FormLabel>
+                                <TextArea placeholder="Product Summary" value={summary} onChange={(e) => setSummary(e.target.value)} />
+                                <br/>
+                                <Text lightText={true}>
+                                    Down Below Please Select a Image to Upload, then press submit!
+                                </Text>
+                                <FormButton type="button" onClick={handleFileUploadClick}>
                                     Upload File
-                                    <input 
+                                </FormButton>
+                                <input 
+                                    ref={hiddenInput}
                                     style={{ display: 'none' }}
                                     type="file" 
                                     name="image" 
@@ -125,14 +138,16 @@ export default function createProduct() {
                                     value={fileInput}
                                     onClick={() => console.log('test')}
                                 />
-                                </ImageButton>
-                            <Button type="submit">
-                                Submit Image
-                            </Button>
-                            </form>
+                                <FormButton type="submit">
+                                    Submit Image
+                                </FormButton>
+                            </Form>
+                            <Text style={{ textAlign: "center" }}>
+                                <br/>Image will be displayed here<br/><br/>
+                            </Text>
                             { previewFileInput && (
                                 <Img src={previewFileInput} alt="selected file" />
-                            ) }
+                            )}
                         </Column2>
                     </Row>
                 </Wrapper>

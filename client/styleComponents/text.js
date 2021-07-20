@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // palette
-import { secondary, white } from "./palette";
+import { hover, secondary, white } from "./palette";
 
 export const Heading = styled.p`
     margin-bottom: 24px;
@@ -18,7 +18,7 @@ export const Heading = styled.p`
 
 export const Subtitle = styled.p`
     max-width: 440px;
-    margin-bottom: 35px;
+    margin-bottom: 15px;
     font-size: 28px;
     line-height: 24px;
     color: ${({ lightText }) => ( lightText ? white : secondary )};
@@ -26,6 +26,15 @@ export const Subtitle = styled.p`
 
 export const Text = styled.p`
     font-size: 14px;
-    padding-top: 20px;
     color: ${({ lightText }) => ( lightText ? white : secondary )};
+`;
+
+export const BoldCappedText = styled.div`
+    color: ${hover};
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
 `;

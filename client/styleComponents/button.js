@@ -4,6 +4,11 @@ import styled from "styled-components";
 // palette
 import { hover, primary, white } from "./palette";
 
+export const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 export const Button = styled.button`
     background: ${primary};
 	color: ${white};
