@@ -137,7 +137,7 @@ export default function createProduct() {
                                 <FormSelect name="Department" onChange={(e) => setDepartment(e.target.value)} required >
                                     { options.map((option, index) => <option value={option} key={index}>
                                         {option}
-                                    </option>) }
+                                    </option>)}
                                 </FormSelect>
                                 <FormLabel>Summary</FormLabel>
                                 <TextArea placeholder="Product Summary" value={summary} onChange={(e) => {setSummary(e.target.value), setFormError(false)}} required/>

@@ -3,7 +3,11 @@
 import Link from 'next/link'
 
 // hooks
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useMutation } from '@apollo/client';
+
+// mutations
+import { ADD_USER } from '../client/ulits/userMutation';
 
 // styles
 import { Container, Wrapper } from "../client/styleComponents/aligment";
@@ -11,7 +15,11 @@ import { Form, FormButton, FormContainer, FormFooter, FormHeader, FormInput, For
 import { BoldCappedText } from '../client/styleComponents/text';
 
 
+
 export default function SignIn() {
+
+  // mutation to sign up user
+  const [addUser] = useMutation(ADD_USER);
 
   // conditionally display text on form error
   const [formError, setFormError] = useState(false);
@@ -25,14 +33,10 @@ export default function SignIn() {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   // make sure the input are filled out
-  const sumbitForm = e => {
+  const submitForm = (e) => {
     e.preventDefault();
 
-    if( !username || !password || !confirmPassword || !email ) {
-      setFormError(true)
-      setFormErrorMessage('Please submit form entirely');
-      return false
-    }
+    console.log(username, email, password)
 
     if( password !== confirmPassword ) {
       setFormError(true)
@@ -40,24 +44,61 @@ export default function SignIn() {
       return false
     }
 
+    if( !username || !password || !confirmPassword || !email ) {
+      setFormError(true)
+      setFormErrorMessage('Please submit form entirely');
+      return false
+    }
+
+    // sign up add with variables 
+    (async () => {
+        console.log('clicked')
+      try {
+        await addUser({
+          variables: {
+            "username": username,
+            "email": email,
+            "password": password,
+            "cart": '',
+            "products": '',
+            "isVendor": false,
+          }
+        })
+        console.log('success')
+      } catch(err) {
+        setFormError(true)
+        setFormErrorMessage('Please make sure email address is vaild and username is unique');
+        console.log(err)
+      }
+
+    })()
+
   }
+
+  /* Specifically for checking rerenders */
+  const renderCount = useRef(0);
+  // count rerenders
+  useEffect(() => {
+      renderCount.current = renderCount.current + 1;
+      console.log(renderCount)
+  }, []);
 
   return (
     <>
       <Container>
         <Wrapper>
           <FormContainer>
-            <Form onSubmit={sumbitForm}>
+            <Form onSubmit={submitForm}>
               <FormHeader>Sign Up Today</FormHeader>
               { formError && <BoldCappedText> { formErrorMessage } </BoldCappedText> }
               <FormLabel>Username</FormLabel>
-              <FormInput placeholder="Username" value={username} onClick={e => setUsername(e.target.value)} required />
+              <FormInput placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required />
               <FormLabel>Email</FormLabel>
-              <FormInput placeholder="Email" value={email} onClick={e => setEmaild(e.target.value)} required/>
+              <FormInput placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required/>
               <FormLabel>Password</FormLabel>
-              <FormInput placeholder="Password" value={password} onClick={e => setPassword(e.target.value)} required />
+              <FormInput placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
               <FormLabel>Confirm Password</FormLabel>
-              <FormInput placeholder="Confirm Password" value={confirmPassword} onClick={e => setConfirmPassword(e.target.value)} required />
+              <FormInput placeholder="Confirm Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
               <FormButton type="submit">Submit</FormButton>
               <FormFooter>
                 <FormLink href="#" >Have An Account?</FormLink>

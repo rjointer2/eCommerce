@@ -7,7 +7,9 @@ const addUser = async ( parent, args ) => {
 
     try {
         // return token as well
+        console.log(args)
         const user = await User.create(args);
+        console.log(user)
         return {
             _id: user.id,
             username: user.username,
