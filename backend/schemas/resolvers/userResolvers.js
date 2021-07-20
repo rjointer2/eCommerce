@@ -3,50 +3,26 @@
 const { AuthenticationError } = require('apollo-server-express');
 const User = require('../../models/Users');
 
-const addGuestUser = async ( parent, args ) => {
-    
+const addUser = async ( parent, args ) => {
+
     try {
-        const user = User.create(args);
-
-        // authentication middleware to sign the user into their localStorage
-
-
         // return token as well
+        const user = await User.create(args);
         return {
             _id: user.id,
             username: user.username,
             password: user.password,
             email: user.email,
-            cart: user.cart
+            cart: user.cart,
+            products: user.products,
+            isVendor: user.isVendor
         }
     } catch(err) {
-        if(err) throw new AuthenticationError
-    }
-
-}
-
-const addVendorUser = async ( parent, args ) => {
-
-    try {
-        const user = User.create(args);
-        // authentication middleware to sign the user into their localStorage
-
-
-        // return token as well
-        return {
-            _id: user.id,
-            username: user.username,
-            password: user.password,
-            email: user.email,
-            products: user.products
-        }
-    } catch(err) {
-        if(err) throw new AuthenticationError
+        if(err) throw err
     }
 
 }
 
 module.exports = {
-    addGuestUser,
-    addVendorUser
+    addUser
 }

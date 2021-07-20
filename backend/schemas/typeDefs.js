@@ -4,22 +4,15 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
-    type GuestUser {
+    type User {
         _id: ID!
         name: String!
         email: String!
         username: String!
         password: String!
-        cart: [Product]!
-    }
-
-    type VendorUser {
-        _id: ID!
-        name: String!
-        email: String!
-        username: String!
-        password: String!
-        product: [Product]!
+        cart: [Product]
+        products: [Product]
+        isVendor: Boolean!
     }
 
     type Product {
@@ -37,9 +30,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addProduct(name: String!, price: String!, department: String!, summary: String!, createdBy: String!, image: String!): Product
-        addGuestUser(name: String!, email: String!, password: String!, username: String!, cart: String!): GuestUser 
-        addVenderUser(name: String!, email: String!, password: String!, username: String!, products: String!): VendorUser 
+        addProduct( name: String!, price: String!, department: String!, summary: String!, createdBy: String!, image: String! ): Product
+        addUser( email: String!, password: String!, username: String!, cart: String!, products: String!, isVendor: Boolean! ): User 
     }
 
 `;

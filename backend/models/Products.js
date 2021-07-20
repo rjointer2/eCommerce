@@ -22,6 +22,10 @@ const productSchema = new Schema(
         createdBy: {
             type: String,
             required: true,
+        },
+        inTheirCart: {
+            type: String,
+            ref: 'User'
         }
     }
 )

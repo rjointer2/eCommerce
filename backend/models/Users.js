@@ -22,6 +22,17 @@ const userSchema = new Schema(
         },
         friends: {
             type: String
+        },
+        cart: {
+            type: String,
+            ref: 'Products'
+        },
+        products: {
+            type: String,
+            ref: 'Products'
+        },
+        isVendor: {
+            type: Boolean,
         }
     },
     {

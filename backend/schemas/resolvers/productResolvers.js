@@ -13,6 +13,7 @@ const addProduct = async (parent, args) => {
             department: args.department,
             summary: args.summary,
             createdBy: args.createdBy,
+            inTheirCart: args.inTheirCart,
         });
         console.log(args)
         const uploadedResponse = await cloudinary.uploader.upload(args.image, {
