@@ -25,7 +25,7 @@ const addGuestUser = async ( parent, args ) => {
 
 }
 
-const addVenderUser = async ( parent, args ) => {
+const addVendorUser = async ( parent, args ) => {
 
     try {
         const user = User.create(args);
@@ -48,5 +48,5 @@ const addVenderUser = async ( parent, args ) => {
 
 module.exports = {
     addGuestUser,
-    addVenderUser
+    addVendorUser
 }
