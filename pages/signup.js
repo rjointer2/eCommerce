@@ -1,13 +1,10 @@
 
-// next 
-import Link from 'next/link'
-
 // hooks
 import { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 // mutations
-import { ADD_USER } from '../client/ulits/userMutation';
+import { ADD_USER } from '../client/ulits/queries/userMutation';
 
 // styles
 import { Container, Wrapper } from "../client/styleComponents/aligment";
@@ -17,7 +14,7 @@ import ToggleSwitch from '../client/components/ToggleSwitch/ToggleSwitch';
 
 
 
-export default function SignIn() {
+export default function SignUp() {
 
   // mutation to sign up user
   const [addUser] = useMutation(ADD_USER);

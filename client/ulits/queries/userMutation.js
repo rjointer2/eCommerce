@@ -15,8 +15,12 @@ export const ADD_USER = gql`
 export const SIGN_IN = gql`
     mutation signIn( $username: String!, $password: String! ) {
         signIn( username: $username, password: $password ) {
-            username
-            password
+            token 
+            user {
+                username
+                email
+                isVendor
+            }
         }
     }
 `;

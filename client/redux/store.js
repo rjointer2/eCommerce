@@ -19,9 +19,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // all our client middleware will be here but one will be used;
 const clientMiddleware = [thunk];
 
+// reducers
+import { userRequestDetailsReducer } from './reducers/userReducers';
+
+
 // combine all reducers to export one root reducer
 const rootReducer = combineReducers({
-
+    getUserDetails: userRequestDetailsReducer
 })
 
 // redux store

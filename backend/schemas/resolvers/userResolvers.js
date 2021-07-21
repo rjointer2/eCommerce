@@ -30,23 +30,25 @@ const addUser = async ( parent, args ) => {
 
 const signIn = async ( parent, args ) => {
 
-    try {
-        const user = await User.findOne({ username: args.username });
-        console.log(user);
 
-        if(!user) throw new AuthenticationError('User Not Found');
-        // if the user is found then use the method from the user model
-        // to check if the password is correct
-        const correctPassword = await user.isCorrecctPassword(user.password);
-        if(!correctPassword) throw new AuthenticationError('Incorrect Password');
-        // sign the jwt to the user
-        const token = signToken(user);
+    const user = await User.findOne({ username: args.username });
+    console.log(user);
 
-        return { token, user }
+    if(!user) throw new AuthenticationError('User Not Found');
+    // if the user is found then use the method from the user model
+    // to check if the password is correct
+    const correctPassword = await user.isCorrectPassword(args.password);
 
-    } catch(err) {
-
+    if(!correctPassword) {
+        console.log('incorrect password');
+        throw new AuthenticationError('Incorrect Password');
     }
+    // sign the jwt to the user
+    const token = signToken(user);
+
+    return { token, user };
+
+
 
 }
 

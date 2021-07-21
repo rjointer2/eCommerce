@@ -7,7 +7,7 @@ import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 
 // mutations
-import { ADD_PRODUCT } from "../client/ulits/productMutations";
+import { ADD_PRODUCT } from "../client/ulits/mutations/productMutations";
 
 // styles
 import { Column1, Column2, Container, Row, Wrapper } from "../client/styleComponents/aligment";
