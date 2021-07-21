@@ -3,6 +3,9 @@
 const { AuthenticationError } = require('apollo-server-express');
 const User = require('../../models/Users');
 
+// authentication middleware
+const { signToken } = require('../../middleware/authMiddlleware');
+
 const addUser = async ( parent, args ) => {
 
     try {
@@ -25,6 +28,29 @@ const addUser = async ( parent, args ) => {
 
 }
 
+const signIn = async ( parent, args ) => {
+
+    try {
+        const user = await User.findOne({ username: args.username });
+        console.log(user);
+
+        if(!user) throw new AuthenticationError('User Not Found');
+        // if the user is found then use the method from the user model
+        // to check if the password is correct
+        const correctPassword = await user.isCorrecctPassword(user.password);
+        if(!correctPassword) throw new AuthenticationError('Incorrect Password');
+        // sign the jwt to the user
+        const token = signToken(user);
+
+        return { token, user }
+
+    } catch(err) {
+
+    }
+
+}
+
 module.exports = {
-    addUser
+    addUser,
+    signIn
 }

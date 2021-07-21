@@ -13,7 +13,7 @@ const getUserDetailsRequest = ( formData ) => async ( dispatch ) => {
         // use the useMutation hook sign in and return the useQuery's data
         dispatch({ type: constants.GET_USER_DETAILS_REQUEST });
 
-        
+        const [ signInUser ]
 
     } catch(err) {
 

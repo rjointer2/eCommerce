@@ -4,7 +4,7 @@
 // Middleware
 
 // resolvers
-const { addUser } = require('./resolvers/userResolvers');
+const { addUser, signIn } = require('./resolvers/userResolvers');
 const { addProduct } = require('./resolvers/productResolvers');
 
 let resolvers = {
@@ -13,7 +13,8 @@ let resolvers = {
     },
     Mutation: {
         addProduct,
-        addUser
+        addUser,
+        signIn
     }
 }
 
