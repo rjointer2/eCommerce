@@ -3,10 +3,27 @@
 import decode from 'jwt-decode';
 
 // create a new class to instantiate for a user
-class AuthenticationMiddleware {
+class AuthClient {
+
   // get user data
   getProfile() {
+    if(!this.getToken()) {
+      console.log('no token')
+      return null
+    }
     return decode(this.getToken());
+  }
+
+  login(idToken) {
+    // Saves user token to localStorage
+    localStorage.setItem('eComm_id_token', idToken);
+    // go to home page
+    window.location.assign('/');
+  }
+
+  getToken() {
+    // Retrieves the user token from localStorage
+    return localStorage.getItem('eComm_id_token');
   }
 
   // check if user's logged in
@@ -28,23 +45,12 @@ class AuthenticationMiddleware {
     }
   }
 
-  getToken() {
-    // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token');
-  }
-
-  login(idToken) {
-    // Saves user token to localStorage
-    localStorage.setItem('id_token', idToken);
-    window.location.assign('/');
-  }
-
   logout() {
     // Clear user token and profile data from localStorage
-    localStorage.removeItem('id_token');
+    localStorage.removeItem('id_token_gamma');
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
 }
 
-export default new AuthenticationMiddleware()
+export default new AuthClient();

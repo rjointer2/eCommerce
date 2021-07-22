@@ -12,18 +12,18 @@ export const userRequestDetailsReducer = ( state = { userObject: {}}, dispatchme
     switch(dispatchment.type) {
         case constants.GET_USER_DETAILS_REQUEST:
         return {
-            loading: true,
+            pending: true,
             userObject: {}
         }
         case constants.GET_USER_DETAILS_SUCCESS:
         return {
-            laoding: false,
+            pending: false,
             userObject: dispatchment.payload
         }
         case constants.GET_USER_DETAILS_FAILURE:
         return {
-            laoding: false,
-            error: dispatchment.payload
+            pending: false,
+            failure: dispatchment.payload
         }
         default: return state;
     }

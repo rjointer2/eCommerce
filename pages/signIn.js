@@ -1,9 +1,9 @@
 
 // middleware
-import AuthenticationMiddleware from '../client/ulits/middleware/auth'
+import AuthClient from '../client/ulits/middleware/auth'
 
 // mutations
-import { SIGN_IN } from "../client/ulits/queries/userMutation";
+import { SIGN_IN } from "../client/ulits/mutations/userMutations";
 
 // hooks
 import { useEffect, useRef, useState } from "react";
@@ -41,8 +41,7 @@ export default function SignIn() {
 
         try {
             const { data } = await signInUser({ variables: { "username": username, "password": password } });
-            console.log(data.signIn.token)
-            AuthenticationMiddleware.login(data.signIn.token)
+            AuthClient.login(data.signIn.token)
         } catch (err) {
             console.log(err)
         }

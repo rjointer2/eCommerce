@@ -6,14 +6,13 @@ import * as constants from '../constants/userConstants';
 // return a function with a dispatch function as a arg to specfic 
 // how the store will change
 
-export const getUserDetails = ( formData ) => async ( dispatch ) => {
+export const getUserDetails = ( userData ) => async ( dispatch ) => {
 
     try {
         // when the switch statement's case requesting the user's data
         // use the useMutation hook sign in and return the useQuery's data
         dispatch({ type: constants.GET_USER_DETAILS_REQUEST });
 
-        console.log(formData)
 
         // dispatch the type and payload as succussful
         dispatch({

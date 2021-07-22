@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 // mutations
-import { ADD_USER } from '../client/ulits/queries/userMutation';
+import { ADD_USER } from '../client/ulits/mutations/userMutations';
 
 // styles
 import { Container, Wrapper } from "../client/styleComponents/aligment";

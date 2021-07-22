@@ -22,7 +22,7 @@ const typeDefs = require('./backend/schemas/typeDefs');
 // Resolvers 
 const resolvers = require('./backend/schemas/rootResolver');
 // Authentication Middleware
-const authenticationMiddleware = require('./backend/middleware/authMiddlleware');
+const { authenticationMiddleware } = require('./backend/middleware/authMiddlleware');
 
 
 // apollo server that will typeDefs, resolvers, and schema, and any other middleware
