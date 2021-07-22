@@ -12,10 +12,8 @@ module.exports = {
     me: async ( _parent, _args, context ) => {
 
         const username = context.verify().user;
-        console.log(username)
         // if the context's auth middleware was used that located that user
         if( username ) {
-            console.log('test')
             const user = await User.findOne({ username: username });
             console.log(user)
             return {

@@ -16,11 +16,27 @@ import { GET_USER } from '../client/ulits/queries/userQueries';
 
 export default function index() {
 
-  const { loading, data, error } = useQuery(GET_USER);
+  // For testing we will reference the rerenders to make things mounting 
+  // and not excessively being recalled
+  const renderCount = useRef(1)
+  // dispatch function
+  const dispatch = useDispatch();
 
-  console.log(error)
+  // we will use the data and error to update the global state
+  // with the dispatcher functions
+  const { data, error } = useQuery(GET_USER);
 
-  const user = data || {};
+  // we could use state, but we are saving a extra rerender with a plain var
+  const user = data || error;
+  
+  const getUserDetails = useSelector( state => state.getUserDetails );
+  const { failure, pending, userObject } = getUserDetails;
+
+  useEffect(() => {
+    dispatch(getUserData(user));
+    renderCount.current = renderCount.current + 1;
+    console.log(renderCount)
+  }, [])
 
   console.log(user)
 

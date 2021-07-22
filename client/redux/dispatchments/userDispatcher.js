@@ -6,26 +6,23 @@ import * as constants from '../constants/userConstants';
 // return a function with a dispatch function as a arg to specfic 
 // how the store will change
 
-export const getUserDetails = ( userData ) => async ( dispatch ) => {
+export const getUserDetails = ( status ) => async ( dispatch ) => {
 
-    try {
-        // when the switch statement's case requesting the user's data
-        // use the useMutation hook sign in and return the useQuery's data
+    if( status ) {
         dispatch({ type: constants.GET_USER_DETAILS_REQUEST });
+    }
 
-
-        // dispatch the type and payload as succussful
-        dispatch({
+    if( typeof(status) === 'object' ) {
+        dispatch({ 
             type: constants.GET_USER_DETAILS_SUCCESS,
-            payload: data
+            payload: status
         })
+    }
 
-    } catch(err) {
-        console.log(err)
-        // on err return the failure type
+    if( !status ) {
         dispatch({
             type: constants.GET_USER_DETAILS_FAILURE,
-            payload: err
+            payload: status
         })
     }
 
