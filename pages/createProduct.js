@@ -40,7 +40,6 @@ export default function createProduct() {
     const options = ['Market', 'Toys', 'Plants', 'Home']
 
     // Uploading Images to Cloundinary and DB
-
     // the state used to send base64Strings to the Cloudinary
     const [ fileInput, setFileInput ] = useState('');
     const [ previewFileInput, setPreviewFileInput ] = useState('');

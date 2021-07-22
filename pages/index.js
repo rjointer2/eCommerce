@@ -1,13 +1,9 @@
 
-// auth middleware
-import AuthClient from '../client/ulits/middleware/auth'
-
 // hooks
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 // dispatchment functions
-import { getUserDetails as getUserData } from "../client/redux/dispatchments/userDispatcher";
 import { useMutation, useQuery } from '@apollo/client';
 
 import { GET_USER } from '../client/ulits/queries/userQueries';
@@ -28,23 +24,34 @@ export default function index() {
 
   // we could use state, but we are saving a extra rerender with a plain var
   const user = data || error;
-  
-  const getUserDetails = useSelector( state => state.getUserDetails );
-  const { failure, pending, userObject } = getUserDetails;
 
   useEffect(() => {
-    dispatch(getUserData(user));
     renderCount.current = renderCount.current + 1;
     console.log(renderCount)
-  }, [])
+  }, [user]);
 
-  console.log(user)
+  /* 
+  
+    let's clear the previous redux stuff for the user and 
+    replace it with the cart stuff instead
+
+    reset up the redux folders
+
+    make the actions, reducers, and store
+  
+    connect with useSelector and useDispatch hooks
+  
+  
+  
+  */
+
 
 
 
   return (
     <div>
-      
+      Number of Items in Cart<br/>
+      <button> Add to Cart </button>
     </div>
   )
 }
