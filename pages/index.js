@@ -18,8 +18,12 @@ export default function index() {
   
   const { data, error, loading } = useQuery(GET_USER);
 
+  
+
 
   return <Store data={data} error={error} loading={loading}/>
+
+  
 
 
 
