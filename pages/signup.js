@@ -1,4 +1,7 @@
 
+// auth
+import AuthClient from '../client/ulits/middleware/auth'
+
 // hooks
 import { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@apollo/client';
@@ -55,7 +58,7 @@ export default function SignUp() {
     (async () => {
         console.log('clicked')
       try {
-        await addUser({
+        const data = await addUser({
           variables: {
             "username": username,
             "email": email,
@@ -65,7 +68,8 @@ export default function SignUp() {
             "isVendor": stateValue,
           }
         })
-        console.log('success')
+        console.log('success');
+        AuthClient.login(data.user.token)
       } catch(err) {
         setFormError(true)
         setFormErrorMessage('Please make sure email address is vaild and username is unique');

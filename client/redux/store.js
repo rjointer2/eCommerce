@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
 
 // redux store
 export const store = createStore(
-    rootReducer,
+
     composeWithDevTools(applyMiddleware(...clientMiddleware))
 );
 

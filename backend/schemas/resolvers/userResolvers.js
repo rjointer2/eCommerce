@@ -16,10 +16,7 @@ module.exports = {
         if( username ) {
             const user = await User.findOne({ username: username });
             console.log(user)
-            return {
-                _id: user.id,
-                username: user.username
-            }
+            return user
         }
     
         throw new AuthenticationError('Authentican Error! You must be logged in!');
@@ -32,15 +29,7 @@ module.exports = {
             console.log(args)
             const user = await User.create(args);
             console.log(user)
-            return {
-                _id: user.id,
-                username: user.username,
-                password: user.password,
-                email: user.email,
-                cart: user.cart,
-                products: user.products,
-                isVendor: user.isVendor
-            }
+            return user;
         } catch(err) {
             if(err) throw err
         }
@@ -64,7 +53,7 @@ module.exports = {
         // sign the jwt to the user
         const token = context.authenticate(user);
     
-        return { token, user };
+        return { token, user};
     
     }
     

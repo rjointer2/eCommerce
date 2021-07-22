@@ -8,11 +8,23 @@ import { useMutation, useQuery } from '@apollo/client';
 
 import { GET_USER } from '../client/ulits/queries/userQueries';
 
+// components
+import Store from '../client/components/Store/Store';
+
+
 
 
 export default function index() {
+  
+  const { data, error, loading } = useQuery(GET_USER);
 
-  // For testing we will reference the rerenders to make things mounting 
+
+  return <Store data={data} error={error} loading={loading}/>
+
+
+
+
+  /* // For testing we will reference the rerenders to make things mounting 
   // and not excessively being recalled
   const renderCount = useRef(1)
   // dispatch function
@@ -25,34 +37,22 @@ export default function index() {
   // we could use state, but we are saving a extra rerender with a plain var
   const user = data || error;
 
+  console.log(user)
+
   useEffect(() => {
     renderCount.current = renderCount.current + 1;
     console.log(renderCount)
-  }, [user]);
+  }, [user]); */
 
   /* 
-  
-    let's clear the previous redux stuff for the user and 
-    replace it with the cart stuff instead
+    apollo get data from api
+    redux to store api filter data as state globally
 
-    reset up the redux folders
 
-    make the actions, reducers, and store
-  
-    connect with useSelector and useDispatch hooks
   
   
   
   */
 
-
-
-
-  return (
-    <div>
-      Number of Items in Cart<br/>
-      <button> Add to Cart </button>
-    </div>
-  )
 }
 

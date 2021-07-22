@@ -5,11 +5,12 @@
 
 // resolvers
 const { addUser, signIn, me } = require('./resolvers/userResolvers');
-const { addProduct } = require('./resolvers/productResolvers');
+const { addProduct, products } = require('./resolvers/productResolvers');
 
 let resolvers = {
     Query: {
-        me
+        me,
+        products
     },
     Mutation: {
         addProduct,
