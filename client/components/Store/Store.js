@@ -1,49 +1,42 @@
 
+// hooks
+import { useQuery } from "@apollo/client";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/actions/cartActions";
+import { PRODUCTS } from "../../ulits/queries/productQueries";
+
+// components
 import Products from "../Product/Products"
 
-export default function Store({loading, error, data}) {
+export default function Store({userLoading, userError, userData}) {
 
-    // if a user is auth then take the dat from the useQuery hook
-    // and grab the cart properties
+    const dispatch = useDispatch();
 
-    // if the cart is null then the cart is a []
+    const cartState = useSelector(state => state.cart);
 
 
-    // on the backend we have to get cart
-
-    /* 
-    
-        add to cart function will take a product arg and push the 
-        product name and product id as a dictionary as the property
-        in the inTheirCart, then 
-
-        the me resolver will have a helper function in the property
-        inTheirCart and the function will return product object that 
-        wiil be refernce by the apollo server 
-    
-    */
+    // variables from the product
+    // const { data, error, loading } = useQuery(PRODUCTS);
 
     const renderCount = useRef(1);
 
     useEffect(() => {
         renderCount.current = renderCount.current + 1;
-        console.log(renderCount)
+        console.log(renderCount);
     }, []);
     
-    if( loading ) return <p>Loading...</p>
+    if( userLoading ) return <p>Loading...</p>
+
+    console.log(userError)
+    console.log(userData)
 
     return (
         <div>
-            <h1>{ data && `Hi ${data.me.username}` }</h1> 
+            <h1> { userData ? `Hello ${userData.user.username}` : 'Hello'} </h1> 
 
-            {/* 
-            
-                when the client clicks the button, it dispatches the state globally
-                on every component the state is rendered in    
-
-            */}
-
-            you have 0 items in your cart
+            you have {cartState.cart.length} items in your cart<br/>
+            <button onClick={() => dispatch(addToCart('apple'))}>Add to Cart</button>
 
             <Products />
         </div>

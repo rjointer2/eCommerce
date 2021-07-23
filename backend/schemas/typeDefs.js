@@ -23,7 +23,6 @@ const typeDefs = gql`
         image: String!
         createdBy: String!
         viewCount: String!
-        inTheirCart: User
     }
 
     type Auth {

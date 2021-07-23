@@ -11,9 +11,6 @@ export const PRODUCTS = gql`
             viewCount
             createdBy
             department
-            inTheirCart {
-            _id
-            }
         }
     }
 `;

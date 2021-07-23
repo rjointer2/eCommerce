@@ -20,17 +20,17 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const clientMiddleware = [thunk];
 
 // reducers
-
+import { cartReducer } from './reducers/cartReducers';
 
 
 // combine all reducers to export one root reducer
 const rootReducer = combineReducers({
-    
+    cart: cartReducer
 })
 
 // redux store
 export const store = createStore(
-
+    rootReducer,
     composeWithDevTools(applyMiddleware(...clientMiddleware))
 );
 
