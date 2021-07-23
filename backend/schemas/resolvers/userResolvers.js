@@ -36,7 +36,15 @@ module.exports = {
         try {
             // return token as well
             console.log(args)
-            const user = await User.create(args);
+            const user = await User.create({
+                _id: args.id,
+                username: args.username,
+                password: args.password,
+                email: args.email,
+                cart: "{}",
+                products: "{}",
+                isVendor: args.isVendor,
+            });
             console.log(user)
             return user;
         } catch(err) {
