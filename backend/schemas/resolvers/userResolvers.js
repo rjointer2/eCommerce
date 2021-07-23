@@ -22,7 +22,17 @@ module.exports = {
                 _id: user.id,
                 username: user.username,
                 email: user.email,
-                cart: Products.find().then(products => products.filter(product => product.inTheirCart === user.username)),
+                cart: (() => {
+                    // empty array we will return to query
+                    const array = [];
+                    // make a array of keys
+                    const keys = Object.keys(user.cart);
+                    // for each key find the product assiocated with the key
+                    for(let i = 0; i < keys.length; i++) {
+                        array.push(Products.findById(keys[i]));
+                    }
+                    return array;
+                })(),
                 products: Products.find().then(products => products.filter(product => product.createdBy === user.username)),
                 isVendor: user.isVendor,
             }
@@ -41,8 +51,8 @@ module.exports = {
                 username: args.username,
                 password: args.password,
                 email: args.email,
-                cart: "{}",
-                products: "{}",
+                cart: "",
+                products: "",
                 isVendor: args.isVendor,
             });
             console.log(user)

@@ -8,6 +8,32 @@ const User = require('../../models/Users');
 
 module.exports = {
 
+    addProductToCart: async (_parent, args) => {
+
+        try {
+            const user = await User.findById(args.userId);
+            // get the user's prop inTheirCart and set as dictionary
+            const dictionary = JSON.parse(user.cart);
+
+            dictionary[args.productsId] = args.userId;
+            // string the dictionary and save it to the db
+            user.cart = JSON.stringify(dictionary);
+            
+            await user.save();
+
+            return {
+                _id: user.id,
+                username: user.username,
+                email: user.email,
+                cart: user.cart
+            };
+
+        } catch(err) {
+            console.log(err)
+        }
+
+    },
+
     products: async () => {
         try {
             console.log('test')
@@ -39,7 +65,7 @@ module.exports = {
                 department: args.department,
                 summary: args.summary,
                 createdBy: args.createdBy,
-                inTheirCart: args.inTheirCart,
+                inTheirCart: "{}",
                 viewCount: parseInt(args.viewCount)
             });
             console.log(`${args.createdBy} has been uploaded to the database`);
@@ -48,20 +74,6 @@ module.exports = {
                 upload_preset: 'eCommerceImages',
                 public_id: args.name
             });
-            console.log(`${args.createdBy}'s image ${args.name} has been uploaded to the cloud storage`);
-
-            // find the user that created the product
-            const user = await User.findOne({ username: args.createdBy });
-            // get access to the string object and parse it in a object
-            const productsDictionary = JSON.parse(user.products);
-            // stringifiy the dictionary
-            productsDictionary[product.id] = user.id;
-            console.log(productsDictionary);
-            user.products = JSON.stringify(productsDictionary);
-            // and save the product to the db
-            await user.save();
-
-            console.log(`${user.username}'s product has been saved!`)
 
             return {
                 name: product.name,

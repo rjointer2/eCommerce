@@ -63,8 +63,8 @@ export default function SignUp() {
             "username": username,
             "email": email,
             "password": password,
-            "cart": "{}",
-            "products": "{}",
+            "cart": "",
+            "products": "",
             "isVendor": stateValue,
           }
         })
