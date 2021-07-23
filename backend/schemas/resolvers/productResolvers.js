@@ -2,12 +2,10 @@
 // modules
 const { ApolloError } = require('apollo-server-express');
 const { cloudinary } = require('../../configs/cloudinary');
-const Product = require('../../models/Products')
-
+const Product = require('../../models/Products');
 
 
 module.exports = {
-
 
     products: async () => {
         try {
@@ -20,7 +18,8 @@ module.exports = {
                     summary: product.summary,
                     createdBy: product.createdBy,
                     department: product.department,
-                    inTheirCart: product.inTheirCarts,
+                    // inTheirCart should return a user
+                    inTheirCart: '',
                     viewCount: product.viewCount
                 }
             }))
@@ -28,17 +27,6 @@ module.exports = {
             console.log(err)
             throw err
         }
-
-        /* return {
-            _id: products.id,
-            name: products.name,
-            price: JSON.stringify(products.price),
-            summary: products.summary,
-            createdBy: products.createdBy,
-            department: products.department,
-            inTheirCart: products.inTheirCarts,
-            viewCount: products.viewCount
-        } */
     },
 
     addProduct: async function( _parent, args) {

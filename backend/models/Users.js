@@ -20,9 +20,6 @@ const userSchema = new Schema(
             required: true,
             minlength: 5
         },
-        friends: {
-            type: String
-        },
         cart: {
             type: String,
             ref: 'Products'

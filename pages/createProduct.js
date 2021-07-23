@@ -81,8 +81,8 @@ export default function createProduct() {
                 await addProduct({
                     variables: { 
                         "name": name, "price": price, "department": department, 
-                        "summary": summary, "createdBy": "Test", "image": previewFileInput,
-                        "viewCount": "0", "inTheirCart": ''
+                        "summary": summary, "createdBy": "test1", "image": previewFileInput,
+                        "viewCount": "0", "inTheirCart": 'test1'
                     }
                 });
                 console.log('success: Product Details Added')

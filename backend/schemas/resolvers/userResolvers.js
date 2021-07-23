@@ -2,9 +2,11 @@
 // Modules
 const { AuthenticationError } = require('apollo-server-express');
 const User = require('../../models/Users');
+const Products = require('../../models/Products');
 
 // authentication middleware
 const { signToken } = require('../../middleware/authMiddlleware');
+
 
 
 module.exports = {
@@ -16,7 +18,14 @@ module.exports = {
         if( username ) {
             const user = await User.findOne({ username: username });
             console.log(user)
-            return user
+            return {
+                _id: user.id,
+                username: user.username,
+                email: user.email,
+                cart: Products.find().then(products => products.filter(product => product.inTheirCart === user.username)),
+                products: Products.find().then(products => products.filter(product => product.createdBy === user.username)),
+                isVendor: user.isVendor,
+            }
         }
     
         throw new AuthenticationError('Authentican Error! You must be logged in!');
