@@ -29,4 +29,5 @@ export const IconWrapper = styled.div`
 export const Icon = styled.div`
     color: ${white};
     padding: 5px 10px 5px 0;
+    font-size: 3rem;
 `;

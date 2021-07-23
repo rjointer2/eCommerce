@@ -13,8 +13,6 @@ import { useMutation } from '@apollo/client';
 import { Container, Wrapper } from "../client/styleComponents/aligment";
 import { Form, FormButton, FormContainer, FormFooter, FormHeader, FormInput, FormLabel, FormLink } from "../client/styleComponents/form";
 
-
-
 export default function SignIn() {
 
     const [ signInUser ] = useMutation(SIGN_IN);

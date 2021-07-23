@@ -24,6 +24,10 @@ export const Subtitle = styled.p`
     color: ${({ lightText }) => ( lightText ? white : secondary )};
 `;
 
+export const TextCenter = styled.p`
+    text-align: center;
+`;
+
 export const Text = styled.p`
     font-size: 14px;
     color: ${({ lightText }) => ( lightText ? white : secondary )};
