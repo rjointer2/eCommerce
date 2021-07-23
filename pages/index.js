@@ -1,8 +1,4 @@
 
-// hooks
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-
 // dispatchment functions
 import { useMutation, useQuery } from '@apollo/client';
 

@@ -14,11 +14,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// redux
-import { Provider as ReduxProvider } from 'react-redux';
-import { store } from '../client/redux/store';
-
-
 // global styles to clear default padding and margins
 import '../client/styles/globals.css'
 
@@ -42,14 +37,12 @@ function MyApp({ Component, pageProps }) {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <ReduxProvider store={store}>
-      <ApolloProvider client={client}>
-        { loggedOut && <Navbar toggle={toggle} /> }
-        <Sidebar isOpen={isOpen} toggle={toggle} />
-        <Component {...pageProps} />
-        <Footer/> 
-      </ApolloProvider>
-    </ReduxProvider>
+    <ApolloProvider client={client}>
+      { loggedOut && <Navbar toggle={toggle} /> }
+      <Sidebar isOpen={isOpen} toggle={toggle} />
+      <Component {...pageProps} />
+      <Footer/> 
+    </ApolloProvider>
   )
 }
 

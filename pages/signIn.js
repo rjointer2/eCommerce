@@ -23,7 +23,6 @@ export default function SignIn() {
     const [formError, setFormError] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState('');
 
-
     // form states
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -34,9 +33,9 @@ export default function SignIn() {
         console.log(username, password)
 
         if( !username || !password ) {
-        setFormError(true)
-        setFormErrorMessage('Please submit form entirely');
-        return false
+            setFormError(true)
+            setFormErrorMessage('Please submit form entirely');
+            return false
         }
 
         try {
@@ -45,7 +44,6 @@ export default function SignIn() {
         } catch (err) {
             console.log(err)
         }
-
     }
 
     /* Specifically for checking rerenders */
