@@ -10,14 +10,15 @@ export const CommitmentWrapper = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 700px) {
         flex-direction: column;
     }
 `;
 
 export const CommitmentItems = styled.div`
-    height: 40%;
+    min-height: 200px;
+    max-height: 485px;
     background: ${primary};
-    margin: 5%;
-    padding: 5%;
+    margin: 2.5%;
+    padding: 2.5%;
 `;

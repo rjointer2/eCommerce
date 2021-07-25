@@ -1,23 +1,32 @@
 
+// pictures
+import guestShopping from '../../../assets/guestShopping.png';
+
 // icons
+import { RiPlantLine } from 'react-icons/ri'
 import { AiOutlineShop, AiOutlineShopping, AiOutlineShoppingCart } from "react-icons/ai";
 
 // hooks
 import { useQuery } from "@apollo/client";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 // components
 import Products from "../Product/Products"
 
 // styles
+import { Column1, Column2, Container, FourGridChild, FourGridContainer, Row, Wrapper } from '../../styleComponents/aligment';
 import { CommitmentItems, CommitmentWrapper } from "./StoreStyles";
-import { BoldCappedText, Text, TextCenter } from '../../styleComponents/text';
+import { BoldCappedText, Heading, Text, TextCenter } from '../../styleComponents/text';
 import { Icon, IconWrapper, Img, ImgWrapper } from '../../styleComponents/img';
+import { Button, ButtonWrapper } from '../../styleComponents/Button';
+
+import Context from '../../store/context';
+import { addToCart } from '../../store/actions';
 
 export default function Store({userLoading, userError, userData}) {
 
-    // variables from the product
-    // const { data, error, loading } = useQuery(PRODUCTS);
+    const { state, dispatch } = useContext(Context);
+    console.log(state)
 
     const renderCount = useRef(1);
 
@@ -25,67 +34,122 @@ export default function Store({userLoading, userError, userData}) {
         renderCount.current = renderCount.current + 1;
         console.log(renderCount);
     }, []);
+
+    
+
+    
     
     if( userLoading ) return <p>Loading...</p>
 
-    console.log(userError)
-    console.log(userData)
+
 
     return (
-        <div>
-            <h1> { userData ? `Hello ${userData.user.username}` : 'Hello'} </h1> 
+       <Container>
+           <Wrapper>
+           <button
+                onClick={() => dispatch(addToCart('Test'))}
+               >Click</button>
 
-            <CommitmentWrapper>
-            <CommitmentItems>
-                    <IconWrapper>
-                        <Icon>
-                            <AiOutlineShopping/>
-                        </Icon>
-                    </IconWrapper>
-                    <TextCenter>
+               <Row>
+                   <Column2>
+                        <FourGridContainer>
+                            <FourGridChild>
+                                <IconWrapper>
+                                    <Icon><RiPlantLine></RiPlantLine></Icon>
+                                </IconWrapper>
+                            </FourGridChild>
+                            <FourGridChild>
+                                <IconWrapper>
+                                    <Icon><RiPlantLine></RiPlantLine></Icon>
+                                </IconWrapper>
+                            </FourGridChild>
+                            <FourGridChild>
+                                <IconWrapper>
+                                    <Icon><RiPlantLine></RiPlantLine></Icon>
+                                </IconWrapper>
+                            </FourGridChild>
+                            <FourGridChild>
+                                <IconWrapper>
+                                    <Icon><RiPlantLine></RiPlantLine></Icon>
+                                </IconWrapper>
+                            </FourGridChild>
+                        </FourGridContainer>
+                   </Column2>
+                   <Column1>
+
+                   </Column1>
+               </Row>
+               <Row>
+                   <Column1>
                         <BoldCappedText>Lorem ipsum</BoldCappedText>
-                        <Text lightText={true}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore. <br/> <br/>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore.
+                        <Heading>Lorem ipsum</Heading>
+                        <Text>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                         </Text>
-                    </TextCenter>
-                </CommitmentItems>
-                <CommitmentItems>
-                    <IconWrapper>
-                        <Icon>
-                            <AiOutlineShoppingCart/>
-                        </Icon>
-                    </IconWrapper>
-                    <TextCenter>
-                        <BoldCappedText>Lorem ipsum</BoldCappedText>
-                        <Text lightText={true}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore. <br/> <br/>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore.
-                        </Text>
-                    </TextCenter>
-                </CommitmentItems>
-                <CommitmentItems>
-                    <IconWrapper>
-                        <Icon>
-                            <AiOutlineShop/>
-                        </Icon>
-                    </IconWrapper>
-                    <TextCenter>
-                        <BoldCappedText>Lorem ipsum</BoldCappedText>
-                        <Text lightText={true}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore. <br/> <br/>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore.
-                        </Text>
-                    </TextCenter>
-                </CommitmentItems>
-            </CommitmentWrapper>
-        </div>
+                        <br/>
+                        <ButtonWrapper>
+                            <Button>Click Me</Button>
+                        </ButtonWrapper>
+                   </Column1>
+                   <Column2>
+                    <ImgWrapper>
+                        <Img src={guestShopping} alt="guest shopping" />
+                    </ImgWrapper>
+                   </Column2>
+               </Row>
+                <CommitmentWrapper>
+                    <CommitmentItems>
+                        <IconWrapper>
+                            <Icon>
+                                <AiOutlineShopping/>
+                            </Icon>
+                        </IconWrapper>
+                        <TextCenter>
+                            <BoldCappedText>Lorem ipsum</BoldCappedText>
+                            <Text lightText={true}>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                incididunt ut labore et dolore. <br/> <br/>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                incididunt ut labore et dolore.
+                            </Text>
+                        </TextCenter>
+                    </CommitmentItems>
+                    <CommitmentItems>
+                        <IconWrapper>
+                            <Icon>
+                                <AiOutlineShoppingCart/>
+                            </Icon>
+                        </IconWrapper>
+                        <TextCenter>
+                            <BoldCappedText>Lorem ipsum</BoldCappedText>
+                            <Text lightText={true}>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                incididunt ut labore et dolore. <br/> <br/>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                incididunt ut labore et dolore.
+                            </Text>
+                        </TextCenter>
+                    </CommitmentItems>
+                    <CommitmentItems>
+                        <IconWrapper>
+                            <Icon>
+                                <AiOutlineShop/>
+                            </Icon>
+                        </IconWrapper>
+                        <TextCenter>
+                            <BoldCappedText>Lorem ipsum</BoldCappedText>
+                            <Text lightText={true}>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                incididunt ut labore et dolore. <br/> <br/>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                incididunt ut labore et dolore.
+                            </Text>
+                        </TextCenter>
+                    </CommitmentItems>
+                </CommitmentWrapper>
+           </Wrapper>
+       </Container>
     )
 
 }

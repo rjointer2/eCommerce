@@ -10,29 +10,36 @@ module.exports = {
 
     addProductToCart: async (_parent, args) => {
 
+        console.log("hi")
+
         try {
             const user = await User.findById(args.userId);
+            console.log(user)
+            
             // get the user's prop inTheirCart and set as dictionary
             const dictionary = JSON.parse(user.cart);
-            dictionary[args.productsId] = args.userId;
+            dictionary[args.productId] = args.userId;
             // string the dictionary and save it to the db
             user.cart = JSON.stringify(dictionary);
             await user.save();
-
-            const product = await Product.findById(args.productId);
-            // parse array and then push the creator in the array
-            const array = JSON.parse(product.inTheirCart);
-            array.push(user.username);
-            product.inTheirCart = JSON.stringify(array);
-
-            product.save();
-            console.log(product)
 
             return {
                 _id: user.id,
                 username: user.username,
                 email: user.email,
-                cart: user.cart
+                cart: (() => {
+                    const array = [];
+                    // make a array of key
+                    const userCart = JSON.parse(user.cart)
+                    const keys = Object.keys(userCart);
+                    console.log(keys)
+                    for(let i = 0; i < keys.length; i++) {
+                        // techincally speaking we can use the then method
+                        // rather than the entire query but graphql return the document model
+                        array.push(Product.findById(keys[i]))
+                    }
+                    return array
+                })()
             };
 
         } catch(err) {

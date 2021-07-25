@@ -25,8 +25,15 @@ import Sidebar from "../client/components/Sidebar/Sidebar";
 // hooks
 import { useState } from 'react';
 
+// state management
+import useGlobalState from '../client/store/useGlobalState';
+import Context from '../client/store/context';
+
+
 
 function MyApp({ Component, pageProps }) {
+
+  const store = useGlobalState();
 
   // mock loggoutOut authmiddleware hard coded log in var
   const loggedOut = true
@@ -38,12 +45,50 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      { loggedOut && <Navbar toggle={toggle} /> }
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Component {...pageProps} />
-      <Footer/> 
+      <Context.Provider value={store}>
+        { loggedOut && <Navbar toggle={toggle} /> }
+          <Sidebar isOpen={isOpen} toggle={toggle} />
+          <Component {...pageProps} />
+          <Footer/> 
+      </Context.Provider>
     </ApolloProvider>
   )
 }
 
-export default MyApp
+export default MyApp;
+
+
+
+
+/* 
+
+  Thoughts 
+
+  we can use redux to share the query's data arcoss because...
+
+  Pages 
+
+  Home
+  Poduct
+  Checkout -> Cart State
+
+  Components 
+
+  Sidebar -> Cart State
+  Navbar -> Cart State
+
+
+  Add to Cart function
+
+
+
+
+
+
+
+
+
+
+
+
+*/

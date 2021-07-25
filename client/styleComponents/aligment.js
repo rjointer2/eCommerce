@@ -1,5 +1,6 @@
 
 import styled from 'styled-components';
+import { primary } from './palette';
 
 
 export const Container = styled.div`
@@ -55,5 +56,21 @@ export const Column2 = styled.div`
     margin-bottom: 15px;
     grid-area: col2;
     padding: 10px;
+`;
+
+export const FourGridContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+`;
+
+export const FourGridChild = styled.div`
+    height: 70px;
+    width: 70px;
+    padding-top: 10px;
+    background: ${primary};
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 

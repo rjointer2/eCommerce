@@ -18,13 +18,20 @@ import { Form, FormButton, FormContainer, FormInput, FormLabel, FormSelect, Text
 
 export default function createProduct() {
 
+    // product
+    const [addedProduct, setAddedProduct] = useState(null);
+
+    console.log(addedProduct)
+
     // refernce to hidden input for file upload 
     const hiddenInput = useRef(null);
     // target hidden input click's and invoke on event
     const handleFileUploadClick = e => hiddenInput.current.click();
 
     // mutation hook to add product to db
-    const [ addProduct ] = useMutation(ADD_PRODUCT);
+    const [ addProduct, { data } ] = useMutation(ADD_PRODUCT, {
+        onCompleted: data => setAddedProduct(data)
+    });
 
     // Form State
     const [name, setName] = useState('');
@@ -85,6 +92,7 @@ export default function createProduct() {
                         "viewCount": "0", "inTheirCart": 'test1'
                     }
                 });
+                console.log(data)
                 console.log('success: Product Details Added')
             } catch (err) {
                 console.log(err);

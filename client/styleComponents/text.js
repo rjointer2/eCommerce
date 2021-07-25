@@ -24,7 +24,7 @@ export const Subtitle = styled.p`
     color: ${({ lightText }) => ( lightText ? white : secondary )};
 `;
 
-export const TextCenter = styled.p`
+export const TextCenter = styled.div`
     text-align: center;
 `;
 
