@@ -61,8 +61,9 @@ export default function Products() {
                     console.log( product._id)
                    try {
                     await addToCartServer({
+                        // use the user id here, when logged in 
                         variables: {
-                            "userId": 'test',
+                            "userId": '60fa4d6159c77f61bcc68422',
                             "productId": product._id
                         }
                     })
