@@ -32,8 +32,9 @@ export const FooterLinkContainer = styled.div`
 
 export const FooterLinkWrapper = styled.div`
     display: flex;
+    grid-template-columns: repeat(4, 1fr);
 
-    @media screen and (max-width: 820px) {
+    @media screen and (max-width: 800px) {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }

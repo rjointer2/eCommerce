@@ -9,13 +9,9 @@ const User = require('../../models/Users');
 module.exports = {
 
     addProductToCart: async (_parent, args) => {
-
-        console.log("hi")
-
         try {
             const user = await User.findById(args.userId);
             console.log(user)
-            
             // get the user's prop inTheirCart and set as dictionary
             const dictionary = JSON.parse(user.cart);
             dictionary[args.productId] = args.userId;
@@ -33,19 +29,17 @@ module.exports = {
                     const userCart = JSON.parse(user.cart)
                     const keys = Object.keys(userCart);
                     console.log(keys)
-                    for(let i = 0; i < keys.length; i++) {
-                        // techincally speaking we can use the then method
+                    // techincally speaking we can use the then method
                         // rather than the entire query but graphql return the document model
+                    for(let i = 0; i < keys.length; i++) {
                         array.push(Product.findById(keys[i]))
                     }
                     return array
                 })()
             };
-
         } catch(err) {
             console.log(err)
         }
-
     },
 
     products: async () => {
@@ -70,7 +64,6 @@ module.exports = {
     },
 
     addProduct: async function( _parent, args) {
-
         try {
             const product = await Product.create({
                 name: args.name,
@@ -83,11 +76,6 @@ module.exports = {
                 image: args.image
             });
             console.log(`${args.createdBy} has been uploaded to the database`);
-            
-/*             const uploadedResponse = await cloudinary.uploader.upload(args.image, {
-                upload_preset: 'eCommerceImages',
-                public_id: args.name
-            }); */
 
             return {
                 name: product.name,
