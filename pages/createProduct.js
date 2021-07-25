@@ -120,6 +120,12 @@ export default function createProduct() {
                             <Heading>
                             Upload your Product Today!
                         </Heading>
+                        <Text style={{ textAlign: "center" }}>
+                                <br/>Image will be displayed here<br/><br/>
+                            </Text>
+                            { previewFileInput && (
+                                <Img src={previewFileInput} alt="selected file" />
+                            )}
                         </Column1>
                         <Column2>
                             <Form onSubmit={handleSubmitFile} >
@@ -150,7 +156,7 @@ export default function createProduct() {
                                 <TextArea placeholder="Product Summary" value={summary} onChange={(e) => {setSummary(e.target.value), setFormError(false)}} required/>
                                 <br/>
                                 <Text lightText={true}>
-                                    Down Below Please Select a Image to Upload, then press submit!
+                                    Click Submit to upload your image
                                 </Text>
                                 <FormButton type="button" onClick={handleFileUploadClick}>
                                     Upload File
@@ -168,12 +174,6 @@ export default function createProduct() {
                                     Submit Image
                                 </FormButton>
                             </Form>
-                            <Text style={{ textAlign: "center" }}>
-                                <br/>Image will be displayed here<br/><br/>
-                            </Text>
-                            { previewFileInput && (
-                                <Img src={previewFileInput} alt="selected file" />
-                            )}
                         </Column2>
                     </Row>
                 </Wrapper>

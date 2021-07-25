@@ -11,6 +11,7 @@ export const PRODUCTS = gql`
             viewCount
             createdBy
             department
+            image
         }
     }
 `;

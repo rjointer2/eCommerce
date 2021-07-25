@@ -3,7 +3,6 @@
 import guestShopping from '../../../assets/guestShopping.png';
 
 // icons
-import { RiPlantLine } from 'react-icons/ri'
 import { AiOutlineShop, AiOutlineShopping, AiOutlineShoppingCart } from "react-icons/ai";
 
 // hooks
@@ -14,19 +13,21 @@ import { useContext, useEffect, useRef } from "react";
 import Products from "../Product/Products"
 
 // styles
-import { Column1, Column2, Container, FourGridChild, FourGridContainer, Row, Wrapper } from '../../styleComponents/aligment';
+import { Column1, Column2, Container, Row, Wrapper } from '../../styleComponents/aligment';
 import { CommitmentItems, CommitmentWrapper } from "./StoreStyles";
 import { BoldCappedText, Heading, Text, TextCenter } from '../../styleComponents/text';
 import { Icon, IconWrapper, Img, ImgWrapper } from '../../styleComponents/img';
 import { Button, ButtonWrapper } from '../../styleComponents/Button';
 
 import Context from '../../store/context';
-import { addToCart } from '../../store/actions';
+import { addToCartClient } from '../../store/actions';
 
 export default function Store({userLoading, userError, userData}) {
 
     const { state, dispatch } = useContext(Context);
-    console.log(state)
+    console.log(state);
+
+    // set add cart initially
 
     const renderCount = useRef(1);
 
@@ -46,39 +47,6 @@ export default function Store({userLoading, userError, userData}) {
     return (
        <Container>
            <Wrapper>
-           <button
-                onClick={() => dispatch(addToCart('Test'))}
-               >Click</button>
-
-               <Row>
-                   <Column2>
-                        <FourGridContainer>
-                            <FourGridChild>
-                                <IconWrapper>
-                                    <Icon><RiPlantLine></RiPlantLine></Icon>
-                                </IconWrapper>
-                            </FourGridChild>
-                            <FourGridChild>
-                                <IconWrapper>
-                                    <Icon><RiPlantLine></RiPlantLine></Icon>
-                                </IconWrapper>
-                            </FourGridChild>
-                            <FourGridChild>
-                                <IconWrapper>
-                                    <Icon><RiPlantLine></RiPlantLine></Icon>
-                                </IconWrapper>
-                            </FourGridChild>
-                            <FourGridChild>
-                                <IconWrapper>
-                                    <Icon><RiPlantLine></RiPlantLine></Icon>
-                                </IconWrapper>
-                            </FourGridChild>
-                        </FourGridContainer>
-                   </Column2>
-                   <Column1>
-
-                   </Column1>
-               </Row>
                <Row>
                    <Column1>
                         <BoldCappedText>Lorem ipsum</BoldCappedText>
@@ -110,8 +78,7 @@ export default function Store({userLoading, userError, userData}) {
                             <Text lightText={true}>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                                 incididunt ut labore et dolore. <br/> <br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore.
+                                
                             </Text>
                         </TextCenter>
                     </CommitmentItems>
@@ -126,8 +93,6 @@ export default function Store({userLoading, userError, userData}) {
                             <Text lightText={true}>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                                 incididunt ut labore et dolore. <br/> <br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore.
                             </Text>
                         </TextCenter>
                     </CommitmentItems>
@@ -142,8 +107,6 @@ export default function Store({userLoading, userError, userData}) {
                             <Text lightText={true}>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                                 incididunt ut labore et dolore. <br/> <br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore.
                             </Text>
                         </TextCenter>
                     </CommitmentItems>

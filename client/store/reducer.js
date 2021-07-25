@@ -13,21 +13,24 @@ const reducer = ( state = { cart: [] }, action ) => {
 
         case actionTypes.ADD_TO_CART:
 
-        return {
-            cart: action.payload
-        }
+            
+
+            return {
+                ...state,
+                cart: [ ...state.cart, action.payload ]
+            }
 
         case actionTypes.REMOVE_FROM_CART:
 
-        return {
-            cart: action.payload
-        }
+            return {
+                cart: action.payload
+            }
 
         case actionTypes.REMOVE_FROM_CART:
 
-        return {
-            cart: []
-        }
+            return {
+                cart: []
+            }
 
         default: return state
     }

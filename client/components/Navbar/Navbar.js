@@ -2,13 +2,27 @@
 // next link 
 import Link from 'next/link'
 
+// hooks
+import { useContext, useEffect } from 'react';
+
 // icons
 import { FaBars } from 'react-icons/fa'
+
+// state management
+import { addToCartClient } from '../../store/actions';
+import Context from '../../store/context';
 
 // styles for Nav
 import { MobileIconNavBar, Nav, NavContainer, NavItems, NavLinks, NavLogo, NavMenu } from "./NavbarStyles";
 
 export default function Navbar({ toggle }) {
+
+    const { state, dispatch } = useContext(Context);
+
+    useEffect(() => {
+        dispatch(addToCartClient({item: 'test'}))
+    }, [])
+
     return (
         <Nav>
             <NavContainer>

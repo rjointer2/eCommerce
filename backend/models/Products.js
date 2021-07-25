@@ -25,6 +25,10 @@ const productSchema = new Schema(
         },
         viewCount: {
             type: Number, 
+        },
+        image: {
+            type: String,
+            required: true,
         }
     }
 )

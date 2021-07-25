@@ -9,7 +9,7 @@ import { white } from './palette';
 
 export const ImgWrapper = styled.div`
     max-width: 555px;
-    height: 100%;
+
 `;
 
 export const Img = styled.img`

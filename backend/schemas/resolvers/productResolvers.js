@@ -59,7 +59,8 @@ module.exports = {
                     summary: product.summary,
                     createdBy: product.createdBy,
                     department: product.department,
-                    viewCount: product.viewCount
+                    viewCount: product.viewCount,
+                    image: product.image
                 }
             }))
         } catch(err) {
@@ -78,14 +79,15 @@ module.exports = {
                 summary: args.summary,
                 createdBy: args.createdBy,
                 inTheirCart: "[]",
-                viewCount: parseInt(args.viewCount)
+                viewCount: parseInt(args.viewCount),
+                image: args.image
             });
             console.log(`${args.createdBy} has been uploaded to the database`);
             
-            const uploadedResponse = await cloudinary.uploader.upload(args.image, {
+/*             const uploadedResponse = await cloudinary.uploader.upload(args.image, {
                 upload_preset: 'eCommerceImages',
                 public_id: args.name
-            });
+            }); */
 
             return {
                 name: product.name,
@@ -94,7 +96,7 @@ module.exports = {
                 summary: product.summary,
                 createdBy: product.createdBy,
                 viewCount: JSON.stringify(product.viewCount),
-                inTheirCart: "[]",
+                inTheirCart: "[]"
             }
         } catch (err) {
             console.log(err)

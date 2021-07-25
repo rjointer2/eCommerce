@@ -14,6 +14,7 @@ const useGlobalState = () => {
 
     const [ state, dispatch ] = useReducer( reducer, intitialState );
 
+
     return { state, dispatch }
 
 }
