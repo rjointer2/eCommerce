@@ -91,6 +91,31 @@ module.exports = {
             console.log(err)
             throw ApolloError
         }
-    
+    },
+
+    // remove from cart 
+    removeFromCart: async function( _parent, args ) {
+        // args.userId
+        // args.productId
+        
+        try {
+            // we want to find the user and return the user for the query
+            const user = await User.findById(args.userId);
+            // We want to use Product model to find by id of the 
+            return {
+                _id: user.id,
+                username: user.username,
+                cart: (() => {
+                    const cart = JSON.parse(user.cart);
+                    delete cart[args.productId];
+                    
+                })()
+            }
+            // product in their cart prop of the user 
+            // and then delete it
+        } catch(err) {
+
+        }
+
     }
 }

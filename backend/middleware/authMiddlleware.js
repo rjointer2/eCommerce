@@ -9,10 +9,8 @@ const secret = process.env.SECRET;
 const expiration = '2h';
 
 module.exports = {
-
     //funtion for our authenticated routes
     authenticationMiddleware: function ({req, res}) {
-
         return {
             // set header with jwt
             authenticate: function({ username, email, _id }) {
