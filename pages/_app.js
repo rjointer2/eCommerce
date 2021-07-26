@@ -58,37 +58,3 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 
 
-
-
-/* 
-
-  Thoughts 
-
-  we can use redux to share the query's data arcoss because...
-
-  Pages 
-
-  Home
-  Poduct
-  Checkout -> Cart State
-
-  Components 
-
-  Sidebar -> Cart State
-  Navbar -> Cart State
-
-
-  Add to Cart function
-
-
-
-
-
-
-
-
-
-
-
-
-*/

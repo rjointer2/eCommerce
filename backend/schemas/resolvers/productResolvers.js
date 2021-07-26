@@ -1,7 +1,8 @@
 
 // modules
 const { ApolloError } = require('apollo-server-express');
-const { cloudinary } = require('../../configs/cloudinary');
+
+// Models
 const Product = require('../../models/Products');
 const User = require('../../models/Users');
 
