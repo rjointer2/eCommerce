@@ -1,7 +1,7 @@
 
 // resolvers
 const { addUser, signIn, me } = require('./resolvers/userResolvers');
-const { addProduct, products, addProductToCart, removeProductFromCart } = require('./resolvers/productResolvers');
+const { addProduct, products, addProductToCart, removeProductFromCart, resetCart } = require('./resolvers/productResolvers');
 
 let resolvers = {
     Query: {
@@ -12,6 +12,7 @@ let resolvers = {
         removeProductFromCart,
         addProductToCart,
         addProduct,
+        resetCart,
         addUser,
         signIn
     }

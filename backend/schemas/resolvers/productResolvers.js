@@ -125,6 +125,19 @@ module.exports = {
             console.log(err);
             throw new ApolloError('Unable to remove cart, bad request!')
         }
+    },
 
+    resetCart: async function( _parent, args ) {
+        try {
+            const user = await User.findById(args.userId);
+            // set the user's cart prop to a empty dictionary
+            user.cart = "{}";
+            user.save();
+
+            return user
+        } catch (err) {
+            console.log(err)
+            throw new ApolloError(`Unable to reset cart, bad request!`);
+        }
     }
 }

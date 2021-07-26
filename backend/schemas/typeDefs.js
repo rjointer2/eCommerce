@@ -36,6 +36,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
+        resetCart( userId: String! ): User
         removeProductFromCart( userId: String!, productId: String! ): User
         addProductToCart( userId: String!, productId: String! ): User
         addProduct( name: String!, price: String!, department: String!, summary: String!, createdBy: String!, image: String!, viewCount: String! ): Product
