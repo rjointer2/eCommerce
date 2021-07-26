@@ -8,14 +8,13 @@ import { white } from './palette';
 // regular images
 
 export const ImgWrapper = styled.div`
-    max-width: 555px;
+    height: 100%;
 
 `;
 
 export const Img = styled.img`
     width: 100%;
     padding-right: 0;
-
 `;
 
 // these are for svg's

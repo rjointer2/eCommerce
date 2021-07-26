@@ -22,7 +22,34 @@ export const ADD_PRODUCT_TO_CART = gql`
 			cart {
 				_id
 				name
+				summary
+				department
+				createdBy
+				image
 			}
+		}
+	}
+`;
+
+export const REMOVE_PRODUCT_FROM_CART = gql`
+	mutation removeProductFromCart($userId: String!, $productId: String!) {
+		removeProductFromCart(userId: $userId, productId: $productId) {
+			cart {
+				_id
+				name
+				summary
+				department
+				createdBy
+				image
+			}
+		}
+	}
+`;
+
+export const RESET_CART = gql`
+	mutation resetCart( $userId: String! ) {
+		resetCart( userId: $userId ) {
+		_id
 		}
 	}
 `;

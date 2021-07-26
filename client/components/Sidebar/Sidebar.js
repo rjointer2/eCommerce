@@ -1,6 +1,11 @@
 
+// icons
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+
 // next link 
 import Link from 'next/link'
+
+// styles
 
 // components
 import { SidebarMenu ,SidebarContainer ,CloseMenu, Menu , SidebarBtnWrapper, SidebarLink, SidebarWrapper, SidebarBtnLink } from './SidebarStyles'
@@ -19,12 +24,12 @@ export default function Sidebar ({ isOpen, toggle }) {
                 <SidebarMenu>
                     <Link href="#">
                         <SidebarLink>
-                            Categories
+                            Products
                         </SidebarLink>
                     </Link>
                     <Link href="#">
                         <SidebarLink onClick={toggle} >
-                                What's New
+                            About Us
                         </SidebarLink>
                     </Link>
                    <Link href="createProduct">
@@ -34,13 +39,14 @@ export default function Sidebar ({ isOpen, toggle }) {
                     </Link>
                     <Link href="#">
                         <SidebarLink onClick={toggle} >
-                            About Us
+                            {/* user state sign in / out */}
+                            Sign Out
                         </SidebarLink>
                     </Link>
                 </SidebarMenu>
                 <SidebarBtnWrapper>
                     <SidebarBtnLink href="#" onClick={toggle} >
-                        Sign In
+                        View Cart <AiOutlineShoppingCart style={{ fontSize: '2rem', transform: 'translate(0, 5px)' }}/>
                     </SidebarBtnLink>
                 </SidebarBtnWrapper>
             </SidebarWrapper>

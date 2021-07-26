@@ -26,14 +26,11 @@ module.exports = {
                 email: user.email,
                 cart: (async () => {
                     const array = [];
-                    // make a array of key
+
                     const userCart = JSON.parse(user.cart)
                     const keys = Object.keys(userCart);
-                    console.log(keys)
-                    // techincally speaking we can use the then method
-                        // rather than the entire query but graphql return the document model
                     for(let i = 0; i < keys.length; i++) {
-                        array.push( await Product.findById(keys[i]))
+                        array.push(await Product.findById(keys[i]))
                     }
                     return array
                 })()
