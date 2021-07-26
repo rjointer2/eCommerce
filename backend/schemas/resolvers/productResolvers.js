@@ -24,7 +24,7 @@ module.exports = {
                 _id: user.id,
                 username: user.username,
                 email: user.email,
-                cart: (() => {
+                cart: (async () => {
                     const array = [];
                     // make a array of key
                     const userCart = JSON.parse(user.cart)
@@ -33,13 +33,14 @@ module.exports = {
                     // techincally speaking we can use the then method
                         // rather than the entire query but graphql return the document model
                     for(let i = 0; i < keys.length; i++) {
-                        array.push(Product.findById(keys[i]))
+                        array.push( await Product.findById(keys[i]))
                     }
                     return array
                 })()
             };
         } catch(err) {
-            console.log(err)
+            console.log(err);
+            throw new ApolloError(`Unable to add new product to cart, bad request!`);
         }
     },
 
@@ -60,7 +61,7 @@ module.exports = {
             }))
         } catch(err) {
             console.log(err)
-            throw err
+            throw new ApolloError(`Unable to grab product, please check connection!`)
         }
     },
 
@@ -89,14 +90,12 @@ module.exports = {
             }
         } catch (err) {
             console.log(err)
-            throw ApolloError
+            throw new ApolloError(`Unable to add new product ${args.name}, bad request!`)
         }
     },
 
     // remove from cart 
-    removeFromCart: async function( _parent, args ) {
-        // args.userId
-        // args.productId
+    removeProductFromCart: async function( _parent, args ) {
         
         try {
             // we want to find the user and return the user for the query
@@ -105,16 +104,26 @@ module.exports = {
             return {
                 _id: user.id,
                 username: user.username,
-                cart: (() => {
-                    const cart = JSON.parse(user.cart);
+                cart: ( async () => {
+                    cart = JSON.parse(user.cart);
                     delete cart[args.productId];
-                    
+                    user.cart = JSON.stringify(cart);
+
+                    await user.save();
+
+                    const array = [];
+                    const keys = Object.keys(cart);
+
+                    for(let i = 0; i < keys.length; i++ ) {
+                        console.log(keys)
+                        array.push(await Product.findById(keys[i]))
+                    }
+                    return array;
                 })()
             }
-            // product in their cart prop of the user 
-            // and then delete it
         } catch(err) {
-
+            console.log(err);
+            throw new ApolloError('Unable to remove cart, bad request!')
         }
 
     }
