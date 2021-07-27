@@ -1,12 +1,13 @@
 
 import { useReducer } from "react";
 
-// reducer function 
+// reducers function 
 import reducer from "./reducer";
 
 // initial state
 const intitialState = {
-    cart: []
+    cart: [],
+    user: null
 };
 
 

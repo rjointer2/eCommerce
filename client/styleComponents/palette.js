@@ -3,6 +3,6 @@
 
 export const white = '#fff'; // white
 export const gray = '#BFBDBA'; // gray
-export const hover = '#fc03a9'; // red pinkish
-export const primary = '#1D2659'; // dark blue
-export const secondary = '#071526'; // darker blue 
+export const hover = '#dea39b'; // ash tomato red
+export const primary = '#909e88'; // ash green
+export const secondary = '#ccbe97'; // wood light brown

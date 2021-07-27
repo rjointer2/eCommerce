@@ -5,7 +5,6 @@ import * as actionTypes from './constants'
 
 // this reducer takes a state and action with the type and payload props
 const reducer = ( state = { cart: [] }, action ) => {
-    console.log(action);
     
     // once the action function is passed in the reducer, we can specify
     // how the store's return the state

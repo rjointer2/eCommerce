@@ -86,3 +86,12 @@ export const NavLinks = styled.a`
         color: ${hover}
     }
 `;
+
+export const WelcomeText = styled.p`
+    color: ${white};
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    cursor: pointer;
+`;

@@ -107,7 +107,7 @@ module.exports = {
                     user.cart = JSON.stringify(cart);
 
                     await user.save();
-
+                    
                     const array = [];
                     const keys = Object.keys(cart);
 

@@ -13,20 +13,20 @@ import { addToCartClient } from '../../store/actions';
 import Context from '../../store/context';
 
 // styles for Nav
-import { MobileIconNavBar, Nav, NavContainer, NavItems, NavLinks, NavLogo, NavMenu } from "./NavbarStyles";
+import { MobileIconNavBar, Nav, NavContainer, NavItems, NavLinks, NavLogo, NavMenu, WelcomeText } from "./NavbarStyles";
 
 export default function Navbar({ toggle }) {
 
     const { state, dispatch } = useContext(Context);
 
-    useEffect(() => {
+/*     useEffect(() => {
         dispatch(addToCartClient({item: 'test'}))
-    }, [])
+    }, []) */
 
     return (
         <Nav>
             <NavContainer>
-                <Link href='#' passHref>
+                <Link href='/' passHref>
                     <NavLogo> Logo </NavLogo>
                 </Link>
                 <MobileIconNavBar onClick={toggle} >
@@ -34,23 +34,28 @@ export default function Navbar({ toggle }) {
                 </MobileIconNavBar>
                 <NavMenu>
                     <NavItems>
-                        <NavLinks href="#">
-                            Categories
+                        <WelcomeText>
+                            Welcome, {"User"}!
+                        </WelcomeText>
+                    </NavItems>
+                    <NavItems>
+                        <NavLinks href="/products">
+                            Products
                         </NavLinks>
                     </NavItems>
                     <NavItems>
-                        <NavLinks href="#">
-                            What's New
+                        <NavLinks href="/aboutus">
+                            About Us
                         </NavLinks>
                     </NavItems>
                     <NavItems>
-                        <NavLinks href="#">
-                            Sign In
-                        </NavLinks>
-                    </NavItems>
-                    <NavItems>
-                        <NavLinks href="#">
+                        <NavLinks href="vendor">
                             Become a Vendor!
+                        </NavLinks>
+                    </NavItems>
+                    <NavItems>
+                        <NavLinks href="/signin">
+                            Sign In
                         </NavLinks>
                     </NavItems>
                 </NavMenu>

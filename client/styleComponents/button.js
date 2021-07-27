@@ -7,6 +7,7 @@ import { hover, primary, white } from "./palette";
 export const ButtonWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 `;
 
 export const Button = styled.button`

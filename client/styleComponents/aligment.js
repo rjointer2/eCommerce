@@ -1,15 +1,18 @@
 
 import styled from 'styled-components';
-import { primary } from './palette';
+
+// palette
+import { primary, secondary, white } from './palette';
 
 
 export const Container = styled.div`
     display: flex;
     justify-content: center;
-
-
+    height: 650px;
+    
     @media screen and (max-width: 768px) {
         padding: 100px 0;
+        height: 800px;
     }
 `;
 

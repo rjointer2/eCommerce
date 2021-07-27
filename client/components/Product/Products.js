@@ -19,9 +19,9 @@ import { ADD_PRODUCT_TO_CART } from "../../ulits/mutations/productMutations";
 
 export default function Products() {
 
-    const [ addToCartServer, { data: serverData } ] = useMutation(ADD_PRODUCT_TO_CART, {
+    /* const [ addToCartServer, { data: serverData } ] = useMutation(ADD_PRODUCT_TO_CART, {
         onCompleted: () => dispatch(addToCartClient(serverData))
-    });
+    }); */
 
     const { state, dispatch } = useContext(Context);
 
