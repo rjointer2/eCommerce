@@ -1,6 +1,5 @@
 
-
-export default function BecomeVendor() {
+export default function cart() {
     return (
         <div>
             

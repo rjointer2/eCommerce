@@ -33,18 +33,18 @@ export default function Navbar({ toggle }) {
                     <FaBars />
                 </MobileIconNavBar>
                 <NavMenu>
+                    { state.user ? <NavItems>
+                        <NavLinks href='cart'>
+                           Your Cart
+                        </NavLinks>
+                    </NavItems> : '' }
                     <NavItems>
-                        <WelcomeText>
-                            Welcome, {"User"}!
-                        </WelcomeText>
-                    </NavItems>
-                    <NavItems>
-                        <NavLinks href="/products">
+                        <NavLinks href="products">
                             Products
                         </NavLinks>
                     </NavItems>
                     <NavItems>
-                        <NavLinks href="/aboutus">
+                        <NavLinks href="aboutus">
                             About Us
                         </NavLinks>
                     </NavItems>
@@ -54,8 +54,8 @@ export default function Navbar({ toggle }) {
                         </NavLinks>
                     </NavItems>
                     <NavItems>
-                        <NavLinks href="/signin">
-                            Sign In
+                        <NavLinks href='signin' onClick={() => state.user ? console.log('signing in') : console.log('signing out') }>
+                            { state.user ? 'Sign Out' : 'Sign In' }
                         </NavLinks>
                     </NavItems>
                 </NavMenu>

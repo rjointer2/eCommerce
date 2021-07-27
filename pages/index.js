@@ -14,9 +14,22 @@ import { Column1, Column2, Container, Row, Wrapper } from '../client/styleCompon
 import { Icon, IconWrapper, Img, ImgWrapper } from '../client/styleComponents/img';
 import { BoldCappedText, Heading, Text, TextCenter } from '../client/styleComponents/text';
 
+// hooks
+import { useContext } from 'react';
+
+// state management
+import Context from '../client/store/context';
+
 
 export default function index() {
 
+  // global state
+  const { state, dispatch } = useContext(Context);
+
+  
+
+
+  // configs
   const commitments = [
     {
         header: "Store",
@@ -111,8 +124,8 @@ export default function index() {
           <Heading lightText={true}>Our Commitments</Heading>
         </TextCenter>
         <CommitmentWrapper>
-        { commitments.map(commitment => 
-          <CommitmentItems>
+        { commitments.map((commitment, index) => 
+          <CommitmentItems key={index}>
             <TextCenter>
               <BoldCappedText>
                 {commitment.header}

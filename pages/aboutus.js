@@ -1,6 +1,7 @@
 
 
-export default function BecomeVendor() {
+
+export default function AboutUs() {
     return (
         <div>
             

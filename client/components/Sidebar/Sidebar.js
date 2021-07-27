@@ -2,18 +2,24 @@
 // icons
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
-// next link 
+// next 
 import Link from 'next/link'
 
 // styles
-
-// components
 import { SidebarMenu ,SidebarContainer ,CloseMenu, Menu , SidebarBtnWrapper, SidebarLink, SidebarWrapper, SidebarBtnLink } from './SidebarStyles'
+
+// hookes
+import { useContext } from 'react';
+
+// state management
+import Context from '../../store/context';
 
 // isOpen is drilled from the app's Sidebar component
 // toggle is drileld from the app's Navbar component 
 
 export default function Sidebar ({ isOpen, toggle }) {
+
+    const { state, dispatch } = useContext(Context)
 
     return (
         <SidebarContainer isOpen={isOpen} onClick={toggle} >
@@ -22,34 +28,42 @@ export default function Sidebar ({ isOpen, toggle }) {
             </Menu>
             <SidebarWrapper>
                 <SidebarMenu>
-                    <Link href="#">
+                    <Link href="/products">
                         <SidebarLink>
                             Products
                         </SidebarLink>
                     </Link>
-                    <Link href="#">
+                    <Link href="/aboutus">
                         <SidebarLink onClick={toggle} >
                             About Us
                         </SidebarLink>
                     </Link>
-                   <Link href="createProduct">
+                   <Link href="becomevendor">
                     <SidebarLink onClick={toggle} >
                             Become a Vendor!
                         </SidebarLink>
                     </Link>
-                    <Link href="#">
+                    <Link href="signin">
                         <SidebarLink onClick={toggle} >
-                            {/* user state sign in / out */}
-                            Sign Out
+                            { state.user ? 'Sign Out' : 'Sign In' }
                         </SidebarLink>
                     </Link>
                 </SidebarMenu>
                 <SidebarBtnWrapper>
-                    <SidebarBtnLink href="#" onClick={toggle} >
-                        View Cart <AiOutlineShoppingCart style={{ fontSize: '2rem', transform: 'translate(0, 5px)' }}/>
+                    <SidebarBtnLink onClick={() => {
+                        toggle();
+
+                        if(!state.user) {
+                            console.log('signing in')
+                            return false
+                        }
+                        console.log('signing out')
+                    }} >
+                        { state.user ? 'View Cart' : 'Sign Up' } 
+                        { state.user ? <AiOutlineShoppingCart style={{ fontSize: '2rem', transform: 'translate(0, 5px)' }}/> : ''}
                     </SidebarBtnLink>
                 </SidebarBtnWrapper>
             </SidebarWrapper>
         </SidebarContainer>
-    )
+    ) 
 }
