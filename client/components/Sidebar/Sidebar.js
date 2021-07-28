@@ -9,19 +9,21 @@ import Link from 'next/link'
 import { SidebarMenu ,SidebarContainer ,CloseMenu, Menu , SidebarBtnWrapper, SidebarLink, SidebarWrapper, SidebarBtnLink } from './SidebarStyles'
 
 // hookes
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 // state management
 import Context from '../../store/context';
+import Modal from '../Modal/Modal';
 
 // isOpen is drilled from the app's Sidebar component
 // toggle is drileld from the app's Navbar component 
 
-export default function Sidebar ({ isOpen, toggle }) {
+export default function Sidebar ({ isOpen, toggle, showModal, openModal }) {
 
     const { state, dispatch } = useContext(Context)
 
     return (
+        <>
         <SidebarContainer isOpen={isOpen} onClick={toggle} >
             <Menu onClick={toggle} >
                 <CloseMenu />
@@ -57,7 +59,7 @@ export default function Sidebar ({ isOpen, toggle }) {
                             console.log('signing in')
                             return false
                         }
-                        console.log('signing out')
+                        openModal()
                     }} >
                         { state.user ? 'View Cart' : 'Sign Up' } 
                         { state.user ? <AiOutlineShoppingCart style={{ fontSize: '2rem', transform: 'translate(0, 5px)' }}/> : ''}
@@ -65,5 +67,7 @@ export default function Sidebar ({ isOpen, toggle }) {
                 </SidebarBtnWrapper>
             </SidebarWrapper>
         </SidebarContainer>
+        { showModal && <Modal openModal={openModal} /> }
+        </>
     ) 
 }

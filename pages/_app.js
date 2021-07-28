@@ -35,6 +35,13 @@ function MyApp({ Component, pageProps }) {
 
   const store = useGlobalState();
 
+  const [showModal, setShowModal] = useState(false)
+
+    const openModal = () => {
+        console.log("clicked!!");
+        setShowModal(prev => !prev);
+    };
+
   // mock loggoutOut authmiddleware hard coded log in var
   const loggedOut = true
 
@@ -46,8 +53,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <Context.Provider value={store}>
-        { loggedOut && <Navbar toggle={toggle} /> }
-          <Sidebar isOpen={isOpen} toggle={toggle} />
+        { loggedOut && <Navbar toggle={toggle} showModal={showModal} openModal={openModal} /> }
+          <Sidebar isOpen={isOpen} toggle={toggle} showModal={showModal} openModal={openModal} />
           <Component {...pageProps} />
           <Footer/> 
       </Context.Provider>

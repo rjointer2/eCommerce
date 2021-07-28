@@ -15,10 +15,17 @@ import { Icon, IconWrapper, Img, ImgWrapper } from '../client/styleComponents/im
 import { BoldCappedText, Heading, Text, TextCenter } from '../client/styleComponents/text';
 
 // hooks
-import { useContext } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useQuery } from '@apollo/client';
+
+// queries and mutations
+import { GET_USER } from '../client/ulits/queries/userQueries';
 
 // state management
 import Context from '../client/store/context';
+import { addProductToCartClient } from '../client/store/actions';
+
+
 
 
 export default function index() {
@@ -26,7 +33,24 @@ export default function index() {
   // global state
   const { state, dispatch } = useContext(Context);
 
-  
+  // get the user's data and store it state 
+  const { data, error, loading } = useQuery(GET_USER);
+
+  const renderCount = useRef(0);
+
+  useEffect(() => {
+    renderCount.current = renderCount.current + 1;
+    console.log(renderCount.current);
+    // not falsy don't perform any lifecycle methods
+    if(!data) return false;
+    console.log(data.me.cart);
+
+    dispatch(addProductToCartClient(data.me.cart, data.me.username))
+
+    // whenever the data variable changes, invoked our lifecycle methods
+  }, [data]);
+
+
 
 
   // configs
@@ -60,10 +84,11 @@ export default function index() {
         <StoreLanding>
             <StoreHeader>Plant and Home Decor For You</StoreHeader>
               <StoreText>
-                See Our Amazing Collections Made By Talented Vendors. 
+                See Our Amazing Collections Made By Talented Vendors.
+                <br/><br/> 
               </StoreText>
               <ButtonWrapper>
-                <Button>
+                <Button onClick={() => console.log('text')}>
                   Sign Up Today!
                 </Button>
               </ButtonWrapper>

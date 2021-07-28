@@ -1,9 +1,12 @@
 
+// react icons
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+
 // next link 
 import Link from 'next/link'
 
 // hooks
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 // icons
 import { FaBars } from 'react-icons/fa'
@@ -11,11 +14,15 @@ import { FaBars } from 'react-icons/fa'
 // state management
 import { addToCartClient } from '../../store/actions';
 import Context from '../../store/context';
+import { Button, ButtonWrapper, ModalButton } from '../../styleComponents/Button';
+import { Icon } from '../../styleComponents/img';
 
 // styles for Nav
 import { MobileIconNavBar, Nav, NavContainer, NavItems, NavLinks, NavLogo, NavMenu, WelcomeText } from "./NavbarStyles";
+import Modal from '../Modal/Modal';
 
-export default function Navbar({ toggle }) {
+
+export default function Navbar({ toggle, openModal, showModal }) {
 
     const { state, dispatch } = useContext(Context);
 
@@ -24,6 +31,7 @@ export default function Navbar({ toggle }) {
     }, []) */
 
     return (
+        <>
         <Nav>
             <NavContainer>
                 <Link href='/' passHref>
@@ -34,9 +42,10 @@ export default function Navbar({ toggle }) {
                 </MobileIconNavBar>
                 <NavMenu>
                     { state.user ? <NavItems>
-                        <NavLinks href='cart'>
-                           Your Cart
-                        </NavLinks>
+                        <div style={{color: 'white'}} onClick={() => {
+                            openModal()
+                            console.log('text')
+                        }}>Cart <AiOutlineShoppingCart/></div>
                     </NavItems> : '' }
                     <NavItems>
                         <NavLinks href="products">
@@ -61,5 +70,7 @@ export default function Navbar({ toggle }) {
                 </NavMenu>
             </NavContainer>
         </Nav>
+        { showModal && <Modal openModal={openModal} /> }
+        </>
     )
 }

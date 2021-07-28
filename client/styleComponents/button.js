@@ -7,10 +7,21 @@ import { hover, primary, white } from "./palette";
 export const ButtonWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 `;
 
 export const Button = styled.button`
+    background: ${primary};
+	color: ${white};
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+
+    &:hover {
+        color: ${hover}
+    }
+`;
+
+export const ModalButton = styled.button`
     background: ${primary};
 	color: ${white};
 	border: none;
