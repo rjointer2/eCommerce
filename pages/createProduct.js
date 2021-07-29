@@ -44,7 +44,7 @@ export default function createProduct() {
     const [ formErrorMessage, setFormErrorMessage ] = useState('');
 
     // options array to map on the selection options
-    const options = ['Market', 'Toys', 'Plants', 'Home']
+    const options = ['Decor', 'Plants', 'Home']
 
     // Uploading Images to Cloundinary and DB
     // the state used to send base64Strings to the Cloudinary
@@ -89,7 +89,7 @@ export default function createProduct() {
                     variables: { 
                         "name": name, "price": price, "department": department, 
                         "summary": summary, "createdBy": "test1", "image": previewFileInput,
-                        "viewCount": "0", "inTheirCart": 'test1'
+                        "viewCount": "0", "inTheirCart": 'test1', "amount": "0"
                     }
                 });
                 console.log(data)

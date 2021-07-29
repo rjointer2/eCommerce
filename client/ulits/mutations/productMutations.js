@@ -2,8 +2,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_PRODUCT = gql`
-	mutation addProduct( $name: String!, $price: String!, $department: String!, $summary: String!, $createdBy: String!, $image: String!, $viewCount: String! ) {
-		addProduct( name: $name, price: $price, department: $department, summary: $summary, createdBy: $createdBy, image: $image, viewCount: $viewCount ) {
+	mutation addProduct( $name: String!, $price: String!, $department: String!, $summary: String!, $createdBy: String!, $image: String!, $viewCount: String! $amount: String! ) {
+		addProduct( name: $name, price: $price, department: $department, summary: $summary, createdBy: $createdBy, image: $image, viewCount: $viewCount, amount: $amount ) {
 			name
 			price
 			department

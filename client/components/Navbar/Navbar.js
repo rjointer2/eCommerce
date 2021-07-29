@@ -2,6 +2,9 @@
 // react icons
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
+// react scroll
+import { animateScroll as scroll } from 'react-scroll';
+
 // next link 
 import Link from 'next/link'
 
@@ -24,18 +27,23 @@ import Modal from '../Modal/Modal';
 
 export default function Navbar({ toggle, openModal, showModal }) {
 
+    // scroll function
+    const toggleHome = () => scroll.scrollToTop();
+
     const { state, dispatch } = useContext(Context);
 
 /*     useEffect(() => {
         dispatch(addToCartClient({item: 'test'}))
     }, []) */
 
+    console.log(state)
+
     return (
         <>
         <Nav>
             <NavContainer>
                 <Link href='/' passHref>
-                    <NavLogo> Logo </NavLogo>
+                    <NavLogo onClick={toggleHome} > Logo </NavLogo>
                 </Link>
                 <MobileIconNavBar onClick={toggle} >
                     <FaBars />
@@ -45,13 +53,8 @@ export default function Navbar({ toggle, openModal, showModal }) {
                         <div style={{color: 'white'}} onClick={() => {
                             openModal()
                             console.log('text')
-                        }}>Cart <AiOutlineShoppingCart/></div>
+                        }}>{state.cart.length} Items In Your Cart <AiOutlineShoppingCart/></div>
                     </NavItems> : '' }
-                    <NavItems>
-                        <NavLinks href="products">
-                            Products
-                        </NavLinks>
-                    </NavItems>
                     <NavItems>
                         <NavLinks href="aboutus">
                             About Us

@@ -12,7 +12,7 @@ const productSchema = new Schema(
             required: true,
         },
         price: {
-            type: Number,
+            type: String,
             required: true,
         },
         summary: {
@@ -24,9 +24,13 @@ const productSchema = new Schema(
             required: true,
         },
         viewCount: {
-            type: Number, 
+            type: String, 
         },
         image: {
+            type: String,
+            required: true,
+        },
+        amount: {
             type: String,
             required: true,
         }

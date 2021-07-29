@@ -6,10 +6,10 @@ import { primary } from "../../styleComponents/palette";
 
 // palette
 
-export const ProductContainer = styled.div`
+export const CartContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 540px;
+    height: 600px;
     overflow-y: scroll;
     
 
@@ -18,8 +18,8 @@ export const ProductContainer = styled.div`
     }
 `;
 
-export const ProductItem = styled.div`
-    max-height: 400px;
+export const CartItem = styled.div`
+    max-height: 385px;
     background: ${primary};
     margin: 2.5%;
     padding: 2.5%;

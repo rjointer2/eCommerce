@@ -12,13 +12,9 @@ const reducer = ( state = { cart: [], user: null }, action ) => {
 
         case actionTypes.ADD_TO_CART:
 
-            console.log(action.payload)
-            console.log(action.user)
-
             return {
                 ...state,
-                cart: [ ...state.cart, action.payload ],
-                user: action.user
+                cart: action.payload, user: action.user
             }
 
         case actionTypes.REMOVE_FROM_CART:

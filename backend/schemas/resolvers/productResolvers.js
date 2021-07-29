@@ -44,18 +44,7 @@ module.exports = {
     products: async () => {
         try {
             console.log('test')
-            return Product.find().then(products => products.map(product => {
-                return {
-                    _id: product.id,
-                    name: product.name,
-                    price: JSON.stringify(product.price),
-                    summary: product.summary,
-                    createdBy: product.createdBy,
-                    department: product.department,
-                    viewCount: product.viewCount,
-                    image: product.image
-                }
-            }))
+            return Product.find().then(products => products.map(product => { return product }))
         } catch(err) {
             console.log(err)
             throw new ApolloError(`Unable to grab product, please check connection!`)
@@ -64,16 +53,7 @@ module.exports = {
 
     addProduct: async function( _parent, args) {
         try {
-            const product = await Product.create({
-                name: args.name,
-                price: parseInt(args.price),
-                department: args.department,
-                summary: args.summary,
-                createdBy: args.createdBy,
-                inTheirCart: "[]",
-                viewCount: parseInt(args.viewCount),
-                image: args.image
-            });
+            const product = await Product.create(args);
             console.log(`${args.createdBy} has been uploaded to the database`);
 
             return {

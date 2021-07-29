@@ -1,16 +1,17 @@
 
+// react scroll
+import { animateScroll as scroll } from 'react-scroll';
+
 // react icons
-import { AiOutlineShopping, AiOutlineShoppingCart, AiOutlineShop } from 'react-icons/ai'
+import { AiOutlineShopping, AiOutlineShoppingCart, AiOutlineShop } from 'react-icons/ai';
 
 // assets
 import Video from '../assets/Video.mp4';
-import hands from '../assets/hands.png';
-import gardening from '../assets/gardening.png';
 
 // styled componenets
 import { CommitmentContainer, CommitmentItems, CommitmentWrapper, StoreBackground, StoreContainer, StoreHeader, StoreLanding, StoreText, StoreVideoBackground } from '../client/styleComponents/store';
 import { Button, ButtonWrapper } from '../client/styleComponents/Button';
-import { Column1, Column2, Container, Row, Wrapper } from '../client/styleComponents/aligment';
+import { Column1, Column2, Container, Row, ViewContainer, ViewWrapper, Wrapper } from '../client/styleComponents/aligment';
 import { Icon, IconWrapper, Img, ImgWrapper } from '../client/styleComponents/img';
 import { BoldCappedText, Heading, Text, TextCenter } from '../client/styleComponents/text';
 
@@ -25,10 +26,20 @@ import { GET_USER } from '../client/ulits/queries/userQueries';
 import Context from '../client/store/context';
 import { addProductToCartClient } from '../client/store/actions';
 
+// components
+import Products from '../client/components/Product/Products';
+import Cart from '../client/components/Cart/Cart';
+
 
 
 
 export default function index() {
+
+  // scroll function
+  const toggleToView = () => scroll.scrollTo(500)
+
+  // cart and products
+  const [ view, setView ] = useState('');
 
   // global state
   const { state, dispatch } = useContext(Context);
@@ -43,37 +54,12 @@ export default function index() {
     console.log(renderCount.current);
     // not falsy don't perform any lifecycle methods
     if(!data) return false;
-    console.log(data.me.cart);
+    console.log(data.me_id)
 
-    dispatch(addProductToCartClient(data.me.cart, data.me.username))
+    dispatch(addProductToCartClient(data.me.cart, data.me._id))
 
     // whenever the data variable changes, invoked our lifecycle methods
   }, [data]);
-
-
-
-
-  // configs
-  const commitments = [
-    {
-        header: "Store",
-        icon: AiOutlineShop,
-        text1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        text2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
-    },
-    {
-        header: "Shopping",
-        icon: AiOutlineShoppingCart,
-        text1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        text2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
-    },
-    {
-        header: "Trust",
-        icon: AiOutlineShopping,
-        text1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        text2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
-    },
-  ]
 
   return (
     <>
@@ -94,84 +80,22 @@ export default function index() {
               </ButtonWrapper>
           </StoreLanding>
       </StoreContainer>
-      <Container>
-        <Wrapper>
-          <Row>
-            <Column1>
-              <ImgWrapper>
-                <Img src={hands} />
-              </ImgWrapper>
-            </Column1>
-            <Column2>
-              <BoldCappedText>Shipped With Care</BoldCappedText>
-              <Heading>Every Plant Sent Will Be Safe and Protected</Heading>
-              <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-              <br/><br/>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-              </Text>
-              <ButtonWrapper>
-                <Button>
-                  Get A Collection Today!
-                </Button>
-              </ButtonWrapper>
-            </Column2>
-          </Row>
-        </Wrapper>
-      </Container>
-      <Container background={true}>
-        <Wrapper>
-          <Row>
-            <Column2>
-              <ImgWrapper>
-                <Img src={gardening} />
-              </ImgWrapper>
-            </Column2>
-            <Column1>
-              <BoldCappedText>You Can Do This</BoldCappedText>
-              <Heading>Becoming a Plant Parent Has Never Been This Easy</Heading>
-              <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-              <br/><br/>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-              </Text>
-              <ButtonWrapper>
-                <Button>
-                  Learn More
-                </Button>
-              </ButtonWrapper>
-            </Column1>
-          </Row>
-        </Wrapper>
-      </Container>
-      <CommitmentContainer backgroundDark={true}>
-      <TextCenter>
-          <Heading lightText={true}>Our Commitments</Heading>
-        </TextCenter>
-        <CommitmentWrapper>
-        { commitments.map((commitment, index) => 
-          <CommitmentItems key={index}>
-            <TextCenter>
-              <BoldCappedText>
-                {commitment.header}
-              </BoldCappedText>
-            </TextCenter>
-            <IconWrapper>
-              <Icon>{commitment.icon()}</Icon>
-            </IconWrapper>
-            <TextCenter>
-              <Text lightText={true}>
-              {commitment.text1}<br/>
-              </Text>
-            </TextCenter>
-          </CommitmentItems>) }
-        </CommitmentWrapper>
-        <TextCenter>
-          <Text lightText={true}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-          </Text>
-        </TextCenter>
-      </CommitmentContainer>
+      <ViewContainer>
+          <ViewWrapper>
+            <Button onClick={() => {
+              setView('VIEW_CART')
+              toggleToView();
+            }}>View Cart</Button>
+          </ViewWrapper>
+          <ViewWrapper>
+            <Button onClick={() => {
+              setView('VIEW_PRODUCTS')
+              toggleToView();
+            }}>View Products</Button>
+          </ViewWrapper>
+      </ViewContainer>
+      { view === 'VIEW_CART' ? <Container><Cart/></Container> : null}
+      { view === 'VIEW_PRODUCTS' ? <Container><Products/></Container> : null}
     </>
   )
 

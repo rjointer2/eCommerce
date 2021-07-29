@@ -4,8 +4,6 @@ import styled from 'styled-components';
 // palette
 import { primary, secondary, white } from '../../styleComponents/palette';
 
-
-
 export const FooterContainer = styled.div`
     background-color: ${primary};
 `;
@@ -18,6 +16,7 @@ export const FooterWrapper = styled.div`
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
+    margin-top: 20px;
 `;
 
 export const FooterLinkContainer = styled.div`

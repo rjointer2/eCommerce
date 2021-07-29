@@ -30,11 +30,6 @@ export default function Sidebar ({ isOpen, toggle, showModal, openModal }) {
             </Menu>
             <SidebarWrapper>
                 <SidebarMenu>
-                    <Link href="/products">
-                        <SidebarLink>
-                            Products
-                        </SidebarLink>
-                    </Link>
                     <Link href="/aboutus">
                         <SidebarLink onClick={toggle} >
                             About Us

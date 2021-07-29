@@ -4,17 +4,26 @@ import styled from 'styled-components';
 // palette
 import { primary, secondary, white } from './palette';
 
+export const ViewContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+`;
+
+export const ViewWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 5%;
+`;
+
 
 export const Container = styled.div`
     display: flex;
     justify-content: center;
     height: 650px;
-    
-    @media screen and (max-width: 768px) {
-        padding: 100px 0;
-        height: 800px;
-    }
 `;
+
 
 export const Wrapper = styled.div`
     display: grid;

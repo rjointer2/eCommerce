@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // palette
-import { hover, primary, white } from "./palette";
+import { hover, primary, secondary, white } from "./palette";
 
 export const ButtonWrapper = styled.div`
     display: flex;
@@ -10,7 +10,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-    background: ${primary};
+    background: ${({backgroundDark}) => (backgroundDark ? secondary : primary)};
 	color: ${white};
 	border: none;
 	padding: 10px;

@@ -10,9 +10,13 @@ export const StoreContainer = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 30px;
-    height: 800px;
+    height: 470px;
     position: relative;
     z-index: 1;
+
+    @media screen and (max-width: 700px) {
+        height: 450px;
+    }
 `;
 
 export const StoreBackground = styled.div`
