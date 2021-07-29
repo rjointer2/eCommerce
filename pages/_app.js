@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }) {
       </Context.Provider>
     </ApolloProvider>
   )
-}
+};
 
 export default MyApp;
 
