@@ -1,6 +1,5 @@
 
-// the types and if the type match the action's arg then return the 
-// state to the type's case
+// all the actions
 import * as actionTypes from './constants'
 
 // this reducer takes a state and action with the type and payload props
@@ -13,7 +12,6 @@ const reducer = ( state = { cart: [], user: null }, action ) => {
         case actionTypes.UPDATE_CART:
 
             return {
-                ...state,
                 cart: action.payload, user: action.user
             }
 

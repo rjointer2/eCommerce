@@ -21,18 +21,6 @@ export const Button = styled.button`
     }
 `;
 
-export const ModalButton = styled.button`
-    background: ${primary};
-	color: ${white};
-	border: none;
-	padding: 10px;
-	cursor: pointer;
-
-    &:hover {
-        color: ${hover}
-    }
-`;
-
 export const ImageButton = styled.button`
     background: ${primary};
 	color: ${white};

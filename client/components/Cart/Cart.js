@@ -1,9 +1,6 @@
 
-// apollo 
-import { GET_USER } from "../../ulits/queries/userQueries"
-
 // hooks
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useContext, useEffect, useRef, useState } from "react";
 
 // apollo
@@ -20,7 +17,6 @@ import { CartContainer, CartItem } from "./CartStyles"
 // state management
 import Context from "../../store/context"
 import { updateCart } from "../../store/actions";
-import { Select } from "../../styleComponents/form";
 
 
 export default function Cart() {
@@ -34,14 +30,6 @@ export default function Cart() {
     const [removeProductFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART, {
         onCompleted: serverData => dispatch(updateCart(serverData.removeProductFromCart.cart, state.user))
     })
-
-    const renderCount = useRef(1)
-
-    useEffect(() => {
-        renderCount.current = renderCount.current + 1
-        console.log(renderCount.current)
-    }, [])
-
  
     return (
         <div>

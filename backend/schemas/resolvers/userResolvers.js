@@ -18,7 +18,7 @@ module.exports = {
                 _id: user.id,
                 username: user.username,
                 email: user.email,
-                cart: (() => {
+                cart: (async () => {
                     // empty array we will return to query
                     const array = [];
                     const parsedCart = JSON.parse(user.cart)
@@ -26,9 +26,8 @@ module.exports = {
                     const keys = Object.keys(parsedCart);
                     // for each key find the product assiocated with the key
                     for(let i = 0; i < keys.length; i++) {
-                        array.push(Products.findById(keys[i]));
+                        array.push(await Products.findById(keys[i]));
                     }
-                    console.log(array)
                     return array;
                 })(),
                 products: Products.find().then(products => products.filter(product => product.createdBy === user.username)),

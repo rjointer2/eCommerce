@@ -1,6 +1,7 @@
 
 
 // styles
+import { AiFillGithub, AiFillLinkedin, AiFillShop, AiOutlineTwitter, AiOutlineUser } from 'react-icons/ai'
 import { FooterBottomWrapper, FooterContainer, FooterLink, FooterLinkContainer, FooterLinkItem, FooterLinkTitle, FooterLinkWrapper, FooterLogo, FooterTextSmall, FooterWrapper } from './FooterStyles'
 
 
@@ -12,49 +13,42 @@ export default function Footer() {
                     <FooterLinkWrapper>
                         <FooterLinkItem>
                             <FooterLinkTitle>
-                                About Us
+                                Twitter
                             </FooterLinkTitle>
-                            <FooterLink href="#">Learn More</FooterLink>
-                            <FooterLink href="#">Inspiration</FooterLink>
-                            <FooterLink href="#">Fair Usage</FooterLink>
-                            <FooterLink href="#">View Source</FooterLink>
-                        </FooterLinkItem>
-                        <FooterLinkItem>
-                            <FooterLinkTitle>
-                                Social Media
-                            </FooterLinkTitle>
-                            <FooterLink href="#">Twitter</FooterLink>
-                            <FooterLink href="#">Instagram</FooterLink>
-                            <FooterLink href="#">Snapchat</FooterLink>
-                            <FooterLink href="#">Facebook</FooterLink>
-                        </FooterLinkItem>
-                        <FooterLinkItem>
-                            <FooterLinkTitle>
-                                Learn More
-                            </FooterLinkTitle>
-                            <FooterLink href="#">Careers</FooterLink>
-                            <FooterLink href="#">Report An Issue</FooterLink>
-                            <FooterLink href="#">Donations</FooterLink>
-                            <FooterLink href="#">Become a Vender</FooterLink>
-                        </FooterLinkItem>
-                        <FooterLinkItem>
-                            <FooterLinkTitle>
-                                Contact Us
-                            </FooterLinkTitle>
-                            <FooterLink href="#">+1 (234) 567-8901</FooterLink>
-                            <FooterLink href="#">Corperate Number</FooterLink>
-                            <FooterLink href="#">Find a Local Store</FooterLink>
-                            <FooterLink href="#">Email Us</FooterLink>
+                            <FooterLink href="https://twitter.com/rosejoint_"><AiOutlineTwitter/></FooterLink>
                         </FooterLinkItem>
                     </FooterLinkWrapper>
-                    
+                    <FooterLinkWrapper>
+                        <FooterLinkItem>
+                            <FooterLinkTitle>
+                                Github
+                            </FooterLinkTitle>
+                            <FooterLink href="https://github.com/rjointer2"><AiFillGithub/></FooterLink>
+                        </FooterLinkItem>
+                    </FooterLinkWrapper>
+                    <FooterLinkWrapper>
+                        <FooterLinkItem>
+                            <FooterLinkTitle>
+                                LinkedIn
+                            </FooterLinkTitle>
+                            <FooterLink href="https://www.linkedin.com/in/roosevelt-jointer-bbaa901b2/"><AiFillLinkedin/></FooterLink>
+                        </FooterLinkItem>
+                    </FooterLinkWrapper>
+                    <FooterLinkWrapper>
+                        <FooterLinkItem>
+                            <FooterLinkTitle>
+                                Portfolio
+                            </FooterLinkTitle>
+                            <FooterLink href="https://portfolioroody.herokuapp.com/"><AiOutlineUser/></FooterLink>
+                        </FooterLinkItem>
+                    </FooterLinkWrapper>
                 </FooterLinkContainer>
                 <FooterBottomWrapper>
                     <FooterLogo>
-                        Logo
+                        <AiFillShop/>
                     </FooterLogo>
                     <FooterTextSmall>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        Created by Roosevelt Jointer
                     </FooterTextSmall>
                 </FooterBottomWrapper>
             </FooterWrapper>

@@ -13,14 +13,13 @@ import { useContext, useState } from 'react';
 
 // state management
 import Context from '../../store/context';
-import Modal from '../Modal/Modal';
 
 // isOpen is drilled from the app's Sidebar component
 // toggle is drileld from the app's Navbar component 
 
-export default function Sidebar ({ isOpen, toggle, showModal, openModal }) {
+export default function Sidebar ({ isOpen, toggle }) {
 
-    const { state, dispatch } = useContext(Context)
+    const { state } = useContext(Context)
 
     return (
         <>
@@ -49,12 +48,10 @@ export default function Sidebar ({ isOpen, toggle, showModal, openModal }) {
                 <SidebarBtnWrapper>
                     <SidebarBtnLink onClick={() => {
                         toggle();
-
                         if(!state.user) {
                             console.log('signing in')
                             return false
                         }
-                        openModal()
                     }} >
                         { state.user ? 'View Cart' : 'Sign Up' } 
                         { state.user ? <AiOutlineShoppingCart style={{ fontSize: '2rem', transform: 'translate(0, 5px)' }}/> : ''}
@@ -62,7 +59,6 @@ export default function Sidebar ({ isOpen, toggle, showModal, openModal }) {
                 </SidebarBtnWrapper>
             </SidebarWrapper>
         </SidebarContainer>
-        { showModal && <Modal openModal={openModal} /> }
         </>
     ) 
 }

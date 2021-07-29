@@ -1,6 +1,6 @@
 
 // react icons
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiFillShop, AiOutlineShoppingCart } from 'react-icons/ai';
 
 // react scroll
 import { animateScroll as scroll } from 'react-scroll';
@@ -9,47 +9,39 @@ import { animateScroll as scroll } from 'react-scroll';
 import Link from 'next/link'
 
 // hooks
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 // icons
 import { FaBars } from 'react-icons/fa'
 
 // state management
-import { addToCartClient } from '../../store/actions';
 import Context from '../../store/context';
-import { Button, ButtonWrapper, ModalButton } from '../../styleComponents/Button';
-import { Icon } from '../../styleComponents/img';
 
 // styles for Nav
 import { MobileIconNavBar, Nav, NavContainer, NavItems, NavLinks, NavLogo, NavMenu, WelcomeText } from "./NavbarStyles";
-import Modal from '../Modal/Modal';
 
 
-export default function Navbar({ toggle, openModal, showModal }) {
+export default function Navbar({ toggle }) {
 
     // scroll function
     const toggleHome = () => scroll.scrollToTop();
 
+    // global state
     const { state, dispatch } = useContext(Context);
 
-    console.log(state)
 
     return (
-        <>
         <Nav>
             <NavContainer>
                 <Link href='/' passHref>
-                    <NavLogo onClick={toggleHome} > Logo </NavLogo>
+                    <NavLogo onClick={toggleHome} > <AiFillShop/> </NavLogo>
                 </Link>
                 <MobileIconNavBar onClick={toggle} >
                     <FaBars />
                 </MobileIconNavBar>
                 <NavMenu>
                     { state.user ? <NavItems>
-                        <div style={{color: 'white'}} onClick={() => {
-                            openModal()
-                            console.log('text')
-                        }}>{state.cart.length} Items In Your Cart <AiOutlineShoppingCart/></div>
+                        <div style={{color: 'white'}}>{state.cart.length} Items In Your Cart <AiOutlineShoppingCart/></div>
                     </NavItems> : '' }
                     <NavItems>
                         <NavLinks href="aboutus">
@@ -69,7 +61,5 @@ export default function Navbar({ toggle, openModal, showModal }) {
                 </NavMenu>
             </NavContainer>
         </Nav>
-        { showModal && <Modal openModal={openModal} /> }
-        </>
     )
 }

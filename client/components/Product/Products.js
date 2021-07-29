@@ -39,6 +39,20 @@ export default function Products() {
         onCompleted: serverData => dispatch(updateCart(serverData.addProductToCart.cart, state.user))
     })
 
+    const handleClick = async () => {
+        if(!state.user) {
+            setMessage(`You don't have a account`);
+            scroll.scrollTo(500)
+            return false
+        }
+        try {
+            await addProductToCartServer({
+                variables: { "userId": state.user, "productId": item._id }
+            })                             
+        } catch(err) {
+            console.log(err)
+        }
+    }
 
     useEffect(() => {
         if(!data) return false;
@@ -86,21 +100,7 @@ export default function Products() {
                         <br/>
                         <BoldCappedText>{item.name}</BoldCappedText>
                         <Text lightText={true}>price: ${item.price}</Text>
-                        <Button backgroundDark={true} onClick={ async () => {
-
-                            if(!state.user) {
-                                setMessage(`You don't have a account`);
-                                scroll.scrollTo(500)
-                                return false
-                            }
-                            try {
-                                await addProductToCartServer({
-                                    variables: { "userId": state.user, "productId": item._id }
-                                })                             
-                            } catch(err) {
-                                console.log(err)
-                            }
-                        }}>Add To Cart</Button>
+                        <Button backgroundDark={true} onClick={handleClick}>Add To Cart</Button>
                         <Select>
                             <option value="" hidden>1</option>
                             <option value="1">1</option>
@@ -112,5 +112,4 @@ export default function Products() {
             </ProductContainer>
         </div>
     )
-
 }

@@ -12,7 +12,6 @@ module.exports = {
     addProductToCart: async (_parent, args) => {
         try {
             const user = await User.findById(args.userId);
-            console.log(user)
             // get the user's prop inTheirCart and set as dictionary
             const dictionary = JSON.parse(user.cart);
             dictionary[args.productId] = args.userId;
@@ -26,7 +25,6 @@ module.exports = {
                 email: user.email,
                 cart: (async () => {
                     const array = [];
-
                     const userCart = JSON.parse(user.cart)
                     const keys = Object.keys(userCart);
                     for(let i = 0; i < keys.length; i++) {
@@ -55,16 +53,7 @@ module.exports = {
         try {
             const product = await Product.create(args);
             console.log(`${args.createdBy} has been uploaded to the database`);
-
-            return {
-                name: product.name,
-                price: JSON.stringify(product.price),
-                department: product.department,
-                summary: product.summary,
-                createdBy: product.createdBy,
-                viewCount: JSON.stringify(product.viewCount),
-                inTheirCart: "[]"
-            }
+            return product
         } catch (err) {
             console.log(err)
             throw new ApolloError(`Unable to add new product ${args.name}, bad request!`)
@@ -79,18 +68,16 @@ module.exports = {
             const user = await User.findById(args.userId);
             // We want to use Product model to find by id of the 
             return {
-                _id: user.id,
-                username: user.username,
                 cart: ( async () => {
                     cart = JSON.parse(user.cart);
                     delete cart[args.productId];
                     user.cart = JSON.stringify(cart);
-
+                    // save this instance to the db
                     await user.save();
-                    
+                    // collects products from keys to apollo client
                     const array = [];
                     const keys = Object.keys(cart);
-
+                    // get each then push it into the array
                     for(let i = 0; i < keys.length; i++ ) {
                         console.log(keys)
                         array.push(await Product.findById(keys[i]))
@@ -110,7 +97,6 @@ module.exports = {
             // set the user's cart prop to a empty dictionary
             user.cart = "{}";
             user.save();
-
             return user
         } catch (err) {
             console.log(err)

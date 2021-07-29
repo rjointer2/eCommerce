@@ -77,10 +77,10 @@ export const FooterLink = styled.a`
 `;
 
 export const FooterTextSmall = styled.p`
-    font-size: 8px;
+    font-size: 14px;
     color: ${white};
     text-align: center;
-    margin-top: 13.5px;
+    margin-top: 8.5px;
 
 
     @media screen and (max-width: 820px) {
