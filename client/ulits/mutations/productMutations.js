@@ -17,8 +17,6 @@ export const ADD_PRODUCT = gql`
 export const ADD_PRODUCT_TO_CART = gql`
 	mutation addProductToCart ( $userId: String!, $productId: String! ) {
 		addProductToCart (userId: $userId, productId: $productId) {
-			_id
-			username
 			cart {
 				_id
 				name

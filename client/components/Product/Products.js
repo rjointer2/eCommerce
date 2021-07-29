@@ -20,7 +20,7 @@ import { ADD_PRODUCT_TO_CART } from "../../ulits/mutations/productMutations";
 import { Button } from "../../styleComponents/Button";
 import { ViewContainer, ViewWrapper } from "../../styleComponents/aligment";
 import { Select } from "../../styleComponents/form";
-import { addProductToCartClient } from "../../store/actions";
+import { updateCart } from "../../store/actions";
 
 
 
@@ -36,7 +36,7 @@ export default function Products() {
     // all products
     const { data, error, loading } = useQuery(PRODUCTS);
     const [addProductToCartServer] = useMutation(ADD_PRODUCT_TO_CART, {
-        onCompleted: serverData => dispatch(addProductToCartClient(serverData.addProductToCart.cart, state.user))
+        onCompleted: serverData => dispatch(updateCart(serverData.addProductToCart.cart, state.user))
     })
 
 

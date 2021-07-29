@@ -10,23 +10,11 @@ const reducer = ( state = { cart: [], user: null }, action ) => {
     // how the store's return the state
     switch( action.type ) {
 
-        case actionTypes.ADD_TO_CART:
+        case actionTypes.UPDATE_CART:
 
             return {
                 ...state,
                 cart: action.payload, user: action.user
-            }
-
-        case actionTypes.REMOVE_FROM_CART:
-
-            return {
-                cart: action.payload
-            }
-
-        case actionTypes.REMOVE_FROM_CART:
-
-            return {
-                cart: []
             }
 
         default: return state

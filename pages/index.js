@@ -24,7 +24,7 @@ import { GET_USER } from '../client/ulits/queries/userQueries';
 
 // state management
 import Context from '../client/store/context';
-import { addProductToCartClient } from '../client/store/actions';
+import { updateCart } from '../client/store/actions';
 
 // components
 import Products from '../client/components/Product/Products';
@@ -56,7 +56,7 @@ export default function index() {
     if(!data) return false;
     console.log(data.me_id)
 
-    dispatch(addProductToCartClient(data.me.cart, data.me._id))
+    dispatch(updateCart(data.me.cart, data.me._id))
 
     // whenever the data variable changes, invoked our lifecycle methods
   }, [data]);

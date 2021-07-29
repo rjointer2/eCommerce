@@ -32,10 +32,6 @@ export default function Navbar({ toggle, openModal, showModal }) {
 
     const { state, dispatch } = useContext(Context);
 
-/*     useEffect(() => {
-        dispatch(addToCartClient({item: 'test'}))
-    }, []) */
-
     console.log(state)
 
     return (
