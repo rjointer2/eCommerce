@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build",
-    "install": "npm i"
+    "start": "next start -p $PORT"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
