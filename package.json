@@ -7,7 +7,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "npm run dev",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run dev"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
