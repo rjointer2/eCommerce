@@ -1,4 +1,4 @@
-# eCommerce
+# eCommerce Website
 
 ## Table Of Contents
 
@@ -10,7 +10,15 @@
 
 ## Description
 
-This application is a simple eCommerce Store will have ability to create products with a admin page, and a client to adjust, remove, and add prodcts in a cart. 
+This application is a simple eCommerce Store Website made with Next, React,
+and Apollo GraphQL. It had simple CRUD functionality, you are able to make
+products, upload file images, and update your cart. This is more meant to be 
+used as a reference/resource to those looking to learn Apollo GraphQL or 
+looking to learn migrate from redux / other standard state management and seek
+Apollo as a alternative.
+
+In future developemnt of this application, a service worker is will be intergated. While in development some difficulty was encountered while
+ulitizing next-pwa and next-offline as a PWA. 
 
 ## Install
 
@@ -25,6 +33,8 @@ this software usages
 
 To run this application use ``` npm run dev ```
 Click here to use [local host](http://localhost:3001)
+
+You won't have database read and write privileges
 
 ## Contributors
 

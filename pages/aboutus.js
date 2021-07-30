@@ -2,9 +2,6 @@
 // SEO
 import Head from 'next/head';
 
-// assets
-import roody from '../assets/roody.png'
-
 // hooks
 import { useContext, useEffect } from 'react';
 
@@ -43,7 +40,7 @@ export default function AboutUs() {
             <TextCenter>
                 <Heading>About The Developer</Heading>
                 <ImgWrapper>
-                    <Img src={roody} alt=""/>
+                    <Img src="/roody.png" alt=""/>
                 </ImgWrapper>
                 <br/>
                 <Text>Thanks for stopping by and viewing my simple application.</Text>

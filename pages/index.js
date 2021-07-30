@@ -5,9 +5,6 @@ import Head from 'next/head';
 // react scroll
 import { animateScroll as scroll } from 'react-scroll';
 
-// assets
-import Video from '../assets/Video.mp4';
-
 // styled componenets
 import { StoreBackground, StoreContainer, StoreHeader, StoreLanding, StoreText, StoreVideoBackground } from '../client/styleComponents/store';
 import { Button, ButtonWrapper } from '../client/styleComponents/button';
@@ -65,7 +62,7 @@ export default function index() {
       </Head>
       <StoreContainer>
         <StoreBackground>
-          <StoreVideoBackground autoPlay loop muted src={Video} type='video/mp4'/>
+          <StoreVideoBackground autoPlay loop muted src="/Video.mp4" type='video/mp4'/>
         </StoreBackground>
         <StoreLanding>
             <StoreHeader>Plant and Home Decor For You</StoreHeader>

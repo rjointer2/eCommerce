@@ -6,8 +6,10 @@ import Head from 'next/head';
 import { useContext, useEffect, useState } from "react";
 
 // apollo
-import { useMutation, useQuery } from "@apollo/client"
-import { GET_USER } from "../client/ulits/queries/userQueries"
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_USER } from "../client/ulits/queries/userQueries";
+import { UPDATE_VENDOR_STATUS } from "../client/ulits/mutations/userMutations";
+
 
 // state management
 import Context from "../client/store/context";
@@ -21,11 +23,6 @@ import { Text } from "../client/styleComponents/text";
 import ToggleSwitch from "../client/components/ToggleSwitch/ToggleSwitch";
 import { ViewContainer } from "../client/styleComponents/aligment";
 import { Img, ImgWrapper } from "../client/styleComponents/img";
-
-// assets
-import vendorSVG from '../assets/vendor.svg'
-import { UPDATE_VENDOR_STATUS } from "../client/ulits/mutations/userMutations";
-
 
 
 
@@ -67,7 +64,7 @@ export default function BecomeVendor() {
             </Head>
             <FormContainer>
                 <ImgWrapper>
-                    <Img src={vendorSVG} alt="vendor"/>
+                    <Img src="/vendor.svg" alt="vendor"/>
                 </ImgWrapper>
                 <Form>
                     <ViewContainer>

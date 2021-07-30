@@ -132,7 +132,7 @@ export default function createProduct() {
                     <Row>
                         <Column1>
                             <ImgWrapper>
-                                <Img src={upload} alt="uplaod some pictures" />
+                                <Img src='/upload.png' alt="uplaod some pictures" />
                             </ImgWrapper>
                             <Heading>
                             Upload your Product Today!
