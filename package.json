@@ -5,7 +5,9 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "node server.js",
-    "start": "npm run dev"
+    "build": "npm run start",
+    "start": "npm run dev",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
