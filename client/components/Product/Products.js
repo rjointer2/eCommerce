@@ -54,7 +54,14 @@ export default function Products() {
         }
     }
 
+    const renderCount = useRef(1)
+
     useEffect(() => {
+
+        // to track our rerenders
+        renderCount.current = renderCount.current + 1;
+        console.log(renderCount)
+
         if(!data) return false;
         setArray(data.products);
     }, [data]);
@@ -67,7 +74,7 @@ export default function Products() {
         </ProductItem>
     </ProductContainer>
 
-    // lifecycle functions
+    // lifecycle functions after data changes but the performance 
     const filterByDept = (dept) => {
         if(dept === "All") {
             setArray(data.products);
