@@ -5,7 +5,7 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "build": "next build",
-    "start": "node server.js"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
@@ -26,7 +26,8 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
     "react-scroll": "^1.8.3",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "win-node-env": "^0.4.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.13.2"

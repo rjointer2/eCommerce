@@ -13,6 +13,8 @@ const { ApolloServer } = require('apollo-server-express');
 // environment 
 const dev = process.env.NODE_ENV !== 'production'
 
+console.log(dev)
+
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
