@@ -49,9 +49,6 @@ function MyApp({ Component, pageProps }) {
     <ApolloProvider client={client}>
       <Context.Provider value={store}>
           <main>
-            <Head>
-              <meta name="viewport" content="viewport-fit=cover" />
-            </Head>
             { loggedOut && <Navbar toggle={toggle} /> }
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Component {...pageProps} />

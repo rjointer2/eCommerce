@@ -40,9 +40,7 @@ export default function createProduct() {
 
     useEffect(() => {
         if(!data) return false;
-
         dispatch(updateState(data.me.cart, data.me._id, data.me.isVendor));
-        console.log(data.me._id)
     }, [data]);
 
     // product
@@ -61,7 +59,7 @@ export default function createProduct() {
     // Form State
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [department, setDepartment] = useState('Market');
+    const [department, setDepartment] = useState('Decor');
     const [summary, setSummary] = useState('');
 
     // form error to help set messages on form conditionally
@@ -113,12 +111,11 @@ export default function createProduct() {
                 await addProduct({
                     variables: { 
                         "name": name, "price": price, "department": department, 
-                        "summary": summary, "createdBy": "test1", "image": previewFileInput,
-                        "viewCount": "0", "inTheirCart": 'test1', "amount": "0"
+                        "summary": summary, "createdBy": data.me._id, "image": previewFileInput,
+                        "viewCount": "0", "amount": "0"
                     }
                 });
-                console.log(data)
-                console.log('success: Product Details Added')
+                window.location.assign('/')
             } catch (err) {
                 console.log(err);
             }
@@ -188,7 +185,6 @@ export default function createProduct() {
                                     name="image" 
                                     onChange={handleInputChange} 
                                     value={fileInput}
-                                    onClick={() => console.log('test')}
                                 />
                                 <FormButton type="submit">
                                     Submit Product
