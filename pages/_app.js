@@ -28,9 +28,6 @@ import { useState } from 'react';
 import useGlobalState from '../client/store/useGlobalState';
 import Context from '../client/store/context';
 
-// SEO
-import Head from 'next/head';
-
 
 
 function MyApp({ Component, pageProps }) {
