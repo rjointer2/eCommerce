@@ -59,7 +59,7 @@ export default function BecomeVendor() {
 
         
         if(!data) return false;
-        dispatch(updateState(data.me.cart, data.me._id))
+        dispatch(updateState(data.me.cart, data.me._id, data.me.isVendor))
         setVendor(data.me.isVendor)
         console.log(vendor)
         console.log(state)

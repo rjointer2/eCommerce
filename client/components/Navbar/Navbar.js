@@ -49,8 +49,8 @@ export default function Navbar({ toggle }) {
                         </NavLinks>
                     </NavItems>
                     <NavItems>
-                        <NavLinks href="vendor">
-                            Become a Vendor!
+                        <NavLinks href={ state.status ? 'createproduct' : 'becomevendor' }>
+                            { state.status ? 'Create A Product' : 'Become A Vendor' }
                         </NavLinks>
                     </NavItems>
                     <NavItems>

@@ -54,10 +54,12 @@ export default function index() {
     if(!data) return false;
     console.log(data.me_id)
 
-    dispatch(updateState(data.me.cart, data.me._id))
+    dispatch(updateState(data.me.cart, data.me._id, data.me.isVendor))
 
     // whenever the data variable changes, invoked our lifecycle methods
   }, [data]);
+
+  console.log(console.log(state.status))
 
   return (
     <>

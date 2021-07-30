@@ -34,9 +34,9 @@ export default function Sidebar ({ isOpen, toggle }) {
                             About Us
                         </SidebarLink>
                     </Link>
-                   <Link href="becomevendor">
+                   <Link href={ state.status ? 'createproduct' : 'becomevendor' }>
                     <SidebarLink onClick={toggle} >
-                            Become a Vendor!
+                        { state.status ? 'Create A Product' : 'Become A Vendor' }
                         </SidebarLink>
                     </Link>
                     <Link href="signin">
