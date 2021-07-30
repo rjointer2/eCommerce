@@ -28,8 +28,6 @@ export default function SignIn() {
     const submitForm = async (e) => {
         e.preventDefault();
 
-        console.log(username, password)
-
         if( !username || !password ) {
             setFormError(true)
             setFormErrorMessage('Please submit form entirely');
@@ -71,4 +69,4 @@ export default function SignIn() {
         </Container>
         </>
     )
-}
+};
