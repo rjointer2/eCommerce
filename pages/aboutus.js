@@ -1,4 +1,7 @@
 
+// SEO
+import Head from 'next/head';
+
 // assets
 import roody from '../assets/roody.png'
 
@@ -33,7 +36,10 @@ export default function AboutUs() {
     }, [data])
 
     return (
-        <div>
+        <>
+            <Head>
+                <title>Plant Shop About Dev</title>
+            </Head>
             <TextCenter>
                 <Heading>About The Developer</Heading>
                 <ImgWrapper>
@@ -55,6 +61,6 @@ export default function AboutUs() {
                     feel free to use the links in the footer below to contact me!
                 </Text>
             </TextCenter>
-        </div>
+        </>
     )
 }

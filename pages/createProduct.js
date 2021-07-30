@@ -1,4 +1,7 @@
 
+// SEO
+import Head from 'next/head';
+
 // images from server
 import upload from '../assets/upload.png'
 
@@ -124,6 +127,9 @@ export default function createProduct() {
 
     return (
         <>
+            <Head>
+                <title>Plant Shop Create Product</title>
+            </Head>
             <Container>
                 <Wrapper>
                     <Row>

@@ -28,6 +28,9 @@ import { useState } from 'react';
 import useGlobalState from '../client/store/useGlobalState';
 import Context from '../client/store/context';
 
+// SEO
+import Head from 'next/head';
+
 
 
 function MyApp({ Component, pageProps }) {
@@ -45,10 +48,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <Context.Provider value={store}>
-        { loggedOut && <Navbar toggle={toggle} /> }
-          <Sidebar isOpen={isOpen} toggle={toggle} />
-          <Component {...pageProps} />
-          <Footer/> 
+          <main>
+            <Head>
+              <meta name="viewport" content="viewport-fit=cover" />
+            </Head>
+            { loggedOut && <Navbar toggle={toggle} /> }
+            <Sidebar isOpen={isOpen} toggle={toggle} />
+            <Component {...pageProps} />
+            <Footer/> 
+          </main>
       </Context.Provider>
     </ApolloProvider>
   )

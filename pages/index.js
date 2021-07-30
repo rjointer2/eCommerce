@@ -1,4 +1,7 @@
 
+// SEO
+import Head from 'next/head';
+
 // react scroll
 import { animateScroll as scroll } from 'react-scroll';
 
@@ -56,6 +59,10 @@ export default function index() {
 
   return (
     <>
+      <Head>
+          <title>Plant Shop Home Page</title>
+          <meta name="description" content="Home Page of Plant Shop by Roosevelt Jointer" />
+      </Head>
       <StoreContainer>
         <StoreBackground>
           <StoreVideoBackground autoPlay loop muted src={Video} type='video/mp4'/>

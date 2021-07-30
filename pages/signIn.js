@@ -1,4 +1,7 @@
 
+// SEO
+import Head from 'next/head';
+
 // mutations
 import { SIGN } from "../client/ulits/mutations/userMutations";
 
@@ -42,6 +45,10 @@ export default function SignIn() {
     }
 
     return (
+        <>
+        <Head>
+            <title>Plant Shop Sign In Page</title>
+        </Head>
         <Container>
             <Wrapper>
                 <FormContainer>
@@ -62,5 +69,6 @@ export default function SignIn() {
                 </FormContainer>
             </Wrapper>
         </Container>
+        </>
     )
 }

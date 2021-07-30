@@ -1,4 +1,7 @@
 
+// SEO
+import Head from 'next/head';
+
 // hooks
 import { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@apollo/client';
@@ -87,6 +90,9 @@ export default function SignUp() {
 
   return (
     <>
+      <Head>
+          <title>Plant Shop Sign Up</title>
+      </Head>
       <Container>
         <Wrapper>
           <FormContainer>

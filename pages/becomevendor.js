@@ -1,4 +1,7 @@
 
+// SEO
+import Head from 'next/head';
+
 // hooks
 import { useContext, useEffect, useState } from "react";
 
@@ -59,6 +62,9 @@ export default function BecomeVendor() {
 
     return (
         <div>
+            <Head>
+                <title>Plant Shop Become A Vendor</title>
+            </Head>
             <FormContainer>
                 <ImgWrapper>
                     <Img src={vendorSVG} alt="vendor"/>
