@@ -42,6 +42,7 @@ const typeDefs = gql`
         addProduct( name: String!, price: String!, department: String!, summary: String!, createdBy: String!, image: String!, viewCount: String!, amount: String! ): Product
         addUser( email: String!, password: String!, username: String!, cart: String!, products: String!, isVendor: Boolean! ): User 
         signIn( username: String!, password: String! ): Auth
+        updateVendorStatus( userId: String! ): User
     }
 
 `;

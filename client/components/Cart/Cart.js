@@ -16,7 +16,7 @@ import { CartContainer, CartItem } from "./CartStyles"
 
 // state management
 import Context from "../../store/context"
-import { updateCart } from "../../store/actions";
+import { updateState } from "../../store/actions";
 
 
 export default function Cart() {
@@ -28,7 +28,7 @@ export default function Cart() {
     const { state, dispatch } = useContext(Context);
 
     const [removeProductFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART, {
-        onCompleted: serverData => dispatch(updateCart(serverData.removeProductFromCart.cart, state.user))
+        onCompleted: serverData => dispatch(updateState(serverData.removeProductFromCart.cart, state.user))
     })
  
     return (

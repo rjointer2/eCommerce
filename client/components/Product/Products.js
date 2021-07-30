@@ -20,7 +20,7 @@ import { ADD_PRODUCT_TO_CART } from "../../ulits/mutations/productMutations";
 import { Button } from "../../styleComponents/button";
 import { ViewContainer, ViewWrapper } from "../../styleComponents/aligment";
 import { Select } from "../../styleComponents/form";
-import { updateCart } from "../../store/actions";
+import { updateState } from "../../store/actions";
 
 
 
@@ -36,10 +36,10 @@ export default function Products() {
     // all products
     const { data, error, loading } = useQuery(PRODUCTS);
     const [addProductToCartServer] = useMutation(ADD_PRODUCT_TO_CART, {
-        onCompleted: serverData => dispatch(updateCart(serverData.addProductToCart.cart, state.user))
+        onCompleted: serverData => dispatch(updateState(serverData.addProductToCart.cart, state.user))
     })
 
-    const handleClick = async () => {
+    const handleClick = async (itemId) => {
         if(!state.user) {
             setMessage(`You don't have a account`);
             scroll.scrollTo(500)
@@ -47,7 +47,7 @@ export default function Products() {
         }
         try {
             await addProductToCartServer({
-                variables: { "userId": state.user, "productId": item._id }
+                variables: { "userId": state.user, "productId": itemId}
             })                             
         } catch(err) {
             console.log(err)
@@ -80,7 +80,6 @@ export default function Products() {
             setArray(data.products);
             return false
         }
-        console.log(dept)
         setArray( data.products.filter(products => products.department === dept) );
     }
 
@@ -107,7 +106,7 @@ export default function Products() {
                         <br/>
                         <BoldCappedText>{item.name}</BoldCappedText>
                         <Text lightText={true}>price: ${item.price}</Text>
-                        <Button backgroundDark={true} onClick={handleClick}>Add To Cart</Button>
+                        <Button backgroundDark={true} onClick={() => handleClick(item._id)}>Add To Cart</Button>
                         <Select>
                             <option value="" hidden>1</option>
                             <option value="1">1</option>

@@ -1,6 +1,6 @@
 
 // resolvers
-const { addUser, signIn, me } = require('./resolvers/userResolvers');
+const { addUser, signIn, me, updateVendorStatus } = require('./resolvers/userResolvers');
 const { addProduct, products, addProductToCart, removeProductFromCart, resetCart } = require('./resolvers/productResolvers');
 
 let resolvers = {
@@ -10,6 +10,7 @@ let resolvers = {
     },
     Mutation: {
         removeProductFromCart,
+        updateVendorStatus,
         addProductToCart,
         addProduct,
         resetCart,

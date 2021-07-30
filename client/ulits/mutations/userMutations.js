@@ -24,3 +24,13 @@ export const SIGN_IN = gql`
         }
     }
 `;
+
+export const UPDATE_VENDOR_STATUS = gql`
+    mutation updateVendorStatus( $userId: String! ) {
+        updateVendorStatus( userId: $userId ) {
+            isVendor
+            username
+            _id
+        }
+    }
+`;

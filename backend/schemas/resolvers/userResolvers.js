@@ -71,6 +71,16 @@ module.exports = {
         // sign the jwt to the user
         const token = context.authenticate(user);
         return { token, user};
+    },
+
+    updateVendorStatus: async ( _parent, args ) => {
+        console.log('test')
+        const user = await User.findById(args.userId);
+        console.log(user.isVendor)
+        user.isVendor = !user.isVendor
+        await user.save()
+        console.log(user.isVendor)
+        return user
     }
     
 }
