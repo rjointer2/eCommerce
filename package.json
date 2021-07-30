@@ -5,7 +5,6 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "node server.js",
-    "build": "next dev",
     "start": "npm run dev"
   },
   "dependencies": {
