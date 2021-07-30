@@ -9,7 +9,7 @@ import { REMOVE_PRODUCT_FROM_CART } from "../../ulits/mutations/productMutations
 
 // styles
 
-import { Button } from "../../styleComponents/Button"
+import { Button } from "../../styleComponents/button"
 import { Img, ImgWrapper } from "../../styleComponents/img"
 import { BoldCappedText, Text, TextCenter } from "../../styleComponents/text"
 import { CartContainer, CartItem } from "./CartStyles"

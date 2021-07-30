@@ -17,7 +17,7 @@ import { Img, ImgWrapper } from "../../styleComponents/img";
 // state managemnet
 import Context from '../../store/context';
 import { ADD_PRODUCT_TO_CART } from "../../ulits/mutations/productMutations";
-import { Button } from "../../styleComponents/Button";
+import { Button } from "../../styleComponents/button";
 import { ViewContainer, ViewWrapper } from "../../styleComponents/aligment";
 import { Select } from "../../styleComponents/form";
 import { updateCart } from "../../store/actions";

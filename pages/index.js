@@ -9,11 +9,9 @@ import { AiOutlineShopping, AiOutlineShoppingCart, AiOutlineShop } from 'react-i
 import Video from '../assets/Video.mp4';
 
 // styled componenets
-import { CommitmentContainer, CommitmentItems, CommitmentWrapper, StoreBackground, StoreContainer, StoreHeader, StoreLanding, StoreText, StoreVideoBackground } from '../client/styleComponents/store';
-import { Button, ButtonWrapper } from '../client/styleComponents/Button';
-import { Column1, Column2, Container, Row, ViewContainer, ViewWrapper, Wrapper } from '../client/styleComponents/aligment';
-import { Icon, IconWrapper, Img, ImgWrapper } from '../client/styleComponents/img';
-import { BoldCappedText, Heading, Text, TextCenter } from '../client/styleComponents/text';
+import { StoreBackground, StoreContainer, StoreHeader, StoreLanding, StoreText, StoreVideoBackground } from '../client/styleComponents/store';
+import { Button, ButtonWrapper } from '../client/styleComponents/button';
+import { Container, ViewContainer, ViewWrapper } from '../client/styleComponents/aligment';
 
 // hooks
 import { useContext, useEffect, useRef, useState } from 'react';
