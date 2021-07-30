@@ -114,8 +114,8 @@ export default function SignUp() {
               </FormFooter>
               <FormButton type="submit">Submit</FormButton>
               <FormFooter>
-                <FormLink href="#" >Have An Account?</FormLink>
-                <FormLink href="#" >See Products</FormLink>
+                <FormLink href="/signup" >Have An Account?</FormLink>
+                <FormLink href="/" >See Products</FormLink>
               </FormFooter>
             </Form>
           </FormContainer>
