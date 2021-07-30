@@ -2,9 +2,6 @@
 // SEO
 import Head from 'next/head';
 
-// images from server
-import upload from '../assets/upload.png'
-
 // hooks
 import { useState, useRef, useEffect, useContext } from "react";
 import { useMutation, useQuery } from "@apollo/client";
