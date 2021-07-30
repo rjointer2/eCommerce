@@ -6,7 +6,7 @@ import { animateScroll as scroll } from "react-scroll";
 import { useContext, useEffect, useReducer, useRef, useState } from "react";
 
 // apollo client
-import { useMutation, useQuery } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client";
 import { PRODUCTS } from "../../ulits/queries/productQueries"
 
 // components
