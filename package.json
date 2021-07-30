@@ -4,9 +4,10 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "npm run dev",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",

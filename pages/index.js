@@ -10,7 +10,7 @@ import Video from '../assets/Video.mp4';
 
 // styled componenets
 import { CommitmentContainer, CommitmentItems, CommitmentWrapper, StoreBackground, StoreContainer, StoreHeader, StoreLanding, StoreText, StoreVideoBackground } from '../client/styleComponents/store';
-import { Button, ButtonWrapper } from '../client/styleComponents/Button';
+
 import { Column1, Column2, Container, Row, ViewContainer, ViewWrapper, Wrapper } from '../client/styleComponents/aligment';
 import { Icon, IconWrapper, Img, ImgWrapper } from '../client/styleComponents/img';
 import { BoldCappedText, Heading, Text, TextCenter } from '../client/styleComponents/text';
@@ -29,6 +29,7 @@ import { updateCart } from '../client/store/actions';
 // components
 import Products from '../client/components/Product/Products';
 import Cart from '../client/components/Cart/Cart';
+import { ButtonWrapper } from '../client/styleComponents/Button';
 
 
 
