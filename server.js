@@ -53,7 +53,7 @@ app.prepare().then(() => {
             return handle(req, res)
         });
 
-        server.listen(3001, err => {
+        server.listen(_PORT, err => {
             if(err) throw err
             console.log('listening for request')
         })
