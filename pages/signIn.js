@@ -60,8 +60,8 @@ export default function SignIn() {
                     <br/>
                     <FormButton type="submit">Submit</FormButton>
                     <FormFooter>
-                    <FormLink href="#" >Don't Have an Account?</FormLink>
-                    <FormLink href="#" >See Products</FormLink>
+                    <FormLink href="/signup" >Don't Have an Account?</FormLink>
+                    <FormLink href="/" >See Products</FormLink>
                     </FormFooter>
                 </Form>
                 </FormContainer>
