@@ -21,7 +21,7 @@ export const ViewWrapper = styled.div`
 export const Container = styled.div`
     display: flex;
     justify-content: center;
-    height: 650px;
+    height: 100%;
 `;
 
 

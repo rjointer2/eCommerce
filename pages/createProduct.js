@@ -3,8 +3,8 @@
 import upload from '../assets/upload.png'
 
 // hooks
-import { useState, useRef, useEffect } from "react";
-import { useMutation } from "@apollo/client";
+import { useState, useRef, useEffect, useContext } from "react";
+import { useMutation, useQuery } from "@apollo/client";
 
 // mutations
 import { ADD_PRODUCT } from "../client/ulits/mutations/productMutations";
@@ -13,15 +13,37 @@ import { ADD_PRODUCT } from "../client/ulits/mutations/productMutations";
 import { Column1, Column2, Container, Row, Wrapper } from "../client/styleComponents/aligment";
 import { Img, ImgWrapper } from "../client/styleComponents/img";
 import { BoldCappedText, Heading, Text } from "../client/styleComponents/text";
-import { Form, FormButton, FormContainer, FormInput, FormLabel, FormSelect, TextArea } from '../client/styleComponents/form';
+import { Form, FormButton, FormInput, FormLabel, FormSelect, TextArea } from '../client/styleComponents/form';
+
+// apollo
+import { GET_USER } from '../client/ulits/queries/userQueries';
+
+// state management
+import Context from '../client/store/context';
+import { updateState } from '../client/store/actions';
+
+// next
+import Link from 'next/link';
+
 
 
 export default function createProduct() {
 
+    // get user data
+    const { data, error, loading } = useQuery(GET_USER);
+
+    // global state
+    const { dispatch, state } = useContext(Context);
+
+    useEffect(() => {
+        if(!data) return false;
+
+        dispatch(updateState(data.me.cart, data.me._id, data.me.isVendor));
+        console.log(data.me._id)
+    }, [data]);
+
     // product
     const [addedProduct, setAddedProduct] = useState(null);
-
-    console.log(addedProduct)
 
     // refernce to hidden input for file upload 
     const hiddenInput = useRef(null);
@@ -29,7 +51,7 @@ export default function createProduct() {
     const handleFileUploadClick = e => hiddenInput.current.click();
 
     // mutation hook to add product to db
-    const [ addProduct, { data } ] = useMutation(ADD_PRODUCT, {
+    const [ addProduct ] = useMutation(ADD_PRODUCT, {
         onCompleted: data => setAddedProduct(data)
     });
 
@@ -100,14 +122,6 @@ export default function createProduct() {
         })();
     }
 
-    /* Specifically for checking rerenders */
-    const renderCount = useRef(1);
-    // count rerenders
-    useEffect(() => {
-        renderCount.current = renderCount.current + 1;
-        console.log(renderCount)
-    }, []);
-
     return (
         <>
             <Container>
@@ -171,8 +185,9 @@ export default function createProduct() {
                                     onClick={() => console.log('test')}
                                 />
                                 <FormButton type="submit">
-                                    Submit Image
+                                    Submit Product
                                 </FormButton>
+                                <Link href="/becomevendor">Don't want to be a Vendor?</Link>
                             </Form>
                         </Column2>
                     </Row>

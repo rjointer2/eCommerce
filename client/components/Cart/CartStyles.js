@@ -9,8 +9,6 @@ import { primary } from "../../styleComponents/palette";
 export const CartContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 600px;
-    overflow-y: scroll;
     
 
     @media screen and (max-width: 700px) {

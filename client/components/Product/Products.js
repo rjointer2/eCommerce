@@ -3,7 +3,7 @@
 import { animateScroll as scroll } from "react-scroll";
 
 // hooks 
-import { useContext, useEffect, useReducer, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // apollo client
 import { useMutation, useQuery } from "@apollo/client";
@@ -54,14 +54,8 @@ export default function Products() {
         }
     }
 
-    const renderCount = useRef(1)
 
     useEffect(() => {
-
-        // to track our rerenders
-        renderCount.current = renderCount.current + 1;
-        console.log(renderCount)
-
         if(!data) return false;
         setArray(data.products);
     }, [data]);

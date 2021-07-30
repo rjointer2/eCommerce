@@ -11,6 +11,7 @@ module.exports = {
 
     me: async ( _parent, _args, context ) => {
         const username = context.verify().user;
+        console.log(username)
         // if the context's auth middleware was used that located that user
         if( username ) {
             const user = await User.findOne({ username: username });
@@ -57,29 +58,33 @@ module.exports = {
         }
     },
     
-    signIn: async ( _parent, args, context ) => {
-        const user = await User.findOne({ username: args.username });
-        console.log(user);
-        if(!user) throw new AuthenticationError('User Not Found');
-        // if the user is found then use the method from the user model
-        // to check if the password is correct
-        const correctPassword = await user.isCorrectPassword(args.password);
-        if(!correctPassword) {
-            console.log('incorrect password');
-            throw new AuthenticationError('Incorrect Password');
+    sign: async ( _parent, args, context ) => {
+        console.log(args.type)
+        if(args.type === "sign_in") {
+            const user = await User.findOne({ username: args.username });
+            console.log(user);
+            if(!user) throw new AuthenticationError('User Not Found');
+            // if the user is found then use the method from the user model
+            // to check if the password is correct
+            const correctPassword = await user.isCorrectPassword(args.password);
+            if(!correctPassword) {
+                console.log('incorrect password');
+                throw new AuthenticationError('Incorrect Password');
+            }
+            // sign the jwt to the user
+            const token = context.authenticate(user);
+            return { token, user};
         }
-        // sign the jwt to the user
-        const token = context.authenticate(user);
-        return { token, user};
+        if(args.type === 'sign_out') {
+            context.destoryToken();
+        }
     },
 
     updateVendorStatus: async ( _parent, args ) => {
         console.log('test')
         const user = await User.findById(args.userId);
-        console.log(user.isVendor)
         user.isVendor = !user.isVendor
         await user.save()
-        console.log(user.isVendor)
         return user
     }
     

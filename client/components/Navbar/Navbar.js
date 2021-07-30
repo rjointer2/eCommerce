@@ -19,6 +19,10 @@ import Context from '../../store/context';
 
 // styles for Nav
 import { MobileIconNavBar, Nav, NavContainer, NavItems, NavLinks, NavLogo, NavMenu, WelcomeText } from "./NavbarStyles";
+import { useMutation } from '@apollo/client';
+
+// apollo
+import { SIGN } from '../../ulits/mutations/userMutations';
 
 
 export default function Navbar({ toggle }) {
@@ -28,6 +32,9 @@ export default function Navbar({ toggle }) {
 
     // global state
     const { state, dispatch } = useContext(Context);
+
+    // sign out user 
+    const [signOut] = useMutation(SIGN);
 
 
     return (
@@ -54,7 +61,7 @@ export default function Navbar({ toggle }) {
                         </NavLinks>
                     </NavItems>
                     <NavItems>
-                        <NavLinks href='signin' onClick={() => state.user ? console.log('signing in') : console.log('signing out') }>
+                        <NavLinks href='signin' onClick={async () => state.user ? await signOut({ variables: { "username": "N/A", "password": "N/A", "type": "sign_out" } }) : console.log('signing in') }>
                             { state.user ? 'Sign Out' : 'Sign In' }
                         </NavLinks>
                     </NavItems>

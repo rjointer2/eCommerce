@@ -33,7 +33,11 @@ module.exports = {
                 console.log(`${data.username} has been verified!`);
                 // now return the username to the me resolver so it can 
                 // aggregate and return the user to be queried
-                return { user: data.username }
+                return { user: data.username, token }
+            },
+            destoryToken: function() {
+                console.log('Sign Out Successful and tokens destoryed')
+                req.header.authorization = null;
             }
         }
     }

@@ -12,9 +12,9 @@ export const ADD_USER = gql`
     }
 `;
 
-export const SIGN_IN = gql`
-    mutation signIn( $username: String!, $password: String! ) {
-        signIn( username: $username, password: $password ) {
+export const SIGN = gql`
+    mutation sign( $username: String!, $password: String!, $type: String! ) {
+        sign( username: $username, password: $password, type: $type ) {
             token 
             user {
                 username

@@ -1,7 +1,7 @@
 
 // hooks
 import { useMutation } from "@apollo/client";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext } from "react";
 
 // apollo
 import { REMOVE_PRODUCT_FROM_CART } from "../../ulits/mutations/productMutations";
@@ -20,9 +20,6 @@ import { updateState } from "../../store/actions";
 
 
 export default function Cart() {
-
-    // local state
-    const [message, setMessage] = useState('Your Cart');
 
     // global state
     const { state, dispatch } = useContext(Context);

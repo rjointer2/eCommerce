@@ -1,6 +1,6 @@
 
 // hooks
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // apollo
 import { useMutation, useQuery } from "@apollo/client"
@@ -50,20 +50,11 @@ export default function BecomeVendor() {
         }
     }
 
-    // track our renders
-    const renderCount = useRef(0);
-
     useEffect(() => {
-        renderCount.current = renderCount.current + 1;
-        console.log(renderCount.current)
-
-        
         if(!data) return false;
         dispatch(updateState(data.me.cart, data.me._id, data.me.isVendor))
         setVendor(data.me.isVendor)
         console.log(vendor)
-        console.log(state)
-        
     }, [data])
 
     return (

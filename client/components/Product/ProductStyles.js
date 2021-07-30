@@ -9,10 +9,7 @@ import { primary } from "../../styleComponents/palette";
 export const ProductContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 540px;
-    overflow-y: scroll;
     
-
     @media screen and (max-width: 700px) {
         grid-template-columns: none;
     }

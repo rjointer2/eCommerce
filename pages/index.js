@@ -2,9 +2,6 @@
 // react scroll
 import { animateScroll as scroll } from 'react-scroll';
 
-// react icons
-import { AiOutlineShopping, AiOutlineShoppingCart, AiOutlineShop } from 'react-icons/ai';
-
 // assets
 import Video from '../assets/Video.mp4';
 
@@ -14,7 +11,7 @@ import { Button, ButtonWrapper } from '../client/styleComponents/button';
 import { Container, ViewContainer, ViewWrapper } from '../client/styleComponents/aligment';
 
 // hooks
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 // queries and mutations
@@ -45,21 +42,17 @@ export default function index() {
   // get the user's data and store it state 
   const { data, error, loading } = useQuery(GET_USER);
 
-  const renderCount = useRef(0);
-
   useEffect(() => {
-    renderCount.current = renderCount.current + 1;
-    console.log(renderCount.current);
     // not falsy don't perform any lifecycle methods
     if(!data) return false;
-    console.log(data.me_id)
+    console.log(data.me._id)
 
     dispatch(updateState(data.me.cart, data.me._id, data.me.isVendor))
 
     // whenever the data variable changes, invoked our lifecycle methods
   }, [data]);
 
-  console.log(console.log(state.status))
+  console.log(state.status)
 
   return (
     <>

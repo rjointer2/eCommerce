@@ -1,6 +1,6 @@
 
 // resolvers
-const { addUser, signIn, me, updateVendorStatus } = require('./resolvers/userResolvers');
+const { addUser, sign, me, updateVendorStatus } = require('./resolvers/userResolvers');
 const { addProduct, products, addProductToCart, removeProductFromCart, resetCart } = require('./resolvers/productResolvers');
 
 let resolvers = {
@@ -15,7 +15,7 @@ let resolvers = {
         addProduct,
         resetCart,
         addUser,
-        signIn
+        sign
     }
 }
 

@@ -1,12 +1,9 @@
 
-// middleware
-import AuthClient from '../client/ulits/middleware/auth'
-
 // mutations
-import { SIGN_IN } from "../client/ulits/mutations/userMutations";
+import { SIGN } from "../client/ulits/mutations/userMutations";
 
 // hooks
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useMutation } from '@apollo/client';
 
 // styles
@@ -15,7 +12,7 @@ import { Form, FormButton, FormContainer, FormFooter, FormHeader, FormInput, For
 
 export default function SignIn() {
 
-    const [ signInUser ] = useMutation(SIGN_IN);
+    const [ signInUser ] = useMutation(SIGN);
 
     // conditionally display text on form error
     const [formError, setFormError] = useState(false);
@@ -37,21 +34,12 @@ export default function SignIn() {
         }
 
         try {
-            const { data } = await signInUser({ variables: { "username": username, "password": password } });
-            AuthClient.login(data.signIn.token)
+            await signInUser({ variables: { "username": username, "password": password, "type": "sign_in" } });
+            window.location.assign('/');
         } catch (err) {
             console.log(err)
         }
     }
-
-    /* Specifically for checking rerenders */
-    const renderCount = useRef(0);
-    // count rerenders
-    useEffect(() => {
-        renderCount.current = renderCount.current + 1;
-        console.log(renderCount)
-    }, []);
-
 
     return (
         <Container>
