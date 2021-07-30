@@ -71,7 +71,7 @@ export default function index() {
                 <br/><br/> 
               </StoreText>
               <ButtonWrapper>
-                <Button onClick={() => console.log('text')}>
+                <Button onClick={() => window.location.assign('/signup')}>
                   Sign Up Today!
                 </Button>
               </ButtonWrapper>
