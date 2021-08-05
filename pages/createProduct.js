@@ -24,6 +24,8 @@ import { updateState } from '../client/store/actions';
 
 // next
 import Link from 'next/link';
+import Navbar from '../client/components/Navbar/Navbar';
+import Sidebar from '../client/components/Sidebar/Sidebar';
 
 
 
@@ -119,11 +121,18 @@ export default function createProduct() {
         })();
     }
 
+    // we will psss the components and pages as props 
+    const [isOpen, setIsOpen] = useState(false);
+    // for the sidebar if the prop is a bool then the style will show
+    const toggle = () => setIsOpen(!isOpen);
+
     return (
         <>
             <Head>
                 <title>Plant Shop Create Product</title>
             </Head>
+            <Navbar toggle={toggle} />
+            <Sidebar isOpen={isOpen} toggle={toggle} />     
             <Container>
                 <Wrapper>
                     <Row>

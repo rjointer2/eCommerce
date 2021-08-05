@@ -24,6 +24,8 @@ import { updateState } from '../client/store/actions';
 // components
 import Products from '../client/components/Product/Products';
 import Cart from '../client/components/Cart/Cart';
+import Navbar from '../client/components/Navbar/Navbar';
+import Sidebar from '../client/components/Sidebar/Sidebar';
 
 
 
@@ -52,7 +54,10 @@ export default function index() {
     // whenever the data variable changes, invoked our lifecycle methods
   }, [data]);
 
-  console.log(state.status)
+    // we will psss the components and pages as props 
+    const [isOpen, setIsOpen] = useState(false);
+    // for the sidebar if the prop is a bool then the style will show
+    const toggle = () => setIsOpen(!isOpen);
 
   return (
     <>
@@ -60,6 +65,8 @@ export default function index() {
           <title>Plant Shop Home Page</title>
           <meta name="description" content="Home Page of Plant Shop by Roosevelt Jointer" />
       </Head>
+      <Navbar toggle={toggle} />
+      <Sidebar isOpen={isOpen} toggle={toggle} /> 
       <StoreContainer>
         <StoreBackground>
           <StoreVideoBackground autoPlay loop muted src="/Video.mp4" type='video/mp4'/>
