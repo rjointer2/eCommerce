@@ -23,6 +23,8 @@ import { Text } from "../client/styleComponents/text";
 import ToggleSwitch from "../client/components/ToggleSwitch/ToggleSwitch";
 import { ViewContainer } from "../client/styleComponents/aligment";
 import { Img, ImgWrapper } from "../client/styleComponents/img";
+import Navbar from '../client/components/Navbar/Navbar';
+import Sidebar from '../client/components/Sidebar/Sidebar';
 
 
 
@@ -57,21 +59,34 @@ export default function BecomeVendor() {
         console.log(vendor)
     }, [data])
 
+    // we will psss the components and pages as props 
+    const [isOpen, setIsOpen] = useState(false);
+    // for the sidebar if the prop is a bool then the style will show
+    const toggle = () => setIsOpen(!isOpen);
+
     return (
         <div>
             <Head>
                 <title>Plant Shop Become A Vendor</title>
             </Head>
+            <Navbar toggle={toggle} />
+            <Sidebar isOpen={isOpen} toggle={toggle} />
             <FormContainer>
                 <ImgWrapper>
                     <Img src="/vendor.svg" alt="vendor"/>
                 </ImgWrapper>
                 <Form>
                     <ViewContainer>
-                    <Text lightText={true}>
-                        { vendor ? 'Your already Vendor! Would Like to remove your status?' : 'Would you like to become a vendor?' }
-                    </Text>
-                    <ToggleSwitch stateValue={false} setStateValue={setVendor} callback={handleClick}  />
+                    { 
+                        data ? <> 
+                            <Text lightText={true}>
+                                { vendor ? 'Your already Vendor! Would Like to remove your status?' : 'Would you like to become a vendor?' }
+                            </Text>
+                            <ToggleSwitch stateValue={false} setStateValue={setVendor} callback={handleClick}  />  </> : 
+                            <Text lightText={true}>
+                                You Must Have An Account to sell items!
+                            </Text>
+                    }
                     </ViewContainer>
                 </Form>
             </FormContainer>

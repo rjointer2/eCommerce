@@ -12,6 +12,7 @@ import { useMutation } from '@apollo/client';
 // styles
 import { Container, Wrapper } from "../client/styleComponents/aligment";
 import { Form, FormButton, FormContainer, FormFooter, FormHeader, FormInput, FormLabel, FormLink } from "../client/styleComponents/form";
+import { BoldCappedText } from '../client/styleComponents/text';
 
 export default function SignIn() {
 
@@ -38,7 +39,9 @@ export default function SignIn() {
             await signInUser({ variables: { "username": username, "password": password, "type": "sign_in" } });
             window.location.assign('/');
         } catch (err) {
-            console.log(err)
+            setFormError(true);
+            setFormErrorMessage('Network Error')
+
         }
     }
 

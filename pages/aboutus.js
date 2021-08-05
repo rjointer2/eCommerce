@@ -3,7 +3,7 @@
 import Head from 'next/head';
 
 // hooks
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 // apollo
 import { GET_USER } from '../client/ulits/queries/userQueries'
@@ -16,6 +16,8 @@ import Context from '../client/store/context';
 // styles
 import { Img, ImgWrapper } from "../client/styleComponents/img";
 import { Heading, Text, TextCenter } from "../client/styleComponents/text";
+import Navbar from '../client/components/Navbar/Navbar';
+import Sidebar from '../client/components/Sidebar/Sidebar';
 
 
 
@@ -32,11 +34,18 @@ export default function AboutUs() {
         dispatch(updateState(data.me.cart, data.me._id, data.me.isVendor))
     }, [data])
 
+    // we will psss the components and pages as props 
+    const [isOpen, setIsOpen] = useState(false);
+    // for the sidebar if the prop is a bool then the style will show
+    const toggle = () => setIsOpen(!isOpen);
+
     return (
         <>
             <Head>
                 <title>Plant Shop About Dev</title>
             </Head>
+            <Navbar toggle={toggle} /> 
+            <Sidebar isOpen={isOpen} toggle={toggle} />
             <TextCenter>
                 <Heading>About The Developer</Heading>
                 <ImgWrapper>

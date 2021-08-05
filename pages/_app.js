@@ -4,7 +4,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, useQuery }
 
 // where playground will be used
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://plantshoproody.herokuapp.com/graphql',
 });
 
 const client = new ApolloClient({
@@ -37,17 +37,10 @@ function MyApp({ Component, pageProps }) {
   // mock loggoutOut authmiddleware hard coded log in var
   const loggedOut = true
 
-  // we will psss the components and pages as props 
-  const [isOpen, setIsOpen] = useState(false);
-  // for the sidebar if the prop is a bool then the style will show
-  const toggle = () => setIsOpen(!isOpen);
-
   return (
     <ApolloProvider client={client}>
       <Context.Provider value={store}>
-          <main>
-            { loggedOut && <Navbar toggle={toggle} /> }
-            <Sidebar isOpen={isOpen} toggle={toggle} />
+          <main> 
             <Component {...pageProps} />
             <Footer/> 
           </main>
