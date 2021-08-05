@@ -4,7 +4,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, useQuery }
 
 // where playground will be used
 const httpLink = createHttpLink({
-  uri: 'http://plantshoproody.herokuapp.com/graphql',
+  uri: '/graphql',
 });
 
 const client = new ApolloClient({
